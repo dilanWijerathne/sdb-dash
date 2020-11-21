@@ -14,17 +14,17 @@ use Illuminate\Support\Facades\Log;
 class Datta
 {
 
-    public static function new_user($name, $email, $password, $password_c, $mobile, $role, $branch)
+    public static function new_user()
     {
 
         $response = Http::post('http://10.101.6.198/sdbl/api/register', [
-            "name" => $name,
-            "email" => $email,
-            "password" => $password,
-            "password_confirmation" => $password_c,
-            "mobile" => $mobile,
-            "role" => $role,
-            "branch" => $branch,
+            "name" => "",
+            "email" => "",
+            "password" => "",
+            "password_confirmation" => "",
+            "mobile" => "",
+            "role" => "",
+            "branch" => "",
         ]);
 
 

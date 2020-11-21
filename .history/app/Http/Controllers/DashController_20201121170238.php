@@ -35,14 +35,6 @@ class DashController extends Controller
 
 
 
-    public function new_member(Request $request)
-    {
-
-        $member = Datta::new_user($request->name, $request->email, $request->password, $request->password_c, $request->mobile, $request->role, $request->branch);
-        return  $member;
-    }
-
-
 
     public function onboading_list()
     {
@@ -72,7 +64,7 @@ class DashController extends Controller
 
         // add token validation to this functuion
 
-        $response = Http::get('http://10.101.6.198/sdbl/api/inapp', [
+        $response = Http::get('http://10.101.6.198/sdbl/inapp', [
             "nic" => $request->nic,
         ]);
 
