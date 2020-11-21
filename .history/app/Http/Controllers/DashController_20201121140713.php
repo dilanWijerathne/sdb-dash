@@ -58,7 +58,7 @@ class DashController extends Controller
             "nic" => $request->nic,
         ]);
 
-        return  $response;
+        return  $response->body();
     }
 
 

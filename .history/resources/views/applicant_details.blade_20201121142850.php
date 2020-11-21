@@ -152,21 +152,18 @@
                     <h3 class="box-title"> Avaiable accounts</h3>
                   </div>
 
+                  @if(isset($acc[0]))
 
-
-                  @isset($acc[0])
 
                     @foreach ($acc as $ac)
                     <li class="list-group-item">
-                        <b>Account number</b> <a class="pull-right"> {{ $ac['account_number'] }} </a>
-                        </li>
-
-                    @endforeach
-                  @endisset
+                        <b>Acc number </b> <a class="pull-right"> {{ $ac->account_number }}</a>
+                      </li>
+                        @endforeach
 
 
 
-
+                  @endif
 
 
                 <hr>

@@ -27,27 +27,6 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
-  <script>
-
-      // "http://10.101.6.198/sdbl/inapp",
-      function cacc(){
-          var nic = $('#nicvalue').val();
-
-          alert("You are going to create account for : "+ nic);
-        $.ajax({
-            method: "POST",
-            url: "api/applicant-approval",
-            data: { nic: nic}
-            })
-            .done(function( msg ) {
-                console.log(msg);
-                alert( msg );
-                location.reload();
-
-            });
-      }
-  </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -82,7 +61,7 @@
               <img class="profile-user-img img-responsive img-circle" src="http://10.101.6.198/sdbl/public/{{$selfie['file_path']}}" alt="User profile picture">
 
               <h3 class="profile-username text-center"> {{$Applicant['nic']}} - {{$Applicant['sex']}} </h3>
-                <input type="hidden" value="{{$Applicant['nic']}}" id="nicvalue"  />
+
               <p class="text-muted text-center">{{$Applicant['applicant_status']}}</p>
 
                 <!-- primary display section -->
@@ -103,11 +82,11 @@
                 </li>
                 @endif
 
-
+                @if ( isset($Applicant['pep']) )
                 <li class="list-group-item" style="color: red">
                   <b>PEP</b> <a class="pull-right">{{$KYC['pep']}}</a>
                 </li>
-
+                @endif
               </ul>
                <!-- end primary display section -->
                <hr>
@@ -147,36 +126,15 @@
                   <b>Applied timestamp</b> <a class="pull-right"> {{$Applicant['updated_at']}}</a>
                 </li>
 
-                <hr>
-                <div class="box-header with-border">
-                    <h3 class="box-title"> Avaiable accounts</h3>
-                  </div>
 
 
-
-                  @isset($acc[0])
-
-                    @foreach ($acc as $ac)
-                    <li class="list-group-item">
-                        <b>Account number</b> <a class="pull-right"> {{ $ac['account_number'] }} </a>
-                        </li>
-
-                    @endforeach
-                  @endisset
-
-
-
-
-
-
-                <hr>
 
 
 
               </ul>
                <!-- end primary display section -->
 
-              <a onclick="cacc()" class="btn btn-primary btn-block"><b>Approve</b></a>
+              <a href="#" class="btn btn-primary btn-block"><b>Approve</b></a>
               <a href="#" class="btn btn-primary btn-warning btn-block"><b>Request to improve</b></a>
               <a href="#" class="btn btn-primary btn-danger  btn-block"><b>Reject</b></a>
             </div>

@@ -154,15 +154,10 @@
 
 
 
-                  @isset($acc[0])
 
-                    @foreach ($acc as $ac)
-                    <li class="list-group-item">
-                        <b>Account number</b> <a class="pull-right"> {{ $ac['account_number'] }} </a>
-                        </li>
-
-                    @endforeach
-                  @endisset
+                            <li class="list-group-item">
+                                <b>Account number</b> <a class="pull-right"> {{ $acc[0] }} </a>
+                              </li>
 
 
 
