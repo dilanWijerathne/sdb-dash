@@ -152,21 +152,17 @@
                     <h3 class="box-title"> Avaiable accounts</h3>
                   </div>
 
-
-
-                  @isset($acc[0])
-
-                    @foreach ($acc as $ac)
-                    <li class="list-group-item">
-                        <b>Account number</b> <a class="pull-right"> {{ $ac['account_number'] }} </a>
-                        </li>
-
-                    @endforeach
-                  @endisset
+                  @if(isset($acc[0]))
 
 
 
 
+                        @for ($i = 0; $i < sizeof($acc); $i++)
+                            The current value is {{ $acc[$i] }}
+                        @endfor
+
+
+                  @endif
 
 
                 <hr>

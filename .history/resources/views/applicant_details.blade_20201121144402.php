@@ -155,7 +155,7 @@
 
 
                   @isset($acc[0])
-
+                  // $records is defined and is not null...
                     @foreach ($acc as $ac)
                     <li class="list-group-item">
                         <b>Account number</b> <a class="pull-right"> {{ $ac['account_number'] }} </a>

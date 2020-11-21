@@ -33,18 +33,13 @@
       // "http://10.101.6.198/sdbl/inapp",
       function cacc(){
           var nic = $('#nicvalue').val();
-
-          alert("You are going to create account for : "+ nic);
         $.ajax({
-            method: "POST",
-            url: "api/applicant-approval",
-            data: { nic: nic}
+            method: "GET",
+            url: "http://10.101.6.198/sdbl/inapp",
+            data: { nic: "John"}
             })
             .done(function( msg ) {
-                console.log(msg);
-                alert( msg );
-                location.reload();
-
+                alert( "Data Saved: " + msg );
             });
       }
   </script>
@@ -103,11 +98,11 @@
                 </li>
                 @endif
 
-
+                @if ( isset($Applicant['pep']) )
                 <li class="list-group-item" style="color: red">
                   <b>PEP</b> <a class="pull-right">{{$KYC['pep']}}</a>
                 </li>
-
+                @endif
               </ul>
                <!-- end primary display section -->
                <hr>
@@ -147,36 +142,15 @@
                   <b>Applied timestamp</b> <a class="pull-right"> {{$Applicant['updated_at']}}</a>
                 </li>
 
-                <hr>
-                <div class="box-header with-border">
-                    <h3 class="box-title"> Avaiable accounts</h3>
-                  </div>
 
 
-
-                  @isset($acc[0])
-
-                    @foreach ($acc as $ac)
-                    <li class="list-group-item">
-                        <b>Account number</b> <a class="pull-right"> {{ $ac['account_number'] }} </a>
-                        </li>
-
-                    @endforeach
-                  @endisset
-
-
-
-
-
-
-                <hr>
 
 
 
               </ul>
                <!-- end primary display section -->
 
-              <a onclick="cacc()" class="btn btn-primary btn-block"><b>Approve</b></a>
+              <a href="#" class="btn btn-primary btn-block"><b>Approve</b></a>
               <a href="#" class="btn btn-primary btn-warning btn-block"><b>Request to improve</b></a>
               <a href="#" class="btn btn-primary btn-danger  btn-block"><b>Reject</b></a>
             </div>

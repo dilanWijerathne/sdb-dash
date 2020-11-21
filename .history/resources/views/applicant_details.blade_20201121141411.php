@@ -103,11 +103,11 @@
                 </li>
                 @endif
 
-
+                @if ( isset($Applicant['pep']) )
                 <li class="list-group-item" style="color: red">
                   <b>PEP</b> <a class="pull-right">{{$KYC['pep']}}</a>
                 </li>
-
+                @endif
               </ul>
                <!-- end primary display section -->
                <hr>
@@ -147,29 +147,8 @@
                   <b>Applied timestamp</b> <a class="pull-right"> {{$Applicant['updated_at']}}</a>
                 </li>
 
-                <hr>
-                <div class="box-header with-border">
-                    <h3 class="box-title"> Avaiable accounts</h3>
-                  </div>
 
 
-
-                  @isset($acc[0])
-
-                    @foreach ($acc as $ac)
-                    <li class="list-group-item">
-                        <b>Account number</b> <a class="pull-right"> {{ $ac['account_number'] }} </a>
-                        </li>
-
-                    @endforeach
-                  @endisset
-
-
-
-
-
-
-                <hr>
 
 
 
