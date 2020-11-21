@@ -72,7 +72,7 @@ class DashController extends Controller
 
         // add token validation to this functuion
 
-        $response = Http::get('http://10.101.6.198/sdbl/api/inapp', [
+        $response = Http::get('http://10.101.6.198/sdbl/inapp', [
             "nic" => $request->nic,
         ]);
 

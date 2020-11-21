@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SDB My team</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="public/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="public/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="public/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="public/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="public/dist/css/skins/_all-skins.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+
+  <script>
+      function addTeamMember(){
+        var mobile = $("#InputMobile").val();
+        var name = $("#InputName").val();
+        var email = $("#InputEmail").val();
+        var password = $("#InputPassword").val();
+        var password_c = $("#InputPassword_c").val();
+        var role = $("#role").children("option:selected").val();
+        var branch = $("#branch").children("option:selected").val();
+
+console.log(branch);
+
+        $.ajax({
+                method: "POST",
+                url: "api/new_member",
+                data: {name, email, password, password_c, mobile, role, branch}
+                })
+                .done(function( msg ) {
+                    alert( "Data Saved: " + msg );
+                });
+
+
+      }
+  </script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    @include('header')
+  <!-- Left side column. contains the logo and sidebar -->
+  @include('sidebar')
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        General Team
+        <small>Preview</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Team</a></li>
+        <li class="active">General</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-6">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Quick Register</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form">
+              <div class="box-body">
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Mobile</label>
+                    <input type="number" class="form-control" id="InputMobile" placeholder="Enter email">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="InputEmail" placeholder="Enter email">
+                  </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Name</label>
+                  <input type="text" class="form-control" id="InputName" placeholder="Enter email">
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" id="InputPassword" placeholder="Password">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Re enter Password</label>
+                    <input type="password" class="form-control" id="InputPassword_c" placeholder="Password">
+                  </div>
+
+
+  <!-- select -->
+  <div class="form-group">
+    <label>Role</label>
+    <select id="role" class="form-control">
+      <option value="bdo">BDO</option>
+      <option value="manager"> Manager (Approval Officer)</option>
+    </select>
+  </div>
+
+    <!-- select -->
+    <div class="form-group">
+        <label>Branch</label>
+        <select id="branch" class="form-control">
+
+
+
+            @foreach ( $branches as $ac)
+
+
+        <option value="{{$ac['code']}}">{{ $ac['name'] }}</option>
+
+            @endforeach
+
+
+
+
+
+        </select>
+      </div>
+
+
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> Check me out
+                  </label>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" onclick="addTeamMember()" class="btn btn-primary">Add new team member</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box -->
+
+
+
+
+
+
+
+        </div>
+        <!--/.col (left) -->
+        <!-- right column -->
+        <div class="col-md-6">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Horizontal Form</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+
+                  <div class="col-sm-10">
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+
+                  <div class="col-sm-10">
+                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox"> Remember me
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button type="submit" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-info pull-right">Sign in</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+          <!-- /.box -->
+          <!-- general form elements disabled -->
+          <div class="box box-warning">
+            <div class="box-header with-border">
+              <h3 class="box-title">General Elements</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <form role="form">
+                <!-- text input -->
+                <div class="form-group">
+                  <label>Text</label>
+                  <input type="text" class="form-control" placeholder="Enter ...">
+                </div>
+                <div class="form-group">
+                  <label>Text Disabled</label>
+                  <input type="text" class="form-control" placeholder="Enter ..." disabled>
+                </div>
+
+                <!-- textarea -->
+                <div class="form-group">
+                  <label>Textarea</label>
+                  <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                </div>
+                <div class="form-group">
+                  <label>Textarea Disabled</label>
+                  <textarea class="form-control" rows="3" placeholder="Enter ..." disabled></textarea>
+                </div>
+
+                <!-- input states -->
+                <div class="form-group has-success">
+                  <label class="control-label" for="inputSuccess"><i class="fa fa-check"></i> Input with success</label>
+                  <input type="text" class="form-control" id="inputSuccess" placeholder="Enter ...">
+                  <span class="help-block">Help block with success</span>
+                </div>
+                <div class="form-group has-warning">
+                  <label class="control-label" for="inputWarning"><i class="fa fa-bell-o"></i> Input with
+                    warning</label>
+                  <input type="text" class="form-control" id="inputWarning" placeholder="Enter ...">
+                  <span class="help-block">Help block with warning</span>
+                </div>
+                <div class="form-group has-error">
+                  <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input with
+                    error</label>
+                  <input type="text" class="form-control" id="inputError" placeholder="Enter ...">
+                  <span class="help-block">Help block with error</span>
+                </div>
+
+                <!-- checkbox -->
+                <div class="form-group">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                      Checkbox 1
+                    </label>
+                  </div>
+
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                      Checkbox 2
+                    </label>
+                  </div>
+
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" disabled>
+                      Checkbox disabled
+                    </label>
+                  </div>
+                </div>
+
+                <!-- radio -->
+                <div class="form-group">
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                      Option one is this and that&mdash;be sure to include why it's great
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                      Option two can be something else and selecting it will deselect option one
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+                      Option three is disabled
+                    </label>
+                  </div>
+                </div>
+
+                <!-- select -->
+                <div class="form-group">
+                  <label>Select</label>
+                  <select class="form-control">
+                    <option>option 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                </div>
+
+
+                <div class="form-group">
+                  <label>Select Disabled</label>
+                  <select class="form-control" disabled>
+                    <option>option 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                </div>
+
+                <!-- Select multiple-->
+                <div class="form-group">
+                  <label>Select Multiple</label>
+                  <select multiple class="form-control">
+                    <option>option 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Select Multiple Disabled</label>
+                  <select multiple class="form-control" disabled>
+                    <option>option 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                </div>
+
+              </form>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!--/.col (right) -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  @include('footer')
+
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="public/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="public/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="public/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="public/dist/js/demo.js"></script>
+</body>
+</html>
