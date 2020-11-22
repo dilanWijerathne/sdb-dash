@@ -198,7 +198,7 @@
 
               <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
-              <p class="text-muted">Kirulapona, Colombo</p>
+              <p class="text-muted">Malibu, California</p>
 
               <hr>
 
