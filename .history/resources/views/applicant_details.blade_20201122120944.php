@@ -422,19 +422,14 @@
                         <div class="col-sm-6">
                           <div class="row">
 
-
+                            @isset($selfie['file_path'])
                             <div class="col-sm-6">
-                             @isset($selfie['file_path'])
                               <img class="img-responsive" src="http://10.101.6.198/sdbl/public/{{$selfie['file_path']}}" alt="Photo">
-                              @endisset
                               <br>
-                              @isset($signature['file_path'])
                               <img class="img-responsive" src="{{$signature['signature']}}" alt="Photo">
-                              @endisset
-
                             </div>
 
-
+                            @endisset
                             <!-- /.col -->
 
 
