@@ -79,9 +79,9 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-
-                <img class="profile-user-img img-responsive img-circle" src="http://10.101.6.198/sdbl/public/user.png" alt="User profile picture">
-
+                @@isset($selfie['file_path'])
+                <img class="profile-user-img img-responsive img-circle" src="http://10.101.6.198/sdbl/public/{{$selfie['file_path']}}" alt="User profile picture">
+                @endisset
 
               <h3 class="profile-username text-center"> {{$Applicant['nic']}} - {{$Applicant['sex']}} </h3>
                 <input type="hidden" value="{{$Applicant['nic']}}" id="nicvalue"  />
