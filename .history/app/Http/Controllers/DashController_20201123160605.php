@@ -23,22 +23,24 @@ class DashController extends Controller
     public function dashboard()
     {
         $user = Utils::currentUser();
-        if ($user !== false) {
+        if($user!==false){
             return View('maindash');
-        } else {
+        }else{
             return View('loginview');
         }
+
     }
 
     public function team()
     {
         $user = Utils::currentUser();
         $branches = Datta::grab_branches();
-        if ($user !== false) {
+        if($user!==false){{
             return View('team', compact('branches'));
-        } else {
+        }else{
             return View('loginview');
         }
+
     }
 
 
@@ -55,12 +57,10 @@ class DashController extends Controller
     public function onboading_list()
     {
         //echo "Dilan";
+
+
         $user = Utils::currentUser();
-        if ($user !== false) {
-            return View('onboarding_list');
-        } else {
-            return View('loginview');
-        }
+        return View('onboarding_list');
     }
 
     public function applicant_details_page(Request $request)
