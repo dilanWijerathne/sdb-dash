@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 class Utils
 {
@@ -20,8 +19,6 @@ class Utils
         $ar = $response->body();
         $array = json_decode($ar, true);
 
-        Log::info('user taken');
-        Log::info($array);
         $state = false;
 
         if (isset($array['email'])) {
@@ -34,11 +31,11 @@ class Utils
         if (isset($array['mobile'])) {
             session(['user_mobile' => $array['mobile']]);
         }
-        if (isset($array['branch'])) {
+        if (isset($array['mobile'])) {
             session(['user_branch' => $array['branch']]);
         }
-        if (isset($array['role'])) {
-            session(['user_role' => $array['role']]);
+        if (isset($array['email'])) {
+            session(['user_email' => $array['email']]);
         } else {
             $state =  false;    // invalid_credentials
         }

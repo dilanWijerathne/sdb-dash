@@ -34,11 +34,11 @@ class Utils
         if (isset($array['mobile'])) {
             session(['user_mobile' => $array['mobile']]);
         }
-        if (isset($array['branch'])) {
+        if (isset($array['mobile'])) {
             session(['user_branch' => $array['branch']]);
         }
-        if (isset($array['role'])) {
-            session(['user_role' => $array['role']]);
+        if (isset($array['email'])) {
+            session(['user_email' => $array['email']]);
         } else {
             $state =  false;    // invalid_credentials
         }
