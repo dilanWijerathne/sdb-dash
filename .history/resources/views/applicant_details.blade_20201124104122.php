@@ -214,7 +214,7 @@
                <input type="hidden" value="{{$bdo['email']}}"  id="#bdoemail"/>
                <input type="hidden" value="{{$Applicant['ref']}}"  id="#appref"/>
 
-               <input type="hidden" value="{{session('user_email')}}"  id="#user_name"/>
+               <input type="hidden" value="{{session('user_name')}}"  id="#user_name"/>
 
 
 

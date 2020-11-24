@@ -36,10 +36,6 @@
                var bdoemail = $('#bdoemail').val();
                var appref = $('#appref').val();
 
-               var user_name = $('#user_name').val();
-
-
-
             var type = "";
             if(bdocode==="0"| bdocode===0){
                 var type = 'ops';
@@ -51,7 +47,7 @@
         $.ajax({
             method: "POST",
             url: "api/review",
-            data: { bdo: user_name,type:type,ref:appref}
+            data: { bdo: bdoemail,type:type,ref:appref}
             })
             .done(function( msg ) {
                 console.log(msg);
@@ -214,7 +210,7 @@
                <input type="hidden" value="{{$bdo['email']}}"  id="#bdoemail"/>
                <input type="hidden" value="{{$Applicant['ref']}}"  id="#appref"/>
 
-               <input type="hidden" value="{{session('user_email')}}"  id="#user_name"/>
+               <input type="hidden" value="{{session('user_name')}}"  id="#user_name"/>
 
 
 
