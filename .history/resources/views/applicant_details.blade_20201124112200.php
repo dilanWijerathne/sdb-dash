@@ -229,9 +229,9 @@
                @endif
 
                @if ($bdo['code']===0|$bdo['code']==="0")
-                    @if ($Applicant['ops'] ===0 |  $Applicant['ops'] ==='0' )
-                    <a onclick="review('{{$bdo['code']}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-warning btn-block"><b>Review</b></a>
-                    @endif
+               @if ($Applicant['ops'] ===0 |  $Applicant['ops'] ==='0' )
+               <a onclick="review('{{$bdo['code']}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-warning btn-block"><b>Review</b></a>
+               @endif
                @endif
 
 
