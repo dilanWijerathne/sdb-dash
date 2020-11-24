@@ -49,8 +49,6 @@
 
 
             console.log("Type " + type + "  - > officer bdo- mng  "+ user_name+ "  -> app ref " + appref);
-
-            alert("Type " + type + "  - > officer bdo- mng  "+ user_name+ "  -> app ref " + appref);
         alert("You marked review status");
         $.ajax({
             method: "POST",
