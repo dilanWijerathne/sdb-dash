@@ -90,6 +90,7 @@ class DashController extends Controller
         if ($user === true) {
             return View('applicant_details', $applicant);
         } else {
+
             return View('loginview');
         }
     }

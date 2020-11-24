@@ -52,7 +52,7 @@ class DashController extends Controller
 
     public function review(Request $request)
     {
-        $rev =  Datta::update_review($request->bdo, $request->type, $request->ref);
+        $rev =  Datta::update_review($request->type, $request->type, $request->ref);
         Log::info($request->type . ' Review for  ' . $request->ref);
         Log::info($rev);
     }
@@ -87,11 +87,7 @@ class DashController extends Controller
         // return $applicant['Applicant']['applicant_status'];
 
         $user = Utils::currentUser();
-        if ($user === true) {
-            return View('applicant_details', $applicant);
-        } else {
-            return View('loginview');
-        }
+        return View('applicant_details', $applicant);
     }
 
 

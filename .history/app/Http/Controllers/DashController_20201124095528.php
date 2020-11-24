@@ -87,10 +87,10 @@ class DashController extends Controller
         // return $applicant['Applicant']['applicant_status'];
 
         $user = Utils::currentUser();
-        if ($user === true) {
-            return View('applicant_details', $applicant);
-        } else {
+        if ($user) {
             return View('loginview');
+        } else {
+            return View('applicant_details', $applicant);
         }
     }
 

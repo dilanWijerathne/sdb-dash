@@ -19,11 +19,10 @@ class Utils
         $ar = $response->body();
         $array = json_decode($ar, true);
 
-        $state = false;
+
 
         if (isset($array['email'])) {
             session(['user_email' => $array['email']]);
-            $state =  true;
         }
         if (isset($array['name'])) {
             session(['user_name' => $array['name']]);
@@ -34,9 +33,9 @@ class Utils
         if (isset($array['email'])) {
             session(['user_email' => $array['email']]);
         } else {
-            $state =  false;    // invalid_credentials
+            $array =  false;    // invalid_credentials
         }
 
-        return $state;
+        return $array;
     }
 }

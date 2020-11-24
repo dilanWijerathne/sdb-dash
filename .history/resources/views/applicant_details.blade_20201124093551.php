@@ -36,18 +36,13 @@
                var bdoemail = $('#bdoemail').val();
                var appref = $('#appref').val();
 
-            var type = "";
-            if(bdocode==="0"| bdocode===0){
-                var type = 'ops';
-            }else{
-                var type = 'mng';
-            }
 
-        alert("You marked review status");
+        alert("You are going to create account for : "+ nic);
         $.ajax({
             method: "POST",
-            url: "api/review",
-            data: { bdo: bdoemail,type:type,ref:appref}
+Route::post('/review', [DashController::class, 'review']);
+            url: "api/",
+            data: { bdo: bdoemail,type:type,appref:appref}
             })
             .done(function( msg ) {
                 console.log(msg);

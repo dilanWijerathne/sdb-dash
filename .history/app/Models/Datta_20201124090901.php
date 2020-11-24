@@ -13,12 +13,11 @@ use Illuminate\Support\Facades\Log;
 
 class Datta
 {
-    public static function update_review($bdo, $type, $ref)
+    public static function update_review($type, $ref)
     {
         $response = Http::post('http://10.101.6.198/sdbl/api/reviewed', [
             "type" => $type,    // ops/  mng
             "ref" => $ref,
-            "bdo" => $bdo,
 
         ]);
 

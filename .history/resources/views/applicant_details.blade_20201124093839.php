@@ -47,7 +47,7 @@
         $.ajax({
             method: "POST",
             url: "api/review",
-            data: { bdo: bdoemail,type:type,ref:appref}
+            data: { bdo: bdoemail,type:type,appref:appref}
             })
             .done(function( msg ) {
                 console.log(msg);

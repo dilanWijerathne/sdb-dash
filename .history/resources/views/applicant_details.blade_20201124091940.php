@@ -30,33 +30,6 @@
 
   <script>
 
-      function review(code,email){
-
-               var bdocode = $('#bdocode').val();
-               var bdoemail = $('#bdoemail').val();
-               var appref = $('#appref').val();
-
-            var type = "";
-            if(bdocode==="0"| bdocode===0){
-                var type = 'ops';
-            }else{
-                var type = 'mng';
-            }
-
-        alert("You marked review status");
-        $.ajax({
-            method: "POST",
-            url: "api/review",
-            data: { bdo: bdoemail,type:type,ref:appref}
-            })
-            .done(function( msg ) {
-                console.log(msg);
-                alert( msg );
-                location.reload();
-
-            });
-      }
-
       // "http://10.101.6.198/sdbl/inapp",
       function cacc(){
           var nic = $('#nicvalue').val();
@@ -206,20 +179,12 @@
               </ul>
                <!-- end primary display section -->
 
-               <input type="hidden" value="{{$bdo['code']}}"  id="#bdocode"/>>
-               <input type="hidden" value="{{$bdo['email']}}"  id="#bdoemail"/>>
-               <input type="hidden" value="{{$Applicant['ref']}}"  id="#appref"/>>
+               @if ($Applicant['$acc['approved']===1'])
 
-               @if ($Applicant['approved'] ===1 |  $Applicant['approved'] ==='1' )
-               <a onclick="" class="btn btn-primary btn-block"><b>Reviewd by Manager</b></a>
                @endif
-               @if ($Applicant['ops'] ===1 |  $Applicant['ops'] ==='1' )
-               <a onclick="" class="btn btn-primary btn-block"><b>Reviewd by Centralized Ops</b></a>
-               @endif
-               @if ($Applicant['approved'] ===0 |  $Applicant['approved'] ==='0' )
-               <a onclick="review()" class="btn btn-primary btn-warning btn-block"><b>Reviewed</b></a>
-               @endif
-
+              <a onclick="cacc()" class="btn btn-primary btn-block"><b>Approve</b></a>
+              <a href="#" class="btn btn-primary btn-warning btn-block"><b>Request to improve</b></a>
+              <a href="#" class="btn btn-primary btn-danger  btn-block"><b>Reject</b></a>
             </div>
             <!-- /.box-body -->
           </div>
@@ -247,7 +212,7 @@
 
               <hr>
               <strong><i class="fa fa-map-marker margin-r-5"></i> Branch</strong>
-              <p class="text-muted"> {{$bdo['name']}} </p>
+              <p class="text-muted">{{$bdo['name']}}</p>
 
                <hr>
 
