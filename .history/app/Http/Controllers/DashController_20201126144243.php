@@ -100,7 +100,7 @@ class DashController extends Controller
 
         // add token validation to this functuion
 
-        $response = Http::get('http://10.101.6.198/sdbl/api/inapp', [
+        $response = Http::get('http://10.100.32.94/sdbl/api/inapp', [
             "nic" => $request->nic,
         ]);
 
@@ -147,7 +147,7 @@ class DashController extends Controller
             $password = $request->input('password');
 
 
-            $response = Http::post('http://10.101.6.198/sdbl/api/login', [
+            $response = Http::post('http://10.100.32.94/sdbl/api/login', [
                 'email' => $username,
                 'password' => $password,
             ]);
