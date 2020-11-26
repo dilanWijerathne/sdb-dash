@@ -17,7 +17,7 @@ class Utils
     {
         $access_token = session('access_token');
 
-        $response = Http::withToken($access_token)->get(env('CORE_URL') . "/sdbl/api/user", null);
+        $response = Http::withToken($access_token)->get("http://10.101.6.198/sdbl/api/user", null);
 
         $ar = $response->body();
         $array = json_decode($ar, true);

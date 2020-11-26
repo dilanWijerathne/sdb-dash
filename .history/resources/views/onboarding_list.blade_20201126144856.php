@@ -39,7 +39,42 @@
 
         <script>
 
+/*
 
+            $(document).ready(function() {
+
+
+
+
+
+            var k = $('#example1').DataTable( {
+                "processing": true,
+                "serverSide": true,
+                "select": true,
+                'searching':true,
+                "ajax":{
+                    "url": "/sdb-dash/applicants",
+                    "type": "GET",
+                    "timeout": 0,
+                }
+            } );
+
+
+            $('#example1 tbody').on( 'click', 'tr', function () {
+    console.log( k.row( this ).data() );
+    var ol = k.row( this ).data();
+   // $('#dila').modal('show')
+   //900103775V
+    //window.location.href = "http://10.101.6.198/sdbl/item?nic="+ol[6];
+    alert(ol[6]);
+
+} );
+
+
+
+} );
+
+*/
 
 
         </script>
