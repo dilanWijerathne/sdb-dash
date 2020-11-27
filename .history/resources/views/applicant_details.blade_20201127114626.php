@@ -457,7 +457,7 @@
                       </div>
                       <div class="col-sm-3">
                         <!--   <a  onclick="comment()" class="btn btn-danger  btn-sm">Comment</a>     --->
-                        <a onclick="comment_fd()" class="btn btn-primary btn-block"><b>Comment</b></a>
+                        <a onclick="comment()" class="btn btn-primary btn-block"><b>Comment</b></a>
                       </div>
                     </div>
 
