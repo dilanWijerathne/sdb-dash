@@ -79,7 +79,7 @@
       }
 
 
-      function com_list)(ref){
+      function com_list)(){
 
 
         $.ajax({
@@ -120,10 +120,6 @@
         var bdo = $('#bdoemail').val();
         var ref = $('#appref').val();
         var from = $('#user_name').val();
-
-        com_list(ref);
-
-        /*
         alert(comment+"  "+bdo+"  "+ref);
         if(comment!==null|comment!==""| comment!==" "){
 
@@ -143,8 +139,6 @@
         else{
             alert("Please add a valid comment. you cannot comment empty fields!");
         }
-
-        */
       }
 
 

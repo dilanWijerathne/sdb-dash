@@ -79,25 +79,7 @@
       }
 
 
-      function com_list)(ref){
-
-
-        $.ajax({
-            method: "POST",
-            url: "api/comment_by_bdo_app",
-            data: { ref:ref}
-            })
-            .done(function( msg ) {
-                console.log(msg);
-                alert( msg );
-              JSON.parse(msg);
-
-              console.log(msg[0]['msg']);
-
-            });
-
-/*
-
+      function com_list)(){
           var k= ' <div class="col-sm-9">';
           var k2='  <div class="timeline-body">  TEXT   </div> </div>';
           var k3 = '<div class="col-sm-3">';
@@ -106,7 +88,7 @@
 
          var str = k+k2+k3+k4;
          $( ".comments_list" ).append( str );
-*/
+
       }
 
 
@@ -120,10 +102,6 @@
         var bdo = $('#bdoemail').val();
         var ref = $('#appref').val();
         var from = $('#user_name').val();
-
-        com_list(ref);
-
-        /*
         alert(comment+"  "+bdo+"  "+ref);
         if(comment!==null|comment!==""| comment!==" "){
 
@@ -143,8 +121,6 @@
         else{
             alert("Please add a valid comment. you cannot comment empty fields!");
         }
-
-        */
       }
 
 

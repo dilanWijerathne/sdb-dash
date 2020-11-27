@@ -79,7 +79,7 @@
       }
 
 
-      function com_list)(ref){
+      function com_list)(){
 
 
         $.ajax({
