@@ -30,22 +30,21 @@
 
   <script>
 
-$( window ).load(function() {
-    var ref = $('#appref').val();
-    com_list(ref)
-});
-
-function com_list(ref){
 
 
+function com_list(){
+          var nic = $('#nicvalue').val();
 
+          alert("You are going to create account for : "+ nic);
         $.ajax({
             method: "GET",
             url: "api/comment_by_bdo_app",
-            data: { ref: ref}
+            data: { nic: nic}
             })
             .done(function( msg ) {
                 console.log(msg);
+                alert( msg );
+                location.reload();
 
             });
       }
