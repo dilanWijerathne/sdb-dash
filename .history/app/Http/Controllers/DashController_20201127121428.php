@@ -113,15 +113,20 @@ class DashController extends Controller
 
         Log::info('dash comment');
         Log::info($request);
+        $user = Utils::currentUser();
 
-        $response = Http::get(env('CORE_URL') . '/sdbl/api/comment', [
-            "bdo" =>  $request->input('bdo'),
-            "from" => session('user_email'),
-            "ref" => $request->input('ref'),
-            "msg" => $request->input('msg'),
+        if ($user !== false) {
+            $response = Http::get(env('CORE_URL') . '/sdbl/api/comment', [
+                "bdo" =>  $request->input('bdo'),
+                "from" => session('user_email'),
+                "ref" => $request->input('ref'),
+                "msg" => $request->input('msg'),
 
-        ]);
-        return  $response;
+            ]);
+            return  $response;
+        } else {
+            echo "Please login, session timeout";
+        }
     }
 
     public function comment_by_bdo_app(Request $request)
