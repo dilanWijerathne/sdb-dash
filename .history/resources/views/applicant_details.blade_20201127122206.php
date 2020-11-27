@@ -85,19 +85,16 @@
 
       function comment_fd(){
 
-
-
         var comment = $('#comment_input').val();
         var bdo = $('#bdoemail').val();
         var ref = $('#appref').val();
-        var from = $('#user_name').val();
         alert(comment+"  "+bdo+"  "+ref);
         if(comment!==null|comment!==""| comment!==" "){
 
             $.ajax({
             method: "POST",
             url: "api/comment",
-            data: { msg: comment,bdo:bdo,ref:ref,from:from}
+            data: { msg: comment,bdo:bdo,ref:ref}
             })
             .done(function( msg ) {
                 console.log(msg);
@@ -249,7 +246,7 @@
                <input type="hidden" value="{{$bdo['email']}}"  id="bdoemail"/>
                <input type="hidden" value="{{$Applicant['ref']}}"  id="appref"/>
 
-               <input type="hidden" value="{{session('user_email')}}"  id="user_name"/>
+               <input type="hidden" value="{{session('user_email')}}"  id="#user_name"/>
 
 
 
