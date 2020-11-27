@@ -80,6 +80,30 @@
 
 
 
+      function comment(){
+          alert();
+        var comment = $('#comment_input').val();
+        var bdo = $('#comment_input').val();
+        var ref = $('#comment_input').val();
+        if(comment===null|comment===""| comment=" "){
+
+            $.ajax({
+            method: "POST",
+            url: "api/comment",
+            data: { msg: comment,bdo:bdo,ref:ref}
+            })
+            .done(function( msg ) {
+                console.log(msg);
+                alert( msg );
+              //  location.reload();
+
+            });
+
+        }
+        else{
+            alert("Please add a valid comment. you cannot comment empty fields!");
+        }
+      }
   </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -693,33 +717,5 @@
 <script src="public/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="public/dist/js/demo.js"></script>
-
-<script>
-
-    function comment(){
-          alert();
-        var comment = $('#comment_input').val();
-        var bdo = $('#comment_input').val();
-        var ref = $('#comment_input').val();
-        if(comment===null|comment===""| comment=" "){
-
-            $.ajax({
-            method: "POST",
-            url: "api/comment",
-            data: { msg: comment,bdo:bdo,ref:ref}
-            })
-            .done(function( msg ) {
-                console.log(msg);
-                alert( msg );
-              //  location.reload();
-
-            });
-
-        }
-        else{
-            alert("Please add a valid comment. you cannot comment empty fields!");
-        }
-      }
-</script>
 </body>
 </html>
