@@ -114,9 +114,9 @@
 
       function comment_fd(){
 
-        alert(s);
+        alert();
 
-       // var comment = $('#comment_input').val();
+        var comment = $('#comment_input').val();
         var bdo = $('#bdoemail').val();
         var ref = $('#appref').val();
         var from = $('#user_name').val();
