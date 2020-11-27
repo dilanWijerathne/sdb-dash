@@ -451,7 +451,7 @@
                         <input class="form-control input-sm" id="comment_input" placeholder="Response to this application">
                       </div>
                       <div class="col-sm-3">
-                        <a  onclick="comment()" class="btn btn-danger pull-right btn-block btn-sm">Comment</a>
+                        <button  onclick="comment()" class="btn btn-danger pull-right btn-block btn-sm">Comment</button>
                       </div>
                     </div>
 

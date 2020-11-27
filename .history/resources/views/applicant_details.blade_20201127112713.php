@@ -81,7 +81,6 @@
 
 
       function comment(){
-          aler();
         var comment = $('#comment_input').val();
         var bdo = $('#comment_input').val();
         var ref = $('#comment_input').val();
@@ -451,7 +450,7 @@
                         <input class="form-control input-sm" id="comment_input" placeholder="Response to this application">
                       </div>
                       <div class="col-sm-3">
-                        <a  onclick="comment()" class="btn btn-danger pull-right btn-block btn-sm">Comment</a>
+                        <button  onclick="comment()" class="btn btn-danger pull-right btn-block btn-sm">Comment</button>
                       </div>
                     </div>
 
