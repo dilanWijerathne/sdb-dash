@@ -43,7 +43,7 @@ function com_list(ref){
             .done(function( msg ) {
                 var k = JSON.parse(msg);
 
-            ///        line 504
+            ///     comlist   line 504
             var st ="";
             for(var i=0; i<k.length;i++){
                 var st =+ '<div class="col-sm-12"><div class="col-sm-9">'+st[i]['msg']+' </div>         <div class="col-sm-3">    <b>By</b> '+' '+st[i]['from']+'       </div></div>';
@@ -51,8 +51,6 @@ function com_list(ref){
             }
 
             console.log(st);
-            $( ".comlist" ).append( st );
-
 
             });
       }
