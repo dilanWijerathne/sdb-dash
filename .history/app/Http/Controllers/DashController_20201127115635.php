@@ -125,8 +125,12 @@ class DashController extends Controller
             ]);
             return  $response;
         } else {
-            alert("Session timeout, please login");
+         alert("Session timeout, please login"):
         }
+
+
+
+
     }
 
     public function comment_by_bdo_app(Request $request)
