@@ -133,7 +133,7 @@ function com_list(ref){
             .done(function( msg ) {
                 console.log(msg);
                 alert( msg );
-                location.reload();
+              //  location.reload();
 
             });
 
