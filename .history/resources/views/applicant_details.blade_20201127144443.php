@@ -51,7 +51,7 @@ function com_list(ref){
             }
 
             console.log(st);
-            $(".comlist").append( st );
+            $( ".comlist" ).append( st );
 
 
             });
@@ -484,7 +484,7 @@ function com_list(ref){
 
 
 
-  <div class="comlist form-group margin-bottom-none">
+  <div class=" comlist form-group margin-bottom-none">
 
   </div>
 
