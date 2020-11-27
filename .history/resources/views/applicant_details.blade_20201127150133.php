@@ -46,7 +46,7 @@ function com_list(ref){
             ///        line 504
             var st ="";
             for(var i=0; i<k.length;i++){
-                var t = '<div class="col-sm-12"><div class="col-sm-9"><dl><dt>Commented by : '+k[i]['from']+'</dt><dd> '+k[i]['msg']+'</dd></dl></div>         <div class="col-sm-3">    <b>@</b> '+' '+k[i]['ref']+'       </div></div>';
+                var t = '<div class="col-sm-12"><div class="col-sm-9"><dl><dt>Commented by : '+k[i]['from']+'</dt><dd> '+k[i]['msg']+'</dd></dl></div>         <div class="col-sm-3">    <b>By</b> '+' '+k[i]['ref']+'       </div></div>';
                 st = st.concat(t);
             }
 
