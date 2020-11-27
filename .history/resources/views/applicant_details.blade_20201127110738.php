@@ -82,14 +82,12 @@
 
       function comment(){
         var comment = $('#comment_input').val();
-        var bdo = $('#comment_input').val();
-        var ref = $('#comment_input').val();
         if(comment===null|comment===""| comment=" "){
 
             $.ajax({
             method: "POST",
             url: "api/comment",
-            data: { msg: comment,bdo:bdo,ref:ref}
+            data: { nic: nic}
             })
             .done(function( msg ) {
                 console.log(msg);

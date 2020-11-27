@@ -115,7 +115,7 @@ class DashController extends Controller
         Log::info($request);
         $response = Http::get(env('CORE_URL') . '/sdbl/api/comment', [
             "bdo" =>  $request->input('bdo'),
-            "from" => session('user_email'),
+            "from" => $request->input('from'),
             "ref" => $request->input('ref'),
             "msg" => $request->input('msg'),
 

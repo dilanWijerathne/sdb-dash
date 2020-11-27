@@ -110,12 +110,9 @@ class DashController extends Controller
 
     public function comment(Request $request)
     {
-
-        Log::info('dash comment');
-        Log::info($request);
         $response = Http::get(env('CORE_URL') . '/sdbl/api/comment', [
             "bdo" =>  $request->input('bdo'),
-            "from" => session('user_email'),
+            "from" => $request->input('from'),
             "ref" => $request->input('ref'),
             "msg" => $request->input('msg'),
 
@@ -123,16 +120,6 @@ class DashController extends Controller
 
 
         return  $response;
-    }
-
-    public function comment_by_bdo_app(Request $request)
-    {
-        $user = Utils::currentUser();
-
-        $response = Http::get(env('CORE_URL') . '/sdbl/api/comments_application', [
-            "ref" => $request->input('ref'),
-
-        ]);
     }
 
 

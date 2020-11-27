@@ -89,7 +89,7 @@
             $.ajax({
             method: "POST",
             url: "api/comment",
-            data: { msg: comment,bdo:bdo,ref:ref}
+            data: { msg: comment,}
             })
             .done(function( msg ) {
                 console.log(msg);
