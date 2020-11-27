@@ -451,36 +451,6 @@
 
   <!-- =========================================================== -->
 
-  <div class="form-group margin-bottom-none">
-    <div class="col-sm-9">
-      <input class="form-control input-sm" id="comment_input" placeholder="Response to this application">
-    </div>
-    <div class="col-sm-3">
-      <!--   <a  onclick="comment()" class="btn btn-danger  btn-sm">Comment</a>     --->
-      <a onclick="comment_fd()" class="btn btn-primary btn-block"><b>Comment</b></a>
-    </div>
-  </div>
-
-  <div class="form-group margin-bottom-none">
-    <div class="col-sm-9">
-      <input class="form-control input-sm" id="comment_input" placeholder="Response to this application">
-    </div>
-    <div class="col-sm-3">
-      <!--   <a  onclick="comment()" class="btn btn-danger  btn-sm">Comment</a>     --->
-      <a onclick="comment_fd()" class="btn btn-primary btn-block"><b>Comment</b></a>
-    </div>
-  </div>
-
-
-  <div class="form-group margin-bottom-none">
-    <div class="col-sm-9">
-      <input class="form-control input-sm" id="comment_input" placeholder="Response to this application">
-    </div>
-    <div class="col-sm-3">
-      <!--   <a  onclick="comment()" class="btn btn-danger  btn-sm">Comment</a>     --->
-      <a onclick="comment_fd()" class="btn btn-primary btn-block"><b>Comment</b></a>
-    </div>
-  </div>
 
 
                     <div class="form-group margin-bottom-none">
