@@ -79,13 +79,40 @@
       }
 
 
+      function com_list)(){
+
+
+        $.ajax({
+            method: "POST",
+            url: "api/comment_by_bdo_app",
+            data: { ref:ref}
+            })
+            .done(function( msg ) {
+                console.log(msg);
+                alert( msg );
+              JSON.parse(msg);
+
+              console.log(msg[0]);
+
+            });
+
+/*
+
+          var k= ' <div class="col-sm-9">';
+          var k2='  <div class="timeline-body">  TEXT   </div> </div>';
+          var k3 = '<div class="col-sm-3">';
+          var k4 = '<div class="timeline-body">  TEXT   </div> </div>';
+
+
+         var str = k+k2+k3+k4;
+         $( ".comments_list" ).append( str );
+*/
+      }
 
 
 
 
       function comment_fd(){
-
-
 
         var comment = $('#comment_input').val();
         var bdo = $('#bdoemail').val();
@@ -451,7 +478,14 @@
 
   <!-- =========================================================== -->
 
+  <div class="form-group margin-bottom-none">
 
+  <div class="col-sm-12 comments_list">
+
+  </div>
+
+
+  </div>
 
 
 
