@@ -67,7 +67,7 @@
             ///        line 504
             var st ="";
             for(var i=0; i<k.length;i++){
-                var t = '<<hr> class="col-sm-12"><div class="col-sm-10"><dl><dt> ->  '+k[i]['from_user']+' for application no '+k[i]['ref']+' of NIC '+k[i]['nic']+'</dt><dd> '+k[i]['msg']+'</dd><dd>'+k[i]['created_at']+'</dd></dl><hr></div>         <hr></hr>';
+                var t = '<div class="col-sm-12"><div class="col-sm-10"><dl><dt> ->  '+k[i]['from_user']+' for application no '+k[i]['ref']+' of NIC '+k[i]['nic']+'</dt><dd> '+k[i]['msg']+'</dd><dd>'+k[i]['created_at']+'</dd></dl><hr></div>         <hr></div>';
                 st = st.concat(t);
             }
 
