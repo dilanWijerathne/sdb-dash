@@ -67,7 +67,7 @@
             ///        line 504
             var st ="";
             for(var i=0; i<k.length;i++){
-                var t = '<div class="col-sm-12" style="margin: 50px" ><div class="col-sm-10"><dl><dt> ->  '+k[i]['from_user']+' for application no '+k[i]['ref']+' of NIC '+k[i]['nic']+'</dt><dd> '+k[i]['msg']+'</dd><dd>'+k[i]['created_at']+'</dd></dl><hr></div>         <hr></div>';
+                var t = '<div class="col-sm-12"><div class="col-sm-10"><dl><dt> ->  '+k[i]['from_user']+' for application no '+k[i]['ref']+' of NIC '+k[i]['nic']+'</dt><dd> '+k[i]['msg']+'</dd><dd>'+k[i]['created_at']+'</dd></dl><hr></div>         <hr></div>';
                 st = st.concat(t);
             }
 
@@ -204,7 +204,7 @@ function com_list(ref){
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section  class="content-header">
+    <section class="content-header">
       <h1>
         {{$Applicant['full_name']}}
       </h1>
