@@ -767,8 +767,7 @@ function com_list(ref){
                         <!--
                             from,to,ref,msg,nic
                             --->
-
-                            <a onclick="send_msg({{session('user_email')}},{{$bdo['email']}},{{$Applicant['ref']}},{{$Applicant['nic']}})" class="btn btn-primary btn-block"><b>Send</b></a>
+                      <button onclick="send_msg({{session('user_email')}},{{$bdo['email']}},{{$Applicant['ref']}},{{$Applicant['nic']}})" type="button" class="btn btn-danger">Message</button>
                     </div>
                   </div>
 
