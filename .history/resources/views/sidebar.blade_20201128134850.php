@@ -75,7 +75,6 @@
 
 
 
-    <!--
         <li>
           <a href="#">
             <i class="fa fa-envelope"></i> <span>Mailbox</span>
@@ -86,7 +85,6 @@
             </span>
           </a>
         </li>
-    -->
 
 
         <li class="treeview">
