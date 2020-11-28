@@ -750,7 +750,7 @@ function com_list(ref){
                   <div class="form-group">
 
 
-                    <div style="margin-top: 100px" class="form-group message_list">
+                    <div class="form-group message_list">
 
                   </div>
 
