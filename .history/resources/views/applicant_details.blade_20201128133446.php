@@ -72,7 +72,7 @@
             }
 
             console.log(st);
-            $(".message_list").html( st );
+            $(".message_list").append( st );
 
 
             });
