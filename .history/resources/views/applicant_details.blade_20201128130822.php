@@ -30,11 +30,9 @@
 
   <script>
 
-    function send_msg(from,to,ref,nic){
+    function send_msg(from,to,ref,msg,nic){
 
         console.log("send msg clicked");
-        //
-        var msg = $('#message_input').val();
         $.ajax({
             method: "GET",
             url: "api/nessage_send",
@@ -755,16 +753,18 @@ function com_list(ref){
                     <label for="inputExperience" class="col-sm-2 control-label">Message</label>
 
                     <div class="col-sm-10">
-                      <textarea class="form-control" id="message_input" placeholder="I need to tell ..."></textarea>
+                      <textarea class="form-control" id="inputExperience" placeholder="I need to tell ..."></textarea>
                     </div>
                   </div>
 
+
+
+
+
+
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <!--
-                            from,to,ref,msg,nic
-                            --->
-                      <button onclick="send_msg({{session('user_email')}},{{$bdo['email']}},{{$Applicant['ref']}},{{$Applicant['nic']}})" type="submit" class="btn btn-danger">Message</button>
+                      <button onclick="msg()" type="submit" class="btn btn-danger">Message</button>
                     </div>
                   </div>
 

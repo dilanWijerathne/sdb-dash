@@ -31,5 +31,3 @@ Route::post('/comment', [DashController::class, 'comment']);
 Route::get('/comment_by_bdo_app', [DashController::class, 'comment_by_bdo_app']);
 
 Route::get('/nessage_by_ref', [DashController::class, 'nessage_by_ref']);
-
-Route::get('/nessage_send', [DashController::class, 'nessage_send']);

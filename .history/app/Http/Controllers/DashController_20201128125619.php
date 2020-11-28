@@ -152,8 +152,17 @@ class DashController extends Controller
 
     public function nessage_send(Request $request)
     {
-        Log::info('message to send');
-        Log::info($request);
+        // $user = Utils::currentUser();
+        /*
+
+        $msg->from_user = $request->input('from_user');
+        $msg->to_user = $request->input('to_user');
+        $msg->msg = $request->input('msg');
+        $msg->nic = $request->input('nic');
+        $msg->ref = $request->input('ref');
+
+*/
+
 
         $response = Http::get(env('CORE_URL') . '/sdbl/api/message', [
             "from_user" => $request->input('from_user'),

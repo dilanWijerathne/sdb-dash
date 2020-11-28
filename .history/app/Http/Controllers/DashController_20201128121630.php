@@ -150,25 +150,6 @@ class DashController extends Controller
     }
 
 
-    public function nessage_send(Request $request)
-    {
-        Log::info('message to send');
-        Log::info($request);
-
-        $response = Http::get(env('CORE_URL') . '/sdbl/api/message', [
-            "from_user" => $request->input('from_user'),
-            "to_user" => $request->input('to_user'),
-            "msg" => $request->input('msg'),
-            "nic" => $request->input('nic'),
-            "ref" => $request->input('ref'),
-        ]);
-
-        Log::info('message send outcome');
-        Log::info($response);
-        return $response;
-    }
-
-
 
 
     public function calldit(Request $request)

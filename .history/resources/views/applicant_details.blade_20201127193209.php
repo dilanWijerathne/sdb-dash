@@ -30,51 +30,6 @@
 
   <script>
 
-    function send_msg(from,to,ref,nic){
-
-        console.log("send msg clicked");
-        //
-        var msg = $('#message_input').val();
-        $.ajax({
-            method: "GET",
-            url: "api/nessage_send",
-            data: {from_user:from,to_user:to,msg:msg,nic:nic, ref: ref}
-            })
-            .done(function( msg ) {
-                console.log(msg);
-                msg(ref);
-            });
-    }
-
-
-
-
-      function msg(ref){
-          //line 740
-
-          console.log("msg li clicked");
-          $.ajax({
-            method: "GET",
-            url: "api/nessage_by_ref",
-            data: { ref: ref}
-            })
-            .done(function( msg ) {
-                var k = JSON.parse(msg);
-
-            ///        line 504
-            var st ="";
-            for(var i=0; i<k.length;i++){
-                var t = '<div class="col-sm-12"><div class="col-sm-10"><dl><dt>Commented by : '+k[i]['from_user']+' for application no '+k[i]['ref']+' of NIC '+k[i]['nic']+'</dt><dd> '+k[i]['msg']+'</dd><dd>'+k[i]['created_at']+'</dd></dl><hr></div>         <hr></div>';
-                st = st.concat(t);
-            }
-
-            console.log(st);
-            $(".message_list").append( st );
-
-
-            });
-      }
-
 
 function com_list(ref){
 
@@ -393,7 +348,7 @@ function com_list(ref){
             <ul class="nav nav-tabs">
               <li class="active"><a href="#activity" data-toggle="tab">Applicant Info</a></li>
               <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
-              <li onclick="msg({{$Applicant['ref']}})"><a href="#settings" data-toggle="tab">Message to BDO</a></li>
+              <li><a href="#settings" data-toggle="tab">Message to BDO</a></li>
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
@@ -743,31 +698,30 @@ function com_list(ref){
               <!-- /.tab-pane -->
 
               <div class="tab-pane" id="settings">
-
+                <form class="form-horizontal">
                   <div class="form-group">
 
 
-                    <div class="form-group message_list">
-
-                  </div>
 
                   <div class="form-group">
                     <label for="inputExperience" class="col-sm-2 control-label">Message</label>
 
                     <div class="col-sm-10">
-                      <textarea class="form-control" id="message_input" placeholder="I need to tell ..."></textarea>
+                      <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
                     </div>
                   </div>
+
+
+
+
+
 
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <!--
-                            from,to,ref,msg,nic
-                            --->
-                      <button onclick="send_msg({{session('user_email')}},{{$bdo['email']}},{{$Applicant['ref']}},{{$Applicant['nic']}})" type="submit" class="btn btn-danger">Message</button>
+                      <button type="submit" class="btn btn-danger">Submit</button>
                     </div>
                   </div>
-
+                </form>
               </div>
               <!-- /.tab-pane -->
             </div>
