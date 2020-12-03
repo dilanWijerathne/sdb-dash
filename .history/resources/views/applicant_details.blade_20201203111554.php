@@ -524,7 +524,7 @@ function com_list(ref){
 
             $re = $KYC['json'];
             $k = json_encode( $re,true);
-            echo $k['anticipated_volume'];
+            echo $k['anticipated_volume']
             @endphp
 
 
