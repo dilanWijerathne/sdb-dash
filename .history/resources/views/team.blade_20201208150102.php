@@ -53,53 +53,6 @@ console.log(branch);
 
       }
   </script>
-
-
-<script>
-    $(function () {
-    var table=   $('#example1').DataTable({
-          "processing": true,
-                  "serverSide": true,
-                  "select": true,
-                  'paging'      : true,
-        'lengthChange': true,
-        'searching'   : true,
-        'ordering'    : true,
-        'info'        : true,
-        'autoWidth'   : true,
-
-                  "ajax":{
-                      "url": "/sdb-dash/myteam_members",
-                      "type": "GET",
-                      "timeout": 0,
-                  },
-
-                  "columnDefs": [ {
-              "targets": -1,
-              "data": null,
-              "defaultContent": "<button>Edit</button>"
-          } ]
-
-
-      })
-
-
-
-
-
-
-      $('#example1 tbody').on( 'click', 'button', function () {
-          var data = table.row( $(this).parents('tr') ).data();
-          alert( data[1] +"'NIC "+ data[ 4 ] );
-        //  window.open('/sdb-dash/applicant-details?ReportID='+ data[ 4 ], '_blank');
-      } );
-
-
-
-    })
-  </script>
-
-
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -204,42 +157,13 @@ console.log(branch);
         <!-- right column -->
         <div class="col-md-6">
           <!-- Horizontal Form -->
-
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">My team members</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Mobile</th>
-                    <th>Role</th>
-                    <th>Action</th>
-
-                </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-                <tfoot>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Mobile</th>
-                    <th>Role</th>
-                    <th>Action</th>
-                </tr>
-                </tfoot>
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
+          <!--
 
 
+
+
+
+ -->
       </div>
       </div>
       <!-- /.row -->

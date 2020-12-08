@@ -209,7 +209,11 @@ class DashController extends Controller
         Log::info("search value ");
         Log::info($request["search"]["value"]);
 
-        $response = Http::get(env('CORE_URL') . '/sdbl/public/api/get_myteam', [
+
+
+
+
+        $response = Http::get(env('CORE_URL') . '/sdbl/public/api/applicants', [
             "start" => $request["start"],
             "end" => $request["length"],
             "search" => $request["search"]["value"],

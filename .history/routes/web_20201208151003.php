@@ -31,7 +31,7 @@ Route::get('/onboarding', [DashController::class, 'onboading_list']);
 
 
 Route::get('/applicants', [DashController::class, 'calldit']);
-Route::get('/myteam_members', [DashController::class, 'call_myteam']);
+Route::get('/applicants', [DashController::class, 'call_myteam']);
 Route::get('/applicant-details', [DashController::class, 'applicant_details_page']);
 
 
