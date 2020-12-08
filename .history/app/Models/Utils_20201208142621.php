@@ -42,6 +42,8 @@ class Utils
             session(['user_role' => $array['role']]);
             if ($array['role'] === "manager") {
                 $state =  true;
+            } else {
+                $state =  "You are not allowed here but we will keep log this incident.";
             }
         } else {
             $state =  false;    // invalid_credentials

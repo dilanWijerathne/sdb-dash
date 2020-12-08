@@ -219,11 +219,7 @@ class DashController extends Controller
             if (isset($array['token'])) {
                 session(['access_token' => $array['token']]);
                 $user = Utils::currentUser();
-                if ($user === true) {
-                    echo  "success";
-                } else {
-                    echo  "Login error, Check credentials or access levels.";
-                }
+                echo  "success";
             } else {
                 echo $array['error'];    // invalid_credentials
             }
