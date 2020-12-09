@@ -140,7 +140,7 @@ console.log(branch);
                    $("#editInputMobile").val(k['mobile']);
                    $("#editInputName").val(k['name']);
                    $("#editInputEmail").val(k['email']);
-                   $("div.id_100 select").val(k['role']);
+                   $("div.id_100 select").val("val2");
 
                   // $("#role").children("option:selected").val();
                    //$("#branch").children("option:selected").val();
