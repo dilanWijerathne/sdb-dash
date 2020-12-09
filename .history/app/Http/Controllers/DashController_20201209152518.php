@@ -244,7 +244,6 @@ class DashController extends Controller
         $response = Http::get(env('CORE_URL') . '/sdbl/api/update_my_team_member', [
             "name" => $request->input('name'),
             "email" => $request->input('email'),
-            "cemail" => $request->input('cemail'),
             "mobile" => $request->input('mobile'),
             "role" => $request->input('role'),
             "branch" => $request->input('branch'),

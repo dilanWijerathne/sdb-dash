@@ -160,7 +160,6 @@ console.log(branch);
         var mobile = $("#editInputMobile").val();
         var name = $("#editInputName").val();
         var email = $("#editInputEmail").val();
-        var cemail = $("#editInputCEmail").val();
         var role = $("#editrole").children("option:selected").val();
         var branch = $("#editbranch").children("option:selected").val();
 

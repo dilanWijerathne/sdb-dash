@@ -142,8 +142,6 @@ console.log(branch);
                    $("#editInputEmail").val(k['email']);
                    $("div.id_100 select").val(k['role']);
                    $("div.id_101 select").val(k['branch']);
-                   $("#editInputCEmail").val(k['email']);
-
 
                   // $("#role").children("option:selected").val();
                    //$("#branch").children("option:selected").val();
@@ -160,7 +158,6 @@ console.log(branch);
         var mobile = $("#editInputMobile").val();
         var name = $("#editInputName").val();
         var email = $("#editInputEmail").val();
-        var cemail = $("#editInputCEmail").val();
         var role = $("#editrole").children("option:selected").val();
         var branch = $("#editbranch").children("option:selected").val();
 
