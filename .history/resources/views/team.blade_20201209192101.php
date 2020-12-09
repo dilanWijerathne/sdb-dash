@@ -166,13 +166,7 @@ console.log(branch);
            // alert( "Data Saved: " + msg );
            var k = JSON.parse(msg);
            console.log(k)
-           if(msg==1|msg=="1"){
-                      alert( "Deleted : " + msg );
-                      location.reload();
-                    }else{
-                      alert("Error in Deletion")
-                    }
-/*
+
            $("#editInputMobile").val(k['mobile']);
            $("#editInputName").val(k['name']);
            $("#editInputEmail").val(k['email']);
@@ -180,7 +174,7 @@ console.log(branch);
            $("div.id_101 select").val(k['branch']);
            $("#editInputCEmail").val(k['email']);
 
-*/
+
           // $("#role").children("option:selected").val();
            //$("#branch").children("option:selected").val();
 

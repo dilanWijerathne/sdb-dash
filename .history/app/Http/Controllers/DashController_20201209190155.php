@@ -257,16 +257,21 @@ class DashController extends Controller
 
     // delete_my_team_member
 
-    public function delete_my_team_member(Request $request)
+    public function update_my_team_member(Request $request)
     {
-        Log::info('delete team memebr details by' . session('user_email'));
+        Log::info('update team memebr details ');
         Log::info($request);
 
         $response = Http::get(env('CORE_URL') . '/sdbl/api/delete_my_team_member', [
+            "name" => $request->input('name'),
             "email" => $request->input('email'),
+            "cemail" => $request->input('cemail'),
+            "mobile" => $request->input('mobile'),
+            "role" => $request->input('role'),
+            "branch" => $request->input('branch'),
         ]);
 
-        Log::info('delete team memebr details outcome , deleted by ' . session('user_email'));
+        Log::info('update team memebr details outcome ');
         Log::info($response);
         return $response;
     }
