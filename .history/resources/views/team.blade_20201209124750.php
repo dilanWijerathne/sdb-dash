@@ -131,7 +131,7 @@ console.log(branch);
                 data: {email, email}
                 })
                 .done(function( msg ) {
-                   // alert( "Data Saved: " + msg );
+                    alert( "Data Saved: " + msg );
                 });
 
     }
@@ -165,7 +165,6 @@ console.log(branch);
       <div class="row">
         <!-- left column -->
         <div class="col-md-6">
-
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
@@ -313,55 +312,10 @@ console.log(branch);
           </button>
         </div>
         <div class="modal-body">
-
-
-
-
-
-     <!-- general form elements -->
-     <div class="box box-primary">
-        <div class="box-header with-border">
-          <h3 class="box-title">Quick Modify</h3>
-        </div>
-        <!-- /.box-header -->
-        <!-- form start -->
-        <form role="form">
-            <div class="box-body">
-
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Mobile</label>
-                    <input type="number" class="form-control" id="editInputMobile" placeholder="Enter mobile">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="editInputEmail" placeholder="Enter email">
-                </div>
-                <div class="form-group">
-                <label for="exampleInputEmail1">Name</label>
-                <input type="text" class="form-control" id="editInputName" placeholder="Enter name">
-                </div>
-
-
-
-
-
-            </div>
-            <!-- /.box-body -->
-
-
-        </form>
-      </div>
-      <!-- /.box -->
-
-
-
-
-
-
+          ...
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Delete User</button>
           <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
