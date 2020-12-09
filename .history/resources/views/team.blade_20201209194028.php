@@ -465,7 +465,7 @@ console.log(branch);
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" onclick="delete_team_member_details()" class="btn btn-block btn-danger">Delete user</button>
+          <button type="button" onclick="delete_team_member_details()" class="btn btn-block btn-danger btn-lg">Delete user</button>
           <button type="button" onclick="update_team_member_details()" class="btn btn-primary">Save changes</button>
         </div>
       </div>
