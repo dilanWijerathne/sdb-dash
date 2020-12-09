@@ -175,8 +175,6 @@ console.log(branch);
                     if(msg==1|msg=="1"){
                       alert( "Updated : " + msg );
                       location.reload();
-                    }else{
-                      alert("Error in update")
                     }
 
 
