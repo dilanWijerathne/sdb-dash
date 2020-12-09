@@ -238,18 +238,14 @@ class DashController extends Controller
 
     public function update_my_team_member(Request $request)
     {
-        Log::info('update team memebr details ');
+        Log::info('get team memebr details ');
         Log::info($request);
 
         $response = Http::get(env('CORE_URL') . '/sdbl/api/update_my_team_member', [
-            "name" => $request->input('name'),
-            "email" => $request->input('email'),
-            "mobile" => $request->input('mobile'),
-            "role" => $request->input('role'),
-            "branch" => $request->input('branch'),
+            "user_email" => $request->input('email'),
         ]);
 
-        Log::info('update team memebr details outcome ');
+        Log::info('get team memebr details outcome');
         Log::info($response);
         return $response;
     }

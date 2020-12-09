@@ -164,13 +164,11 @@ console.log(branch);
 
         $.ajax({
                 method: "POST",
-                url: "api/update_my_team_member",
-                data: {name:name, email:email, mobile:mobile, role:role, branch:branch}
+                url: "api/new_member",
+                data: {name, email, password, password_c, mobile, role, branch}
                 })
                 .done(function( msg ) {
-                    console.log(msg);
-                    alert( "Updated : " + msg );
-
+                    alert( "Data Saved: " + msg );
                 });
 
 
@@ -420,7 +418,7 @@ console.log(branch);
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary">Delete user</button>
-          <button type="button" onclick="update_team_member_details()" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>

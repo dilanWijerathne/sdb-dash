@@ -168,9 +168,7 @@ console.log(branch);
                 data: {name:name, email:email, mobile:mobile, role:role, branch:branch}
                 })
                 .done(function( msg ) {
-                    console.log(msg);
                     alert( "Updated : " + msg );
-
                 });
 
 
