@@ -113,7 +113,7 @@ console.log(branch);
 
       $('#example1 tbody').on( 'click', 'button', function () {
           var data = table.row( $(this).parents('tr') ).data();
-        //  alert( data[1] +"'NIC "+ data[ 4 ] );
+          alert( data[1] +"'NIC "+ data[ 4 ] );
           team_member_details(data[1]);
           $('#exampleModalCenter').modal('show');
         //  window.open('/sdb-dash/applicant-details?ReportID='+ data[ 4 ], '_blank');
@@ -432,7 +432,7 @@ console.log(branch);
                     <select id="editrole" class="form-control">
                     <option value="bdo">BDO</option>
                     <option value="manager"> Manager (Approval Officer)</option>
-                    <option value="na"> Remove roll</option>
+                    <option value="left"> Remove roll</option>
                     </select>
                 </div>
 
