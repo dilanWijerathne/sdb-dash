@@ -114,10 +114,9 @@ console.log(branch);
       $('#example1 tbody').on( 'click', 'button', function () {
           var data = table.row( $(this).parents('tr') ).data();
           alert( data[1] +"'NIC "+ data[ 4 ] );
-          team_member_details(data[1]);
           $('#exampleModalCenter').modal('show');
         //  window.open('/sdb-dash/applicant-details?ReportID='+ data[ 4 ], '_blank');
-
+        team_member_details(data[1]);
       } );
 
 
