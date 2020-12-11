@@ -3,7 +3,7 @@
     <script>
 
         function change_pass(pass,email){
-          //  alert("pass");
+            alert("pass");
             $.ajax({
                 method: "POST",
                 url: "api/reset_my_password",

@@ -3,15 +3,14 @@
     <script>
 
         function change_pass(pass,email){
-          //  alert("pass");
+            alert("pass");
             $.ajax({
                 method: "POST",
                 url: "api/reset_my_password",
                 data: {email:email, password:pass}
                 })
                 .done(function( msg ) {
-                    //alert( "Data Saved: " + msg );
-                    $.alert('You have successfully changed your password'+msg);
+                    alert( "Data Saved: " + msg );
                 });
 
         }

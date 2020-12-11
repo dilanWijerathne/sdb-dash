@@ -2,20 +2,10 @@
 
     <script>
 
-        function change_pass(pass,email){
-          //  alert("pass");
-            $.ajax({
-                method: "POST",
-                url: "api/reset_my_password",
-                data: {email:email, password:pass}
-                })
-                .done(function( msg ) {
-                    //alert( "Data Saved: " + msg );
-                    $.alert('You have successfully changed your password'+msg);
-                });
-
+        function change_pass(){
+            alert("pass");
         }
-        function password_chg(email){
+        function password_chg(){
 
 
             $.confirm({
@@ -48,7 +38,7 @@
                                     }
 
                                     if(pass===pass2){
-                                        change_pass(pass,email);
+                                        change_pass();
                                         return false;
                                     }else{
                                         $.alert('Repeated password is mitmating');
