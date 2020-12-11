@@ -24,25 +24,15 @@
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Mobile</label>
-                    <input type="number" class="form-control" id="editMyMobile" placeholder="Enter mobile">
+                    <input type="number" class="form-control" id="editInputMobile" placeholder="Enter mobile">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="editMyEmail" placeholder="Enter email">
+                    <input type="email" class="form-control" id="editInputEmail" placeholder="Enter email">
                 </div>
                 <div class="form-group">
                 <label for="exampleInputEmail1">Name</label>
-                <input type="text" class="form-control" id="editMyName" placeholder="Enter name">
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleInputEmail1">New password</label>
-                    <input type="password" class="form-control" id="editMyPassword" placeholder="">
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Repeat new password</label>
-                    <input type="password" class="form-control" id="editMyPasswordRepeat" placeholder="">
+                <input type="text" class="form-control" id="editInputName" placeholder="Enter name">
                 </div>
 
 

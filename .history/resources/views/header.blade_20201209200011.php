@@ -229,7 +229,7 @@
 
                 <p>
                     {{session('user_mobile')}}
-                  <small>{{session('branch_name')}}</small>
+                  <small>Member since Nov. 2012</small>
                 </p>
               </li>
 

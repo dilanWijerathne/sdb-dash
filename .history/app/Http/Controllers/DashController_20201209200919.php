@@ -271,25 +271,18 @@ class DashController extends Controller
         return $response;
     }
 
-
-    /////////////////
-
-    public function reset_my_password(Request $request)
+    //
+    public function grab_branches_byid($bid)
     {
-        Log::info('password changed ' . session('user_email'));
-        Log::info($request);
 
-        $response = Http::post(env('CORE_URL') . '/sdbl/api/reset_pass', [
-            "email" => $request->input('email'),
-            "password" => $request->input('password'),
+
+        $response = Http::get(env('CORE_URL') . '/sdbl/api/grab_branches_byid', [
+            "id" => $bid,
         ]);
 
-        Log::info('password changed ' . session('user_email'));
-        Log::info($response);
+
         return $response;
     }
-
-
 
 
     public function login_to_core(Request $request)

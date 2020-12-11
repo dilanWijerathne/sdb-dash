@@ -37,12 +37,12 @@
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">New password</label>
-                    <input type="password" class="form-control" id="editMyPassword" placeholder="">
+                    <input type="text" class="form-control" id="editMyName" placeholder="Enter name">
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Repeat new password</label>
-                    <input type="password" class="form-control" id="editMyPasswordRepeat" placeholder="">
+                    <input type="text" class="form-control" id="editMyName" placeholder="Enter name">
                 </div>
 
 

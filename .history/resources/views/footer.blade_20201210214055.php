@@ -36,14 +36,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputEmail1">New password</label>
-                    <input type="password" class="form-control" id="editMyPassword" placeholder="">
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Repeat new password</label>
-                    <input type="password" class="form-control" id="editMyPasswordRepeat" placeholder="">
-                </div>
+                    <label for="exampleInputEmail1">New Password</label>
+                    <input type="text" class="form-control" id="editMyName" placeholder="Enter name">
+                    </div>
 
 
                 <!-- select -->

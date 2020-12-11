@@ -225,32 +225,6 @@ console.log(branch);
 
 
       }
-
-
-
-
-      function sure_delete(){
-        $.confirm({
-    title: 'Confirm!',
-    content: 'Simple confirm!',
-    buttons: {
-        confirm: function () {
-            $.alert('Confirmed!');
-        },
-        cancel: function () {
-            $.alert('Canceled!');
-        },
-        somethingElse: {
-            text: 'Something else',
-            btnClass: 'btn-blue',
-            keys: ['enter', 'shift'],
-            action: function(){
-                $.alert('Something else?');
-            }
-        }
-    }
-});
-      }
   </script>
 
 
@@ -494,7 +468,7 @@ console.log(branch);
         </div>
         <div class="modal-footer">
             @if (session('user_branch')==0|session('user_branch')=="0")
-            <button type="button" onclick="sure_delete()" class="btn btn-block btn-danger">Delete user</button>
+            <button type="button" onclick="delete_team_member_details()" class="btn btn-block btn-danger">Delete user</button>
             @endif
 
           <button type="button" onclick="update_team_member_details()" class="btn btn-block btn-warning">Save changes</button>
