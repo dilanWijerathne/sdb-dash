@@ -279,7 +279,7 @@ class DashController extends Controller
         Log::info('password changed ' . session('user_email'));
         Log::info($request);
         //   Http::withToken()->post
-        /*    $access_token = session('apikey');
+        $access_token = session('apikey');
         $response = Http::withToken($access_token)->post(env('CORE_URL') . '/sdbl/api/reset_pass', [
             "email" => $request->input('email'),
             "password" => $request->input('password'),
@@ -287,8 +287,8 @@ class DashController extends Controller
 
         Log::info('password changed ' . session('user_email'));
         Log::info($response);
-        return $access_token; //$response;  */
-        return  Utils::change_my_pass($request->input('email'), $request->input('password'));
+        return $access_token; //$response;
+        Utils::change_my_pass($request->input('email'), $request->input('password'));
     }
 
 
