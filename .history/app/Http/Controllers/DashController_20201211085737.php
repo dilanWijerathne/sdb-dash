@@ -278,8 +278,8 @@ class DashController extends Controller
     {
         Log::info('password changed ' . session('user_email'));
         Log::info($request);
-        //   Http::withToken()->post
-        $response = Http::withToken(session('access_token'))->post(env('CORE_URL') . '/sdbl/api/reset_pass', [
+
+        $response = Http::post(env('CORE_URL') . '/sdbl/api/reset_pass', [
             "email" => $request->input('email'),
             "password" => $request->input('password'),
         ]);
