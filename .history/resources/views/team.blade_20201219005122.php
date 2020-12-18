@@ -563,7 +563,7 @@ console.log(branch);
         <div class="modal-footer">
             @if (session('user_branch')==0|session('user_branch')=="0")
             <!-- <button type="button" onclick="sure_delete()" class="btn btn-block btn-danger">Delete user</button> -->
-            <button type="button" onclick="req_new_pass()" class="btn btn-block btn-danger">Reset Password</button>
+            <button type="button" onclick="req_new_pass()" class="btn btn-block btn-warning">Reset Password</button>
             @endif
 
           <button type="button" onclick="sure_update()" class="btn btn-block btn-warning">Save changes</button>
