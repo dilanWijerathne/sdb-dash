@@ -530,7 +530,7 @@ function com_list(ref){
                 $purpose =  $js['pupose'];
                 $purpose = json_decode($purpose,true);
                 echo  '<div class="box-header with-border">
-                    <h3 class="box-title"> Purpose </h3>
+                    <h3 class="box-title"> Avaiable accounts</h3>
                   </div>';
                 echo '  <ul class="list-group list-group-unbordered">';
                 for($i=0;$i<count($purpose) ; $i++){
