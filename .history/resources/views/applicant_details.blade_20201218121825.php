@@ -518,37 +518,15 @@ function com_list(ref){
           <!-- /.box-header -->
           <div class="box-body">
 
-
             @php
             //$js =     $KYC['json'];
             $js = json_decode($KYC['json'],true);
 
-
-
-
-            if(isset($js['pupose'])){
-                $purpose =  $js['pupose'];
-                echo $purpose ."<br>";
-            }
-            if(isset($js['source_funds'])){
-                $source_of_funds =  $js['source_funds'];
-                echo $source_of_funds ."<br>";
-            }
-            if(isset($js['anticipated_volume'])){
-                $anticipated_volume =  $js['anticipated_volume'];
-                echo $anticipated_volume ."<br>";
-            }
-            if(isset($js['source_wealth'])){
-                $source_wealth = $js['source_wealth'];
-                echo $source_wealth ."<br>";
-            }if(isset($js['pep'])){
-                $pep = $js['pep'];
-                echo $pep ."<br>";
-            }if(isset($js['pep_relationsip'])){
-                $pep_relationsip = $js['pep_relationsip'];
-                echo $pep_relationsip ."<br>";
-            }
-
+            $purpose =  $js['pupose'];
+            $source_of_funds =  $js['source_funds'];
+            $anticipated_volume =  $js['anticipated_volume'];
+            $source_wealth = $js['source_wealth'];
+            $pep = $js['pep'];
             @endphp
 
 
