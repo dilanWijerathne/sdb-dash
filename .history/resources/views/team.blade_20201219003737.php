@@ -196,24 +196,6 @@ console.log(branch);
 }
 
 
-    function reset_req_pass(){
-
-            var email = $("#editInputEmail").val();
-            $.ajax({
-                method: "post",
-                url: "api/req_new_pass",
-                data: {email, email}
-            })
-            .done(function( msg ) {
-            // alert( "Data Saved: " + msg );
-            var k = JSON.parse(msg);
-            console.log(k)
-            location.reload();
-
-            });
-
-    }
-
 
 // update staff member details
     function update_team_member_details(){
@@ -298,25 +280,6 @@ console.log(branch);
 
 
       function req_new_pass(){
-
-        $.confirm({
-                    title: 'Reset user password ?',
-                    content: 'This dialog will automatically trigger \'cancel\' in 6 seconds if you don\'t respond.',
-                    autoClose: 'cancelAction|8000',
-                    buttons: {
-                        deleteUser: {
-                            text: 'Reset Password',
-                            action: function () {
-                                reset_req_pass();
-                                $.alert('New password has been sent as SMS successfully!');
-                            }
-                        },
-                        cancelAction: function () {
-                            $.alert('action is canceled');
-                        }
-                    }
-                });
-
 
       }
   </script>

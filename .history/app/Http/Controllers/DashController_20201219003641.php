@@ -294,7 +294,7 @@ class DashController extends Controller
 
     public function req_new_pass(Request $request)
     {
-        Log::info('password reset ' . session('user_email'));
+        Log::info('password changed ' . session('user_email'));
         Log::info($request);
 
         return  Utils::reset_user_pass($request->input('email'));
