@@ -476,7 +476,7 @@ propostion : 15
 
 
           @endphp
-
+         {{$Nominee['json']}}
         </div>
         <!-- /.box-body -->
       </div>
