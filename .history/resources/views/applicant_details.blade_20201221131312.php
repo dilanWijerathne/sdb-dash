@@ -27,8 +27,173 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+  <script>
+
+    function send_msg(from,to,ref,nic){
+
+
+
+        console.log("send msg clicked");
+        //
+        var msg = $('#message_input').val();
+        $.ajax({
+            method: "GET",
+            url: "api/nessage_send",
+            data: {from_user:from,to_user:to,msg:msg,nic:nic, ref: ref}
+            })
+            .done(function( msg ) {
+                msg(ref);
+                console.log(msg);
+            });
+    }
+
+
+
+
+      function msg(ref){
+          //line 740
+
+          console.log("msg li clicked");
+          $.ajax({
+            method: "GET",
+            url: "api/nessage_by_ref",
+            data: { ref: ref}
+            })
+            .done(function( msg ) {
+                var k = JSON.parse(msg);
+
+            ///        line 504
+            var st ="";
+            for(var i=0; i<k.length;i++){
+                var t = '<div class="col-sm-12" style="margin-top: 50px" ><div class="col-sm-10"><dl><dt> ->  '+k[i]['from_user']+' for application no '+k[i]['ref']+' of NIC '+k[i]['nic']+'</dt><dd> '+k[i]['msg']+'</dd><dd>'+k[i]['created_at']+'</dd></dl><hr></div> </div>';
+                st = st.concat(t);
+            }
+
+            console.log(st);
+            $(".message_list").html( st );
+
+
+            });
+      }
+
+
+function com_list(ref){
+
+
+
+        $.ajax({
+            method: "GET",
+            url: "api/comment_by_bdo_app",
+            data: { ref: ref}
+            })
+            .done(function( msg ) {
+                var k = JSON.parse(msg);
+
+            ///        line 504
+            var st ="";
+            for(var i=0; i<k.length;i++){
+                var t = '<div class="col-sm-12"><div class="col-sm-9"><dl><dt>Commented by : '+k[i]['from']+'</dt><dd> '+k[i]['msg']+'</dd></dl><hr></div>         <div class="col-sm-3">    <b>@</b> '+' '+k[i]['created_at']+'       </div><hr></div>';
+                st = st.concat(t);
+            }
+
+            console.log(st);
+            $(".comlist").append( st );
+
+
+            });
+      }
+
+
+
+
+
+      function review(code,ref,user_email){
+
+
+
+
+            var type = "";
+            if(code==="0"| code===0){
+                var type = 'ops';
+            }else{
+                var type = 'mng';
+            }
+
+
+            console.log("Type " + type + "  - > officer bdo- mng  "+ user_email+ "  -> app ref " + ref);
+
+            alert("Type " + type + "  - > officer bdo- mng  "+ user_email+ "  -> app ref " + ref);
+        alert("You marked review status");
+        $.ajax({
+            method: "POST",
+            url: "api/review",
+            data: { bdo: user_email,type:type,ref:ref}
+            })
+            .done(function( msg ) {
+                console.log(msg);
+                alert( msg );
+                location.reload();
+
+            });
+      }
+
+      // "http://10.101.6.198/sdbl/inapp",
+      function cacc(){
+          var nic = $('#nicvalue').val();
+
+          alert("You are going to create account for : "+ nic);
+        $.ajax({
+            method: "POST",
+            url: "api/applicant-approval",
+            data: { nic: nic}
+            })
+            .done(function( msg ) {
+                console.log(msg);
+                alert( msg );
+                location.reload();
+
+            });
+      }
+
+
+
+
+
+
+      function comment_fd(){
+
+
+
+        var comment = $('#comment_input').val();
+        var bdo = $('#bdoemail').val();
+        var ref = $('#appref').val();
+        var from = $('#user_name').val();
+        alert(comment+"  "+bdo+"  "+ref);
+        if(comment!==null|comment!==""| comment!==" "){
+
+            $.ajax({
+            method: "POST",
+            url: "api/comment",
+            data: { msg: comment,bdo:bdo,ref:ref,from:from}
+            })
+            .done(function( msg ) {
+                console.log(msg);
+                alert( msg );
+                location.reload();
+
+            });
+
+        }
+        else{
+            alert("Please add a valid comment. you cannot comment empty fields!");
+        }
+      }
+
+
+  </script>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body onload=" com_list({{$Applicant['ref']}})" class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
     @include('header')
@@ -38,7 +203,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section  class="content-header">
       <h1>
         {{$Applicant['full_name']}}
       </h1>
@@ -58,10 +223,12 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="http://10.101.6.198/sdbl/public/{{$selfie['file_path']}}" alt="User profile picture">
+
+                <img class="profile-user-img img-responsive img-circle" src="http://10.101.6.198/sdbl/public/user.png" alt="User profile picture">
+
 
               <h3 class="profile-username text-center"> {{$Applicant['nic']}} - {{$Applicant['sex']}} </h3>
-
+                <input type="hidden" value="{{$Applicant['nic']}}" id="nicvalue"  />
               <p class="text-muted text-center">{{$Applicant['applicant_status']}}</p>
 
                 <!-- primary display section -->
@@ -76,17 +243,18 @@
                 </li>
                 @endif
 
-                @if($Applicant['existing_customer']!==null)
+                @if($Applicant['existing_customer']==='true')
+
                 <li class="list-group-item">
                   <b>Existing customer</b> <a class="pull-right">CIF  @if(isset($cif['cif'])){{$cif['cif']}} @endif</a>
                 </li>
                 @endif
 
-                @if ( isset($Applicant['pep']) )
+
                 <li class="list-group-item" style="color: red">
                   <b>PEP</b> <a class="pull-right">{{$KYC['pep']}}</a>
                 </li>
-                @endif
+
               </ul>
                <!-- end primary display section -->
                <hr>
@@ -113,11 +281,11 @@
                   <b>Email</b> <a class="pull-right"> {{$Applicant['email']}}</a>
                 </li>
                 <li class="list-group-item">
-                  <b>District</b> <a class="pull-right"> {{$Applicant['email']}}</a>
+                  <b>District</b> <a class="pull-right"> {{$Applicant['district']}}</a>
                 </li>
 
                 <li class="list-group-item">
-                  <b>Address</b> <a class="pull-right"> {{$Applicant['district']}}</a>
+                  <b>Address</b> <a class="pull-right"> {{$Applicant['address1']}}, {{$Applicant['address2']}},{{$Applicant['address3']}}</a>
                 </li>
 
                 <hr>
@@ -126,17 +294,60 @@
                   <b>Applied timestamp</b> <a class="pull-right"> {{$Applicant['updated_at']}}</a>
                 </li>
 
+                <hr>
+                <div class="box-header with-border">
+                    <h3 class="box-title"> Avaiable accounts</h3>
+                  </div>
 
 
+
+                  @isset($acc[0])
+
+                    @foreach ($acc as $ac)
+                    <li class="list-group-item">
+                        <b>Account number</b> <a class="pull-right"> {{ $ac['account_number'] }} </a>
+                        </li>
+
+                    @endforeach
+                  @endisset
+
+
+
+
+
+
+                <hr>
 
 
 
               </ul>
                <!-- end primary display section -->
 
-              <a href="#" class="btn btn-primary btn-block"><b>Approve</b></a>
-              <a href="#" class="btn btn-primary btn-warning btn-block"><b>Request to improve</b></a>
-              <a href="#" class="btn btn-primary btn-danger  btn-block"><b>Reject</b></a>
+               <input type="hidden" value="{{$bdo['code']}}"  id="bdocode"/>
+               <input type="hidden" value="{{$bdo['email']}}"  id="bdoemail"/>
+               <input type="hidden" value="{{$Applicant['ref']}}"  id="appref"/>
+
+               <input type="hidden" value="{{ session('user_email') }}"  id="user_name"/>
+
+
+
+
+               @if ($Applicant['approved'] ===1 |  $Applicant['approved'] ==='1' )
+               <a onclick="" class="btn btn-primary btn-block"><b>Reviewd by Manager</b></a>
+               @endif
+               @if ($Applicant['ops'] ===1 |  $Applicant['ops'] ==='1' )
+               <a onclick="" class="btn btn-primary btn-block"><b>Reviewd by Centralized Ops</b></a>
+               @endif
+               @if ($Applicant['approved'] ===0 |  $Applicant['approved'] ==='0' )
+               <a onclick="review('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-warning btn-block"><b>Review</b></a>
+               @endif
+                    @if ($Applicant['ops'] ===0 |  $Applicant['ops'] ==='0' )
+                    <a onclick="review('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-warning btn-block"><b>Review as Ops</b></a>
+                    @endif
+
+
+
+
             </div>
             <!-- /.box-body -->
           </div>
@@ -155,9 +366,22 @@
 
               <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
-              <p class="text-muted">Malibu, California</p>
+              <p class="text-muted">Kirulapona, Colombo</p>
 
               <hr>
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i> BDO</strong>
+             <p class="text-muted">{{$bdo['email']}}</p>
+
+              <hr>
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Branch</strong>
+              <p class="text-muted"> {{$bdo['name']}} </p>
+
+               <hr>
+
+               <a onclick="cacc()" class="btn btn-primary btn-block"><b>Approve</b></a>
+               <a href="#" class="btn btn-primary btn-warning btn-block"><b>Request to improve</b></a>
+               <a href="#" class="btn btn-primary btn-danger  btn-block"><b>Reject</b></a>
 
 
             </div>
@@ -170,8 +394,10 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#activity" data-toggle="tab">Applicant Info</a></li>
-              <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
-              <li><a href="#settings" data-toggle="tab">Message to BDO</a></li>
+              <!--
+                <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
+                --->
+              <li onclick="msg({{$Applicant['ref']}})"><a href="#settings" data-toggle="tab">Message to BDO</a></li>
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
@@ -206,7 +432,53 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          The body of the box
+
+          @php
+/*
+nic : ""
+contact_number : ""
+title : "Rev"
+full_name : "Uttgu"
+dob : "1/2/2018"
+age : 2
+address : "Yfhghghg"
+propostion : 15
+
+*/
+          if(isset($Nominee['json'])){
+            if($Nominee['json']!==""){
+              $js = json_decode($Nominee['json'],true);
+
+              for($i=0;$i<count($js); $i++){
+
+                echo '  <div class="info-box bg-greay">
+                          <span class="info-box-icon"><i class="fa fa-share-alt-square"></i></span>
+
+                          <div class="info-box-content">
+                            <span class="info-box-text">Name : '.$js[$i]['title'].'. '.$js[$i]['full_name'].'</span>
+                            <span class="info-box-text"> Address : '.$js[$i]['address'].'</span>
+                            <span class="info-box-text"> DOB : '.$js[$i]['dob'].'</span>
+                            <span class="info-box-text"> Contact No : '.$js[$i]['contact_number'].'</span>
+                            <span class="info-box-text"> Address : '.$js[$i]['address'].'</span>
+                            <span class="info-box-number" Propostion : >'.$js[$i]['propostion'].'%</span>
+
+                            <div class="progress">
+                              <div class="progress-bar" style="width: '.$js[$i]['propostion'].'%"></div>
+                            </div>
+
+                          </div>
+
+                         </div>';
+
+
+                }
+            }
+          }
+
+
+
+          @endphp
+
         </div>
         <!-- /.box-body -->
       </div>
@@ -291,7 +563,92 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-           {{$KYC['json']}}
+
+
+            @php
+            //$js =     $KYC['json'];
+            $js = json_decode($KYC['json'],true);
+            if(isset($js['pupose'])){
+                $purpose =  $js['pupose'];
+                $purpose = json_decode($purpose,true);
+                echo  '<div class="box-header with-border">
+                    <h4 class="box-title"> Purpose </h4>
+                  </div>';
+                echo '  <ul style="list-style-type:disc;  margin: 0;  margin: 0;" class="list-group list-group-unbordered">';
+                for($i=0;$i<count($purpose) ; $i++){
+               //     echo $purpose[$i] ."<br>";
+                    echo ' <li >
+                      <b> </b> <a class="pull-right">'.$purpose[$i].'</a>
+                    </li>';
+                }
+                echo '</ul>';
+
+            }
+            if(isset($js['source_funds'])){
+                $source_of_funds =  $js['source_funds'];
+               // echo $source_of_funds ."<br>";
+               $source_of_funds = json_decode($source_of_funds,true);
+                echo  '<div class="box-header with-border">
+                    <h4 class="box-title"> Source of Funds </h4>
+                  </div>';
+                echo '  <ul style="list-style-type:disc;  margin: 0;  margin: 0;" class="list-group list-group-unbordered">';
+                for($i=0;$i<count($source_of_funds) ; $i++){
+               //     echo $purpose[$i] ."<br>";
+                    echo ' <li>
+                      <b> </b> <a class="pull-right">'.$source_of_funds[$i].'</a>
+                    </li>';
+                }
+                echo '</ul>';
+
+            }
+            if(isset($js['source_wealth'])){
+                $source_wealth = $js['source_wealth'];
+              //  echo $source_wealth ."<br>";
+              $source_wealth = json_decode($source_wealth,true);
+                echo  '<div class="box-header with-border">
+                    <h4 class="box-title"> Source of Wealth </h4>
+                  </div>';
+                echo '  <ul style="list-style-type:disc;  margin: 0;  margin: 0;" class="list-group list-group-unbordered">';
+                for($i=0;$i<count($source_wealth) ; $i++){
+               //     echo $purpose[$i] ."<br>";
+                    echo ' <li >
+                      <b> </b> <a class="pull-right">'.$source_wealth[$i].'</a>
+                    </li>';
+                }
+                echo '</ul>';
+
+
+            }
+            if(isset($js['anticipated_volume'])){
+                $anticipated_volume =  $js['anticipated_volume'];
+               // echo $anticipated_volume ."<br>";
+
+               $anticipated_volume = json_decode($anticipated_volume,true);
+                echo  '<div class="box-header with-border">
+                    <h4 class="box-title"> Anticipated Volums </h4>
+                  </div>';
+                echo '  <ul style="list-style-type:disc;  margin: 0;  margin: 0;" class="list-group list-group-unbordered">';
+                for($i=0;$i<count($anticipated_volume) ; $i++){
+               //     echo $purpose[$i] ."<br>";
+                    echo ' <li>
+                      <b> </b> <a class="pull-right">'.$anticipated_volume[$i].'</a>
+                    </li>';
+                }
+                echo '</ul>';
+
+            }
+            if(isset($js['pep'])){
+                $pep = $js['pep'];
+               // echo $pep ."<br>";
+            }if(isset($js['pep_relationsip'])){
+                $pep_relationsip = $js['pep_relationsip'];
+              //  echo $pep_relationsip ."<br>";
+            }
+
+            @endphp
+
+
+
           </div>
           <!-- /.box-body -->
         </div>
@@ -307,17 +664,23 @@
 
 
 
+  <div class="comlist form-group margin-bottom-none">
 
-                  <form class="form-horizontal">
+  </div>
+
+
+
+
                     <div class="form-group margin-bottom-none">
                       <div class="col-sm-9">
-                        <input class="form-control input-sm" placeholder="Response">
+                        <input class="form-control input-sm" id="comment_input" placeholder="Response to this application">
                       </div>
                       <div class="col-sm-3">
-                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Comment</button>
+                        <!--   <a  onclick="comment()" class="btn btn-danger  btn-sm">Comment</a>     --->
+                        <a onclick="comment_fd()" class="btn btn-primary btn-block"><b>Comment</b></a>
                       </div>
                     </div>
-                  </form>
+
                 </div>
                 <!-- /.post -->
 
@@ -338,12 +701,12 @@
                   <div class="row margin-bottom">
 
                     <div class="col-sm-6">
-                      <img class="img-responsive" src="http://10.101.6.198/sdbl/public/{{$nicf['file_path']}}" alt="Photo">
+                      <img class="img-responsive" src="{{env('CORE_URL')}}/sdbl/public/{{$nicf['file_path']}}" alt="Photo">
                     </div>
 
 
                     <div class="col-sm-6">
-                        <img class="img-responsive" src="http://10.101.6.198/sdbl/public/{{$nicr['file_path']}}" alt="Photo">
+                        <img class="img-responsive" src="{{env('CORE_URL')}}/sdbl/public/{{$nicr['file_path']}}" alt="Photo">
                       </div>
 
 
@@ -358,21 +721,31 @@
                      <!-- /.user-block -->
                      <div class="row margin-bottom">
 
+                        @isset($proof['file_path'])
                         <div class="col-sm-6">
-                          <img class="img-responsive" src="http://10.101.6.198/sdbl/public/{{$proof['file_path']}}" alt="Photo">
+                          <img class="img-responsive" src="{{env('CORE_URL')}}/sdbl/public/{{$proof['file_path']}}" alt="Photo">
                         </div>
-
+                        @endisset
 
 
 
                         <!-- /.col -->
                         <div class="col-sm-6">
                           <div class="row">
+
+
                             <div class="col-sm-6">
-                              <img class="img-responsive" src="http://10.101.6.198/sdbl/public/{{$selfie['file_path']}}" alt="Photo">
+                             @isset($selfie['file_path'])
+                              <img class="img-responsive" src="{{env('CORE_URL')}}/sdbl/public/{{$selfie['file_path']}}" alt="Photo">
+                              @endisset
                               <br>
+
                               <img class="img-responsive" src="{{$signature['signature']}}" alt="Photo">
+
+
                             </div>
+
+
                             <!-- /.col -->
 
 
@@ -398,16 +771,6 @@
 
 
 
-                  <ul class="list-inline">
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                    </li>
-                    <li class="pull-right">
-                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
-                  </ul>
-
-                  <input class="form-control input-sm" type="text" placeholder="Type a comment">
                 </div>
 
                 @endif
@@ -512,30 +875,32 @@
               <!-- /.tab-pane -->
 
               <div class="tab-pane" id="settings">
-                <form class="form-horizontal">
+
                   <div class="form-group">
 
 
+                    <div  class="form-group message_list">
+
+                  </div>
 
                   <div class="form-group">
                     <label for="inputExperience" class="col-sm-2 control-label">Message</label>
 
                     <div class="col-sm-10">
-                      <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                      <textarea class="form-control" id="message_input" placeholder="I need to tell ..."></textarea>
                     </div>
                   </div>
-
-
-
-
-
 
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
+                        <!--
+                            from,to,ref,msg,nic
+                            --->
+
+                            <a onclick="send_msg('{{session('user_email')}}','{{$bdo['email']}}','{{$Applicant['ref']}}','{{$Applicant['nic']}}')" class="btn btn-primary btn-block"><b>Send</b></a>
                     </div>
                   </div>
-                </form>
+
               </div>
               <!-- /.tab-pane -->
             </div>
@@ -570,5 +935,10 @@
 <script src="public/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="public/dist/js/demo.js"></script>
+
+<script>
+
+
+</script>
 </body>
 </html>

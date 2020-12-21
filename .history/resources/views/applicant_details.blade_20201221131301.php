@@ -451,7 +451,7 @@ propostion : 15
 
               for($i=0;$i<count($js); $i++){
 
-                echo '  <div class="info-box bg-greay">
+                echo '  <div class="info-box bg-red">
                           <span class="info-box-icon"><i class="fa fa-share-alt-square"></i></span>
 
                           <div class="info-box-content">

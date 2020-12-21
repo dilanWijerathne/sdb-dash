@@ -451,25 +451,23 @@ propostion : 15
 
               for($i=0;$i<count($js); $i++){
 
-                echo '  <div class="info-box bg-greay">
+                echo '  <div class="info-box bg-red">
                           <span class="info-box-icon"><i class="fa fa-share-alt-square"></i></span>
 
                           <div class="info-box-content">
                             <span class="info-box-text">Name : '.$js[$i]['title'].'. '.$js[$i]['full_name'].'</span>
-                            <span class="info-box-text"> Address : '.$js[$i]['address'].'</span>
-                            <span class="info-box-text"> DOB : '.$js[$i]['dob'].'</span>
-                            <span class="info-box-text"> Contact No : '.$js[$i]['contact_number'].'</span>
                             <span class="info-box-text"> Address : '.$js[$i]['address'].'</span>
                             <span class="info-box-number" Propostion : >'.$js[$i]['propostion'].'%</span>
 
                             <div class="progress">
                               <div class="progress-bar" style="width: '.$js[$i]['propostion'].'%"></div>
                             </div>
-
+                                <span class="progress-description">
+                                  70% Increase in 30 Days
+                                </span>
                           </div>
 
                          </div>';
-
 
                 }
             }
