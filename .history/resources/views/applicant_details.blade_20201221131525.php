@@ -468,7 +468,7 @@ propostion : 15
 
                           </div>
 
-                         </div><hr>';
+                         </div>';
 
 
                 }
