@@ -465,7 +465,7 @@ propostion : 15
                               <div class="progress-bar" style="width: '.$js[$i]['propostion'].'%"></div>
                             </div>
                                 <span class="progress-description">
-                                  '.$js[$i]['propostion'].' of Propostion
+                                  '.$js[$i]['propostion'].' Propostion
                                 </span>
                           </div>
 
