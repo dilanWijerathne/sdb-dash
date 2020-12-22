@@ -145,7 +145,6 @@ function com_list(ref){
           var nic = $('#nicvalue').val();
 
           alert("You are going to create account for : "+ nic);
-          review(branch, ref,u_email);
         $.ajax({
             method: "POST",
             url: "api/applicant-approval",
@@ -154,7 +153,7 @@ function com_list(ref){
             .done(function( msg ) {
                 console.log(msg);
                 alert( msg );
-
+                review(branch, ref,u_email);
                 location.reload();
             });
       }
@@ -342,7 +341,7 @@ function com_list(ref){
                <a onclick="" class="btn btn-primary btn-block"><b>Reviewd by Centralized Ops</b></a>
                @endif
                @if ($Applicant['approved'] ===0 |  $Applicant['approved'] ==='0' )
-               <a onclick="review('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-warning btn-block"><b>Review as Manager</b></a>
+               <a onclick="review('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-warning btn-block"><b>Review</b></a>
                @endif
                     @if ($Applicant['ops'] ===0 |  $Applicant['ops'] ==='0' )
                     <a onclick="review('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-warning btn-block"><b>Review as Ops</b></a>
