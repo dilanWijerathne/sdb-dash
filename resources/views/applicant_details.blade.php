@@ -384,7 +384,7 @@ function com_list(ref){
 
                <a onclick="cacc('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-block"><b>Approve</b></a>
                <a href="#" class="btn btn-primary btn-warning btn-block"><b>Request to improve</b></a>
-               <a href="#" class="btn btn-primary btn-danger  btn-block"><b>Reject</b></a>
+               <a onclick="review('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')"  class="btn btn-primary btn-danger  btn-block"><b>Reject</b></a>
 
 
             </div>
@@ -449,7 +449,7 @@ propostion : 15
 
 */
           if(isset($Nominee['json'])){
-            if($Nominee['json']!==""){
+            if( $Nominee['json']!==""&& $Nominee['json']!==" " && $Nominee['json']!==null ){
               $js = json_decode($Nominee['json'],true);
 
               for($i=0;$i<count($js); $i++){
