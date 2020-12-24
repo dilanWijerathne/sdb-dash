@@ -27,8 +27,29 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6eeNDwS3BxO8m1EmWnkLRRuCcFyN3guE&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
 
   <script>
+
+      // Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  const uluru = { lat: -25.344, lng: 131.036 };
+  // The map, centered at Uluru
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: uluru,
+  });
+  // The marker, positioned at Uluru
+  const marker = new google.maps.Marker({
+    position: uluru,
+    map: map,
+  });
+}
+
 
     function send_msg(from,to,ref,nic){
 
@@ -377,6 +398,7 @@ function com_list(ref){
               <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
               <p class="text-muted">Kirulapona, Colombo</p>
+              <div id="map"></div>
 
               <hr>
 
