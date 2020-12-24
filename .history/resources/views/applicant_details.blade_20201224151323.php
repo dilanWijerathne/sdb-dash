@@ -34,16 +34,6 @@
 
   <script>
 
-<style type="text/css">
-      /* Set the size of the div element that contains the map */
-      #map {
-        height: 400px;
-        /* The height is 400 pixels */
-        width: 300px;
-        /* The width is the width of the web page */
-      }
-    </style>
-
       // Initialize and add the map
 function initMap() {
   // The location of Uluru
