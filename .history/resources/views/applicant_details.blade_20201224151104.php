@@ -388,8 +388,8 @@ function com_list(ref){
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title"> For  Your Info</h3>
-              <div id="maps">
-                  dilan dilan dilan
+              <div id="map">
+                  dsgdsfsafasfsafsafsaf
               </div>
             </div>
             <!-- /.box-header -->
