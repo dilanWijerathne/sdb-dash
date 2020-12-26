@@ -25,7 +25,7 @@ class Datta
         return  $response;
     }
 
-    public static function new_user($name, $email, $password, $password_c, $mobile, $role, $branch)
+    public static function new_user($name, $email, $password, $password_c, $mobile, $role, $branch, $emp)
     {
 
         $response = Http::post(env('CORE_URL') . '/sdbl/api/register', [
@@ -36,6 +36,7 @@ class Datta
             "mobile" => $mobile,
             "role" => $role,
             "branch" => $branch,
+            "emp" => $emp,
         ]);
 
 

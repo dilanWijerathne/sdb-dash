@@ -15,7 +15,7 @@ class Datta
 {
     public static function update_review($bdo, $type, $ref)
     {
-        $response = Http::post('http://10.100.32.94/sdbl/api/reviewed', [
+        $response = Http::post(env('CORE_URL') . '/sdbl/api/reviewed', [
             "type" => $type,    // ops/  mng
             "ref" => $ref,
             "bdo" => $bdo,
@@ -25,10 +25,10 @@ class Datta
         return  $response;
     }
 
-    public static function new_user($name, $email, $password, $password_c, $mobile, $role, $branch)
+    public static function new_user($name, $email, $password, $password_c, $mobile, $role, $branch, $emp)
     {
 
-        $response = Http::post('http://10.100.32.94/sdbl/api/register', [
+        $response = Http::post(env('CORE_URL') . '/sdbl/api/register', [
             "name" => $name,
             "email" => $email,
             "password" => $password,
@@ -36,6 +36,7 @@ class Datta
             "mobile" => $mobile,
             "role" => $role,
             "branch" => $branch,
+            "emp" => $emp,
         ]);
 
 
@@ -48,7 +49,7 @@ class Datta
 
 
 
-        $response = Http::get('http://10.100.32.94/sdbl/api/grab_branches', [
+        $response = Http::get(env('CORE_URL') . '/sdbl/api/grab_branches', [
             "nic" => "",
         ]);
 
@@ -61,7 +62,7 @@ class Datta
 
         Log::info('grab applicant latest ' . $nic);
 
-        $response = Http::get('http://10.100.32.94/sdbl/api/applicant_details_by_nic?nic=' . $nic, [
+        $response = Http::get(env('CORE_URL') . '/sdbl/api/applicant_details_by_nic?nic=' . $nic, [
             "nic" => $nic,
         ]);
 
