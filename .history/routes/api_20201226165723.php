@@ -43,5 +43,3 @@ Route::post('/delete_my_team_member', [DashController::class, 'delete_my_team_me
 Route::post('/reset_my_password', [DashController::class, 'reset_my_password']);
 
 Route::post('/req_new_pass', [DashController::class, 'req_new_pass']);
-
-Route::post('/minitHR', [DashController::class, 'minitHR']);

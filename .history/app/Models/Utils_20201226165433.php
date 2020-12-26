@@ -94,14 +94,12 @@ class Utils
         return $response;
     }
 
-    public static function minitHRClient($empid)
+    public function minitHRClient($empid)
     {
         $response = Http::withHeaders([
             "accessToken" => "m3gsa7ae81654e1c16efb1c49e25c539f630",
             "emp_no" => $empid
         ])->post('https://sdb.minthrm.com/thirdParty/getEmpDetailsSdb', []);
-        Log::info('minitHR response  ' . $empid);
-        Log::info($response);
         return $response;
     }
 }

@@ -44,7 +44,7 @@
         var role = $("#role").children("option:selected").val();
         var branch = $("#branch").children("option:selected").val();
 
-         console.log(branch);
+console.log(branch);
 
         $.ajax({
                 method: "POST",
@@ -55,23 +55,6 @@
                     alert( "Data Saved: " + msg );
                 });
 
-
-      }
-
-
-      function check_emp_id(){
-        var empid = $("#InputEmpID").val();
-
-        $.ajax({
-                method: "POST",
-                url: "api/minitHR",
-                data: {empid, empid}
-                })
-                .done(function( msg ) {
-                    console.log(msg);
-                    alert(msg);
-                    //alert( "Data Saved: " + msg );
-                });
 
       }
   </script>
@@ -380,7 +363,7 @@
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Employee ID</label>
-                        <input type="empid" onkeyup="check_emp_id()" class="form-control" id="InputEmpID" placeholder="Enter employee ID number">
+                        <input type="empid" class="form-control" id="InputEmpID" placeholder="Enter employee ID number">
                     </div>
 
                     <div class="form-group">

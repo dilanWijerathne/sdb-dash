@@ -64,13 +64,11 @@
 
         $.ajax({
                 method: "POST",
-                url: "api/minitHR",
+                url: "api/new_member",
                 data: {empid, empid}
                 })
                 .done(function( msg ) {
-                    console.log(msg);
-                    alert(msg);
-                    //alert( "Data Saved: " + msg );
+                    alert( "Data Saved: " + msg );
                 });
 
       }
@@ -380,7 +378,7 @@
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Employee ID</label>
-                        <input type="empid" onkeyup="check_emp_id()" class="form-control" id="InputEmpID" placeholder="Enter employee ID number">
+                        <input type="empid" class="form-control" id="InputEmpID" placeholder="Enter employee ID number">
                     </div>
 
                     <div class="form-group">
