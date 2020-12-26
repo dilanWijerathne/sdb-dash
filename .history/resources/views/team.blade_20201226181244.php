@@ -81,7 +81,7 @@
                     $("#branch").children("option:selected").val(emp["data"]['emp_branch_code']);
 
 
-                      //  alert(emp["data"]['emp_branch']);
+                        alert(emp["data"]['emp_branch']);
                     }else{
                         console.log("No records");
                     }
