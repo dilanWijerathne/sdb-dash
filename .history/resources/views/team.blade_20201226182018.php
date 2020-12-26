@@ -79,7 +79,7 @@
                    // $("#InputPassword_c").val(emp["data"]['emp_branch']);
                    // $("#role").children("option:selected").val(emp["data"]['emp_branch']);
                   //  $("#branch").children("option:selected").val( emp["data"]['emp_branch_code'] );
-                    $("#branch").val(parseInt(emp["data"]['emp_branch_code']));
+                    $("#branch").val(emp["data"]['emp_branch_code']);
 
                       //  alert(emp["data"]['emp_branch']);
                     }else{
