@@ -361,8 +361,8 @@ console.log(branch);
                 <div class="box-body">
 
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Employee ID</label>
-                        <input type="empid" class="form-control" id="InputMobile" placeholder="Enter employee ID number">
+                        <label for="exampleInputEmail1">Mobile</label>
+                        <input type="number" class="form-control" id="InputMobile" placeholder="Enter mobile">
                     </div>
 
                     <div class="form-group">
@@ -374,7 +374,7 @@ console.log(branch);
                         <input disabled type="email" class="form-control" id="InputEmail" placeholder="Enter email">
                     </div>
                     <div class="form-group">
-                    <label for="exampleInputEmail1">Name</label>
+                    <label disabled for="exampleInputEmail1">Name</label>
                     <input type="text" class="form-control" id="InputName" placeholder="Enter name">
                     </div>
 
