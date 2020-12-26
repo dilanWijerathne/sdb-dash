@@ -82,7 +82,6 @@ class Utils
             Log::info($emp_hr);
             Log::info($emp_hr['data']['emp_finit']);
             if ($array['role'] === "manager" && $array['email'] === $emp_hr['data']['emp_email']) {
-                Log::info('hr logic works ');
                 $state =  true;
             }
         } else {

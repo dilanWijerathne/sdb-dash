@@ -76,13 +76,7 @@ class Utils
         }
         if (isset($array['role'])) {
             session(['user_role' => $array['role']]);
-            $emp_hr = Utils::minitHRClient($array['emp']);
-            $emp_hr = json_decode($emp_hr, true);
-            Log::info('hr emp check ');
-            Log::info($emp_hr);
-            Log::info($emp_hr['data']['emp_finit']);
-            if ($array['role'] === "manager" && $array['email'] === $emp_hr['data']['emp_email']) {
-                Log::info('hr logic works ');
+            if ($array['role'] === "manager") {
                 $state =  true;
             }
         } else {
