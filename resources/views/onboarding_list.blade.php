@@ -143,6 +143,7 @@
 <!-- DataTables -->
 <script src="public/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="public/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/searchbuilder/1.0.1/js/dataTables.searchBuilder.min.js"> </script>
 <!-- SlimScroll -->
 <script src="public/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -182,6 +183,8 @@
 
 
 
+    new $.fn.dataTable.SearchBuilder(table, {});
+    table.searchBuilder.container().prependTo(table.table().container());
 
 
 

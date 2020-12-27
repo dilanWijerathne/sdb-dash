@@ -37,12 +37,8 @@
 
 
 
-        <script>
 
 
-
-
-        </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -93,7 +89,6 @@
                 <thead>
                 <tr>
                     <th>Title</th>
-                    <th>Display Name</th>
                     <th>Full Name</th>
                     <th>F Name</th>
                     <th>NIC</th>
@@ -109,7 +104,6 @@
                 <tfoot>
                 <tr>
                     <th>Title</th>
-                    <th>Display Name</th>
                     <th>Full Name</th>
                     <th>F Name</th>
                     <th>NIC</th>
@@ -149,6 +143,7 @@
 <!-- DataTables -->
 <script src="public/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="public/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/searchbuilder/1.0.1/js/dataTables.searchBuilder.min.js"> </script>
 <!-- SlimScroll -->
 <script src="public/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -188,13 +183,15 @@
 
 
 
+    new $.fn.dataTable.SearchBuilder(table, {});
+    table.searchBuilder.container().prependTo(table.table().container());
 
 
 
     $('#example1 tbody').on( 'click', 'button', function () {
         var data = table.row( $(this).parents('tr') ).data();
-        alert( data[1] +"'NIC "+ data[ 4 ] );
-        window.open('/sdb-dash/applicant-details?ReportID='+ data[ 4 ], '_blank');
+      //  alert( data[1] +"'NIC "+ data[ 4 ] );
+        window.open('/sdb-dash/applicant-details?ReportID='+ data[ 3 ], '_blank');
     } );
 
 
