@@ -174,13 +174,10 @@ class DashController extends Controller
 
     public function current_search_branch(Request $request)
     {
-        session(['current_branch_search' => $request["br_code"]]);
-        //  $request->session()->forget('current_branch_search');
-        //return$request->session()->push('key.subArray', 'value');
-
-        return session('current_branch_search');
+        //session(['current_branch_search' => $request["br_code"]]);
+        $request->session()->forget('current_branch_search');
+        $request->session()->push(['current_branch_search' => $request["br_code"]]);
     }
-
 
     public function calldit(Request $request)
     {
@@ -344,7 +341,7 @@ class DashController extends Controller
 
             if (isset($array['token'])) {
                 session(['access_token' => $array['token']]);
-                //   session(['current_branch_search' => 0]);
+                session(['current_branch_search' => 0]);
                 $user = Utils::currentUser();
                 if ($user === true) {
                     echo  "success";
