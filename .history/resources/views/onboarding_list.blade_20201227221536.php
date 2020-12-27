@@ -38,7 +38,6 @@
 <script>
     function change_current_branch(){
         var branch = $("#branch").children("option:selected").val();
-        alert(branch);
         $.ajax({
                 method: "POST",
                 url: "api/current_search_branch",
