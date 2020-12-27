@@ -29,3 +29,21 @@ Route::post('/review', [DashController::class, 'review']);
 Route::post('/comment', [DashController::class, 'comment']);
 
 Route::get('/comment_by_bdo_app', [DashController::class, 'comment_by_bdo_app']);
+
+Route::get('/nessage_by_ref', [DashController::class, 'nessage_by_ref']);
+
+Route::get('/nessage_send', [DashController::class, 'nessage_send']);
+
+Route::get('/my_team_member', [DashController::class, 'my_team_member']);
+
+Route::post('/update_my_team_member', [DashController::class, 'update_my_team_member']);
+
+Route::post('/delete_my_team_member', [DashController::class, 'delete_my_team_member']);
+
+Route::post('/reset_my_password', [DashController::class, 'reset_my_password']);
+
+Route::post('/req_new_pass', [DashController::class, 'req_new_pass']);
+
+Route::post('/current_search_branch', [DashController::class, 'current_search_branch']);
+
+Route::post('/minitHR', [DashController::class, 'minitHR']);

@@ -174,7 +174,6 @@ class DashController extends Controller
     public function current_search_branch(Request $request)
     {
         session(['current_branch_search' => $request["br_code"]]);
-        return session('current_branch_search');
     }
 
     public function calldit(Request $request)
@@ -200,7 +199,6 @@ class DashController extends Controller
             "search" => $request["search"]["value"],
             "draw" => $request["draw"],
             "user_email" => session('user_email'),
-            "current_branch_search" => session('current_branch_search'),
         ]);
 
         return  $response->body();

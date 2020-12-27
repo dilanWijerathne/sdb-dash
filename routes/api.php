@@ -44,4 +44,6 @@ Route::post('/reset_my_password', [DashController::class, 'reset_my_password']);
 
 Route::post('/req_new_pass', [DashController::class, 'req_new_pass']);
 
+Route::post('/current_search_branch', [DashController::class, 'current_search_branch']);
+
 Route::post('/minitHR', [DashController::class, 'minitHR']);

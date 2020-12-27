@@ -85,19 +85,6 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <div class="form-group">
-                    <label>Disabled Result</label>
-                    <select class="form-control select2" style="width: 100%;">
-                      <option selected="selected">Alabama</option>
-                      <option>Alaska</option>
-                      <option disabled="disabled">California (disabled)</option>
-                      <option>Delaware</option>
-                      <option>Tennessee</option>
-                      <option>Texas</option>
-                      <option>Washington</option>
-                    </select>
-                  </div>
-
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -156,7 +143,7 @@
 <!-- DataTables -->
 <script src="public/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="public/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-
+<script src="https://cdn.datatables.net/searchbuilder/1.0.1/js/dataTables.searchBuilder.min.js"> </script>
 <!-- SlimScroll -->
 <script src="public/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -196,7 +183,8 @@
 
 
 
-
+    new $.fn.dataTable.SearchBuilder(table, {});
+    table.searchBuilder.container().prependTo(table.table().container());
 
 
 
