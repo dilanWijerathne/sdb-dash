@@ -194,6 +194,8 @@ class DashController extends Controller
         Log::info($request["length"]);
         Log::info("search value ");
         Log::info($request["search"]["value"]);
+        Log::info("selected branch");
+        Log::info($request["0"]["f_branch"]);
 
 
 

@@ -29,7 +29,8 @@ class DashController extends Controller
     public function dashboard()
     {
         $user = Utils::currentUser();
-        if ($user !== false) {
+        if ($user === true) {
+
             return View('maindash');
         } else {
             return View('loginview');
@@ -40,7 +41,7 @@ class DashController extends Controller
     {
         $user = Utils::currentUser();
         $branches = Datta::grab_branches();
-        if ($user !== false) {
+        if ($user === true) {
             return View('team', compact('branches'));
         } else {
             return View('loginview');
@@ -60,7 +61,7 @@ class DashController extends Controller
     public function new_member(Request $request)
     {
 
-        $member = Datta::new_user($request->name, $request->email, $request->password, $request->password_c, $request->mobile, $request->role, $request->branch);
+        $member = Datta::new_user($request->name, $request->email, $request->password, $request->password_c, $request->mobile, $request->role, $request->branch, $request->emp);
         return  $member;
     }
 
@@ -70,8 +71,9 @@ class DashController extends Controller
     {
         //echo "Dilan";
         $user = Utils::currentUser();
-        if ($user !== false) {
-            return View('onboarding_list');
+        $branches = Datta::grab_branches();
+        if ($user === true) {
+            return View('onboarding_list', compact('branches'));
         } else {
             return View('loginview');
         }
@@ -170,10 +172,21 @@ class DashController extends Controller
 
 
 
+    public function current_search_branch(Request $request)
+    {
+        session(['current_branch_search' => $request["br_code"]]);
+        //  $request->session()->forget('current_branch_search');
+        //return$request->session()->push('key.subArray', 'value');
+
+        return session('current_branch_search');
+    }
+
 
     public function calldit(Request $request)
     {
 
+        Log::info("Data tables request");
+        Log::info($request);
         $user = Utils::currentUser();
         Log::info("start");
         Log::info($request["start"]);
@@ -181,6 +194,8 @@ class DashController extends Controller
         Log::info($request["length"]);
         Log::info("search value ");
         Log::info($request["search"]["value"]);
+        Log::info("selected branch");
+        Log::info($request["0"]["f_branch"]);
 
 
 
@@ -192,10 +207,124 @@ class DashController extends Controller
             "search" => $request["search"]["value"],
             "draw" => $request["draw"],
             "user_email" => session('user_email'),
+            "current_branch_search" => session('current_branch_search'),
         ]);
 
         return  $response->body();
     }
+
+    public function call_myteam(Request $request)
+    {
+
+        $user = Utils::currentUser();
+        Log::info("start");
+        Log::info($request["start"]);
+        Log::info("end");
+        Log::info($request["length"]);
+        Log::info("search value ");
+        Log::info($request["search"]["value"]);
+
+        $response = Http::get(env('CORE_URL') . '/sdbl/public/api/get_myteam', [
+            "start" => $request["start"],
+            "end" => $request["length"],
+            "search" => $request["search"]["value"],
+            "draw" => $request["draw"],
+            "user_email" => session('user_email'),
+        ]);
+
+        return  $response->body();
+    }
+
+
+    public function my_team_member(Request $request)
+    {
+        Log::info('get team memebr details ');
+        Log::info($request);
+
+        $response = Http::get(env('CORE_URL') . '/sdbl/api/get_my_team_member', [
+            "user_email" => $request->input('email'),
+        ]);
+
+        Log::info('get team memebr details outcome');
+        Log::info($response);
+        return $response;
+    }
+
+
+    public function update_my_team_member(Request $request)
+    {
+        Log::info('update team memebr details ');
+        Log::info($request);
+
+        $response = Http::get(env('CORE_URL') . '/sdbl/api/update_my_team_member', [
+            "name" => $request->input('name'),
+            "email" => $request->input('email'),
+            "cemail" => $request->input('cemail'),
+            "mobile" => $request->input('mobile'),
+            "role" => $request->input('role'),
+            "branch" => $request->input('branch'),
+        ]);
+
+        Log::info('update team memebr details outcome ');
+        Log::info($response);
+        return $response;
+    }
+
+    // delete_my_team_member
+
+    public function delete_my_team_member(Request $request)
+    {
+        Log::info('delete team memebr details by' . session('user_email'));
+        Log::info($request);
+
+        $response = Http::post(env('CORE_URL') . '/sdbl/api/delete_my_team_member', [
+            "email" => $request->input('email'),
+        ]);
+
+        Log::info('delete team memebr details outcome , deleted by ' . session('user_email'));
+        Log::info($response);
+        return $response;
+    }
+
+
+    /////////////////
+
+    public function reset_my_password(Request $request)
+    {
+        Log::info('password changed ' . session('user_email'));
+        Log::info($request);
+        //   Http::withToken()->post
+        /*    $access_token = session('apikey');
+        $response = Http::withToken($access_token)->post(env('CORE_URL') . '/sdbl/api/reset_pass', [
+            "email" => $request->input('email'),
+            "password" => $request->input('password'),
+        ]);
+
+        Log::info('password changed ' . session('user_email'));
+        Log::info($response);
+        return $access_token; //$response;  */
+        return  Utils::change_my_pass($request->input('email'), $request->input('password'));
+    }
+
+
+    public function req_new_pass(Request $request)
+    {
+        Log::info('password reset ' . session('user_email'));
+        Log::info($request);
+
+        return  Utils::reset_user_pass($request->input('email'));
+    }
+
+
+    public function minitHR(Request $request)
+    {
+        Log::info('minitHR check ' . session('user_email'));
+        Log::info($request);
+
+        return  Utils::minitHRClient($request->input('empid'));
+    }
+
+
 
 
     public function login_to_core(Request $request)
@@ -217,8 +346,13 @@ class DashController extends Controller
 
             if (isset($array['token'])) {
                 session(['access_token' => $array['token']]);
+                //   session(['current_branch_search' => 0]);
                 $user = Utils::currentUser();
-                echo  "success";
+                if ($user === true) {
+                    echo  "success";
+                } else {
+                    echo  "Login error, Check credentials or access levels.";
+                }
             } else {
                 echo $array['error'];    // invalid_credentials
             }
