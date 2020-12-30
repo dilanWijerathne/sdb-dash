@@ -107,10 +107,10 @@ $(function () {
                 'autoWidth'   : true,
 
                 "ajax":{
-                    url: "/sdb-dash/applicants",
-                    type: "GET",
-                    timeout: 0,
-                    data:{'f_branch':is_category},
+                    "url": "/sdb-dash/applicants",
+                    "type": "GET",
+                    "timeout": 0,
+                    "data":[{'f_branch':br}],
                 },
 
                 "columnDefs": [ {
