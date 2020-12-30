@@ -120,14 +120,14 @@ $(function () {
         } ]
 
 
-    });
+    })
 
 
 
 
     $('#example1 tbody').on( 'click', 'button', function () {
         var data = table.row( $(this).parents('tr') ).data();
-       alert( data[1] +"'NIC "+ data[ 3 ] );
+       alert( data[1] +"'NIC "+ data[ 4 ] );
         window.open('/sdb-dash/applicant-details?ReportID='+ data[ 3 ], '_blank');
     } );
 
