@@ -83,7 +83,7 @@ $(function () {
     })
 
 */
-    change_current_branch();
+change_current_branch();
 
     function change_current_branch(br){
 
@@ -91,16 +91,16 @@ $(function () {
         $('#tempb').val(branch);
 
         var br = $('#tempb').val();
-        var table=   $('#example1').DataTable({
+  var table=   $('#example1').DataTable({
         "processing": true,
                 "serverSide": true,
                 "select": true,
                 'paging'      : true,
-                'lengthChange': true,
-                'searching'   : true,
-                'ordering'    : true,
-                'info'        : true,
-                'autoWidth'   : true,
+      'lengthChange': true,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : true,
 
                 "ajax":{
                     "url": "/sdb-dash/applicants",
@@ -110,9 +110,9 @@ $(function () {
                 },
 
                 "columnDefs": [ {
-                "targets": -1,
-                "data": null,
-                "defaultContent": "<button>View</button>"
+            "targets": -1,
+            "data": null,
+            "defaultContent": "<button>View</button>"
         } ]
 
 
