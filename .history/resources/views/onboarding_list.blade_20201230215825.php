@@ -89,7 +89,7 @@ $(function () {
 
 
 
-    function change_current_branch(is_category){
+    function change_current_branch(){
 
         var branch = $("#branch").children("option:selected").val();
         $('#tempb').val(branch);
