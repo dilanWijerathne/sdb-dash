@@ -85,7 +85,7 @@ $(function () {
 */
     change_current_branch();
 
-    function change_current_branch(){
+    function change_current_branch(br){
 
         var branch = $("#branch").children("option:selected").val();
         $('#tempb').val(branch);
