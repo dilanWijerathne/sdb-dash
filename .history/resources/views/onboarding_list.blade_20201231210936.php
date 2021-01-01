@@ -212,7 +212,7 @@ $(function () {
                 <label>Select application statuse.</label>
                 <select  id="branch"  class="form-control select2" style="width: 100%;">
 
-                  <option value="3">Approved</option>
+                  <option value="">Approved</option>
                   <option value="">Rejected</option>
                   <option value="">Pending</option>
 
