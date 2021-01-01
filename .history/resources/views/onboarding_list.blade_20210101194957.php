@@ -231,10 +231,10 @@ $(document).on('change', '#application_status', function(){
                     <input type="hidden" value="" id="tempb"/>
                     <label>Select application statuse.</label>
                     <select  id="application_status"  class="form-control select2" style="width: 100%;">
-                      <option value="10">All</option>
+                      <option value="0">All</option>
                       <option value="1">Approved</option>
                       <option value="2">Rejected</option>
-                      <option value="0">Pending</option>
+                      <option value="3">Pending</option>
 
                     </select>
                   </div>
