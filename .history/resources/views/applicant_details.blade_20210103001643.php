@@ -145,7 +145,7 @@ function com_list(ref){
 // check black list internally of
 
       function blacklist_check(){
-        var nic =   "760054291V";// $('#nicvalue').val();
+        var nic = $('#nicvalue').val();
 // blacklist_items
             $.ajax({
                 method: "POST",
@@ -182,14 +182,7 @@ function com_list(ref){
                             var st4 = ' <li class="list-group-item"><b>Remarks Line 1</b> <a class="pull-right"> '+k['JSON']['Customer']['remarks_line_1']+' </a></li>';
                             var st5 = ' <li class="list-group-item"><b>Remarks Line 2</b> <a class="pull-right"> '+k['JSON']['Customer']['remarks_line_2']+' </a></li>';
                             var st6 = ' <li class="list-group-item"><b>Rec Type</b> <a class="pull-right"> '+k['JSON']['Customer']['rec_type']+' </a></li>';
-                            var st7 = ' <li class="list-group-item"><b>Expire Date</b> <a class="pull-right"> '+k['JSON']['Customer']['expire_date']+' </a></li>';
-                            $("#blacklist_items").append( st1 );
-                            $("#blacklist_items").append( st2 );
-                            $("#blacklist_items").append( st3 );
-                            $("#blacklist_items").append( st4 );
-                            $("#blacklist_items").append( st5 );
-                            $("#blacklist_items").append( st6 );
-                            $("#blacklist_items").append( st7 );
+                            $("#blacklist_items").append( st );
                         }
                     }
             console.log(k);

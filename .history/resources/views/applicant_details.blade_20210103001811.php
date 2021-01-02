@@ -145,7 +145,7 @@ function com_list(ref){
 // check black list internally of
 
       function blacklist_check(){
-        var nic =   "760054291V";// $('#nicvalue').val();
+        var nic = $('#nicvalue').val();
 // blacklist_items
             $.ajax({
                 method: "POST",
