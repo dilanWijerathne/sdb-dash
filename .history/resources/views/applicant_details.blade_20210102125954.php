@@ -175,28 +175,6 @@ function com_list(ref){
             });
       }
 
-      /// reject application
-
-      function reject(code,ref,user_email){
-
-
-        console.log(" officer bdo- mng  "+ user_email+ "  -> app ref " + ref);
-
-        alert("officer bdo- mng  "+ user_email+ "  -> app ref " + ref);
-        alert("You marked review status");
-        $.ajax({
-        method: "POST",
-        url: "api/reject",
-        data: { bdo: user_email,ref:ref}
-        })
-        .done(function( msg ) {
-            console.log(msg);
-            alert( msg );
-            location.reload();
-
-        });
-    }
-
       // "http://10.101.6.198/sdbl/inapp",
       function cacc(branch, ref,u_email){
       //  '{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}'
@@ -459,7 +437,7 @@ function com_list(ref){
 
                <a onclick="cacc('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-block"><b>Approve</b></a>
                <a href="#" class="btn btn-primary btn-warning btn-block"><b>Request to improve</b></a>
-               <a onclick="reject('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')"  class="btn btn-primary btn-danger  btn-block"><b>Reject</b></a>
+               <a onclick="review('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')"  class="btn btn-primary btn-danger  btn-block"><b>Reject</b></a>
 
 
             </div>
