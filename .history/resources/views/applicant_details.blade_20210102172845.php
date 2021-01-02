@@ -459,7 +459,7 @@ function com_list(ref){
 
                <a onclick="cacc('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-block"><b>Approve</b></a>
                <a href="#" class="btn btn-primary btn-warning btn-block"><b>Request to improve</b></a>
-               @if ((int)$Applicant['done']===2)
+               @if ((int)$Applicant['ref']===2)
                <a onclick=""  class="btn btn-primary btn-danger  btn-block"><b>Rejected</b></a>
                @else
                <a onclick="reject('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')"  class="btn btn-primary btn-danger  btn-block"><b>Reject</b></a>
