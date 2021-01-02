@@ -183,7 +183,7 @@ function com_list(ref){
                             var st5 = ' <li class="list-group-item"><b>Remarks Line 2</b> <a class="pull-right"> '+k['JSON']['Customer']['remarks_line_2']+' </a></li>';
                             var st6 = ' <li class="list-group-item"><b>Rec Type</b> <a class="pull-right"> '+k['JSON']['Customer']['rec_type']+' </a></li>';
                             var st7 = ' <li class="list-group-item"><b>Expire Date</b> <a class="pull-right"> '+k['JSON']['Customer']['expire_date']+' </a></li>';
-                            $(".blacklist_items").append( st1 );
+                            $("blacklist_items").append( st1 );
 //$("#blacklist_items").append( st2 );
                         //    $("#blacklist_items").append( st3 );
                          //   $("#blacklist_items").append( st4 );
