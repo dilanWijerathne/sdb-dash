@@ -115,7 +115,7 @@ $(function () {
 
                 "columnDefs": [ {
                 "targets": -1,
-                "defaultContent": "<button>View Latest</button>"
+                "defaultContent": "<button>View</button>"
         } ]
 
 
