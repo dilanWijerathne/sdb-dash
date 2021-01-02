@@ -141,10 +141,7 @@ function com_list(ref){
             });
       }
 
-// check black list internally of
-$(function(){
-    blacklist_check();
-});
+// check black list internally of bank
 
       function blacklist_check(){
         var nic = $('#nicvalue').val();

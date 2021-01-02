@@ -21,12 +21,12 @@ class Utils
         Log::info('BlackList Checking : ' . $nic);
 
         //   Http::withToken()->post
-        $url = "http://10.100.32.72:7801/customers/v1/GetBlackListCustomers";
+      $url = "http://10.100.32.72:7801/customers/v1/GetBlackListCustomers";
         $response = Http::post($url, [
             "nic_no" => $nic,
         ]);
 
-        Log::info('Blacklist Checked ' .  $nic);
+        Log::info('Blacklist Checked ' .  $nic;
         Log::info($response);
         return  $response;
     }

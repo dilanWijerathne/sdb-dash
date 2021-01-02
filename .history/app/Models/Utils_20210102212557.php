@@ -15,18 +15,19 @@ class Utils
     /**
      * blacklist checking internal SDB
      */
-    public static function blacklist_check($nic)
+    public static function change_my_pass($email, $pass)
     {
 
-        Log::info('BlackList Checking : ' . $nic);
+        Log::info('password changing by ' . session('user_email'));
 
         //   Http::withToken()->post
-        $url = "http://10.100.32.72:7801/customers/v1/GetBlackListCustomers";
-        $response = Http::post($url, [
-            "nic_no" => $nic,
+        $access_token = session('access_token');
+        $response = Http::post(env('CORE_URL') . '/sdbl/api/reset_pass', [
+            "email" => $email,
+            "password" => $pass,
         ]);
 
-        Log::info('Blacklist Checked ' .  $nic);
+        Log::info('password changed ' . session('user_email'));
         Log::info($response);
         return  $response;
     }

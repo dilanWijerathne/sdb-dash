@@ -141,10 +141,7 @@ function com_list(ref){
             });
       }
 
-// check black list internally of
-$(function(){
-    blacklist_check();
-});
+// check black list internally of bank
 
       function blacklist_check(){
         var nic = $('#nicvalue').val();
@@ -158,8 +155,6 @@ $(function(){
                     var k = JSON.parse(msg);
 
                 ///        line 504
-
-               /*
                 var st ="";
                 for(var i=0; i<k.length;i++){
                     var t = '<div class="col-sm-12"><div class="col-sm-9"><dl><dt>Commented by : '+k[i]['from']+'</dt><dd> '+k[i]['msg']+'</dd></dl><hr></div>         <div class="col-sm-3">    <b>@</b> '+' '+k[i]['created_at']+'       </div><hr></div>';
@@ -167,14 +162,14 @@ $(function(){
                 }
 
 
-*/
+
 /*
  <li class="list-group-item">
                   <b>Primary mobile</b> <a class="pull-right"> {{$Applicant['primary_mobile_number']}}</a>
                 </li>
 */
-            console.log(k);
-               // $("#blacklist_items").append( st );
+                console.log(st);
+                $("#blacklist_items").append( st );
 
 
             });

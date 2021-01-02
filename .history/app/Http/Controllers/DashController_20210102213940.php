@@ -91,10 +91,10 @@ class DashController extends Controller
         }
     }
 
-    // check internal black list by nic
+
     public function blacklist_check(Request $request)
     {
-        return Utils::blacklist_check($request->nic);
+        $black = Utils::blacklist_check($request->nic);
     }
 
     public function applicant_details_page(Request $request)

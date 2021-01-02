@@ -141,40 +141,28 @@ function com_list(ref){
             });
       }
 
-// check black list internally of
-$(function(){
-    blacklist_check();
-});
+// check black list internally of bank
 
       function blacklist_check(){
         var nic = $('#nicvalue').val();
-// blacklist_items
-            $.ajax({
-                method: "GET",
-                url: "api/blacklist_check",
-                data: { nic: nic}
-                })
-                .done(function( msg ) {
-                    var k = JSON.parse(msg);
+//
+$.ajax({
+            method: "GET",
+            url: "api/comment_by_bdo_app",
+            data: { ref: ref}
+            })
+            .done(function( msg ) {
+                var k = JSON.parse(msg);
 
-                ///        line 504
+            ///        line 504
+            var st ="";
+            for(var i=0; i<k.length;i++){
+                var t = '<div class="col-sm-12"><div class="col-sm-9"><dl><dt>Commented by : '+k[i]['from']+'</dt><dd> '+k[i]['msg']+'</dd></dl><hr></div>         <div class="col-sm-3">    <b>@</b> '+' '+k[i]['created_at']+'       </div><hr></div>';
+                st = st.concat(t);
+            }
 
-               /*
-                var st ="";
-                for(var i=0; i<k.length;i++){
-                    var t = '<div class="col-sm-12"><div class="col-sm-9"><dl><dt>Commented by : '+k[i]['from']+'</dt><dd> '+k[i]['msg']+'</dd></dl><hr></div>         <div class="col-sm-3">    <b>@</b> '+' '+k[i]['created_at']+'       </div><hr></div>';
-                    st = st.concat(t);
-                }
-
-
-*/
-/*
- <li class="list-group-item">
-                  <b>Primary mobile</b> <a class="pull-right"> {{$Applicant['primary_mobile_number']}}</a>
-                </li>
-*/
-            console.log(k);
-               // $("#blacklist_items").append( st );
+            console.log(st);
+            $(".comlist").append( st );
 
 
             });
