@@ -136,10 +136,11 @@ function com_list(ref){
 
             console.log(st);
             $(".comlist").append( st );
-            blacklist_check();
+
+
             });
 
-
+            blacklist_check();
       }
 
 // check black list internally of
