@@ -154,7 +154,7 @@ function com_list(ref){
                 })
                 .done(function( msg ) {
                     var k = JSON.parse(msg);
-                    console.log(k);
+
                 ///        line 504
 
                /*
@@ -171,7 +171,7 @@ function com_list(ref){
                   <b>Primary mobile</b> <a class="pull-right"> {{$Applicant['primary_mobile_number']}}</a>
                 </li>
 */
-              // alert(k['JSON']['Status']['Status']);
+              //  alert(k['JSON']['Status']['Status']);
                 if (typeof k['JSON']['Status']['Status'] !== 'undefined') {
                     // your code here
                     }else{

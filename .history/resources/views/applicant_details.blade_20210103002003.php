@@ -154,7 +154,7 @@ function com_list(ref){
                 })
                 .done(function( msg ) {
                     var k = JSON.parse(msg);
-                    console.log(k);
+
                 ///        line 504
 
                /*
