@@ -42,9 +42,9 @@
         }
         .img-responsive_custom{
             display: block;
-            max-width: 500px;
-            max-height: 500px;
-
+    max-width: 500px;
+    max-height: 500px;
+}
         }
       </style>
 
