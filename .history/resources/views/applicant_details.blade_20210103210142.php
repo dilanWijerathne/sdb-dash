@@ -87,54 +87,21 @@ function initMap() {
 
 
     function send_msg(from,to,ref,nic){
+
+
+
         console.log("send msg clicked");
+        //
         var msg = $('#message_input').val();
-
-        $.confirm({
-            title: 'Confirm!',
-            content: 'Simple confirm!',
-            buttons: {
-                confirm: function () {
-                    //$.alert('Confirmed!');
-
-                // alert(comment+"  "+bdo+"  "+ref);
-                    if(msg.length>3){
-
-
-                        ///
-                        $.ajax({
-                            method: "GET",
-                            url: "api/nessage_send",
-                            data: {from_user:from,to_user:to,msg:msg,nic:nic, ref: ref}
-                            })
-                            .done(function( msg ) {
-                                msg(ref);
-                                console.log(msg);
-                                location.reload();
-
-                            });
-                        ///
-
-                    }
-                    else{
-                        //alert("Please add a valid comment. you cannot comment empty fields!");
-                        $.alert('Please provide a valid message!');
-                    }
-                },
-                cancel: function () {
-                    $.alert('Canceled!');
-                },
-
-            }
-        });
-
-/////////////////
-
-        /////////
-
-
-
-            /////////
+        $.ajax({
+            method: "GET",
+            url: "api/nessage_send",
+            data: {from_user:from,to_user:to,msg:msg,nic:nic, ref: ref}
+            })
+            .done(function( msg ) {
+                msg(ref);
+                console.log(msg);
+            });
     }
 
 

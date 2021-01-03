@@ -103,16 +103,14 @@ function initMap() {
 
                         ///
                         $.ajax({
-                            method: "GET",
-                            url: "api/nessage_send",
-                            data: {from_user:from,to_user:to,msg:msg,nic:nic, ref: ref}
-                            })
-                            .done(function( msg ) {
-                                msg(ref);
-                                console.log(msg);
-                                location.reload();
-
-                            });
+            method: "GET",
+            url: "api/nessage_send",
+            data: {from_user:from,to_user:to,msg:msg,nic:nic, ref: ref}
+            })
+            .done(function( msg ) {
+                msg(ref);
+                console.log(msg);
+            });
                         ///
 
                     }
