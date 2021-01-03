@@ -251,21 +251,7 @@ $(document).on('change', '#application_status', function(){
                           @endforeach
                         </select>
                       </div>
-                      @else
-
-                      <input type="hidden" value="" id="tempb"/>
-                      <label>Select a branch to view applications.</label>
-                      <select  id="branch"  class="form-control select2" style="width: 100%;">
-                        @foreach ( $branches as $ac)
-                            @if ((int)$ac['code']===(int)(int)session('user_branch'))
-                            <option value="{{$ac['code']}}">{{ $ac['name'] }}</option>
-                            @endif
-
-                        @endforeach
-                      </select>
-
                     @endif
-
 
 
 
