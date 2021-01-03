@@ -874,13 +874,13 @@ propostion : 15
                   <!-- /.user-block -->
                   <div class="row margin-bottom">
 
-                    <div class="col-sm-6 img-frame">
+                    <div class="col-sm-6">
                         <a href="#">NIC Front Side</a>
                       <img   class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$nicf['file_path']}}" alt="Photo">
                     </div>
 
 
-                    <div class="col-sm-6 img-frame">
+                    <div class="col-sm-6">
                         <a href="#">NIC Back Side</a>
                         <img  class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$nicr['file_path']}}" alt="Photo">
                       </div>
@@ -898,7 +898,7 @@ propostion : 15
                      <div class="row margin-bottom">
 
                         @isset($proof['file_path'])
-                        <div class="col-sm-6 img-frame">
+                        <div class="col-sm-6">
                             <a href="#">Proof Document 1</a>
                           <img class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$proof['file_path']}}" alt="Photo">
                         </div>
@@ -911,7 +911,7 @@ propostion : 15
                           <div class="row">
 
 
-                            <div class="col-sm-6 img-frame">
+                            <div class="col-sm-6">
                              @isset($selfie['file_path'])
                              <a href="#">Other Documents </a>
                               <img class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$selfie['file_path']}}" alt="Photo">
