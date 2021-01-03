@@ -182,7 +182,7 @@ function com_list(ref){
                       console.log(k);
 
             }else{
-              var stext = "No sanctioned data";
+              var stext = "No sanction data";
               var st1 = ' <li class="list-group-item"><b>'+stext+'</b> <a class="pull-right">  </a></li>';
               $("#blacklist_items").append(st1);
             }
