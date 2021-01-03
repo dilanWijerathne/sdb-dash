@@ -912,10 +912,11 @@ propostion : 15
                         </div>
                         @endisset
 
-                     </div>
-                        <div class="row margin-bottom">
-                        <!-- /.col -->
 
+
+                        <!-- /.col -->
+                        <div class="col-sm-6 img-frame">
+                          <div class="row">
 
 
 
@@ -926,12 +927,11 @@ propostion : 15
                             </div>
                               @endisset
 
-                              @isset($signature['signature'])
+                              <br>
                               <div class="col-sm-6 img-frame">
                               <a href="#">Applicant's Signature  </a>
                               <img class="img-responsive_custom" src="{{$signature['signature']}}" alt="Photo">
                             </div>
-                            @endisset
 
 
 
@@ -950,7 +950,10 @@ propostion : 15
                             --->
 
 
-
+                            <!-- /.col -->
+                          </div>
+                          <!-- /.row -->
+                        </div>
                         <!-- /.col -->
                       </div>
                       <!-- /.row -->
