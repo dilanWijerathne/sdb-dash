@@ -241,7 +241,7 @@ $(document).on('change', '#application_status', function(){
                 </div>
                 <div class="col-md-6">
 
-                    @if ( (int)session('user_branch')===0 )
+                    @if ( session('user_branch')===0|( session('user_branch')==='0' )
                     <div class="form-group">
                         <input type="hidden" value="" id="tempb"/>
                         <label>Select a branch to view applications.</label>
