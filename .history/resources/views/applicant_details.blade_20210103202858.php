@@ -292,10 +292,6 @@ function com_list(ref){
 
 
       function comment_fd(){
-        var comment = $('#comment_input').val();
-        var bdo = $('#bdoemail').val();
-        var ref = $('#appref').val();
-        var from = $('#user_name').val();
 
         $.confirm({
             title: 'Confirm!',
@@ -303,31 +299,34 @@ function com_list(ref){
             buttons: {
                 confirm: function () {
                     //$.alert('Confirmed!');
+                    var comment = $('#comment_input').val();
+        var bdo = $('#bdoemail').val();
+        var ref = $('#appref').val();
+        var from = $('#user_name').val();
+       // alert(comment+"  "+bdo+"  "+ref);
+        if(comment!==null|comment!==""| comment!==" "){
 
-                // alert(comment+"  "+bdo+"  "+ref);
-                    if(comment!==null|comment!==""| comment!==" "){
 
+            ///
+            $.ajax({
+            method: "POST",
+            url: "api/comment",
+            data: { msg: comment,bdo:bdo,ref:ref,from:from}
+            })
+            .done(function( msg ) {
+                console.log(msg);
+                $.alert( msg );
+                location.reload();
 
-                        ///
-                        $.ajax({
-                        method: "POST",
-                        url: "api/comment",
-                        data: { msg: comment,bdo:bdo,ref:ref,from:from}
-                        })
-                        .done(function( msg ) {
-                            console.log(msg);
-                            $.alert( msg );
-                            location.reload();
+            });
 
-                        });
+            ///
 
-                        ///
-
-                    }
-                    else{
-                        //alert("Please add a valid comment. you cannot comment empty fields!");
-                        $.alert('Please add a valid comment. you cannot comment empty fields!');
-                    }
+        }
+        else{
+            //alert("Please add a valid comment. you cannot comment empty fields!");
+            $.alert('Please add a valid comment. you cannot comment empty fields!');
+        }
                 },
                 cancel: function () {
                     $.alert('Canceled!');
