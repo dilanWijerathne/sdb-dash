@@ -913,21 +913,17 @@ propostion : 15
                           <div class="row">
 
 
-
+                            <div class="col-sm-6 img-frame">
                              @isset($selfie['file_path'])
-                             <div class="col-sm-6 img-frame">
                              <a href="#">Other Documents </a>
                               <img class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$selfie['file_path']}}" alt="Photo">
-                            </div>
                               @endisset
-
                               <br>
-                              <div class="col-sm-6 img-frame">
                               <a href="#">Applicant's Signature  </a>
                               <img class="img-responsive_custom" src="{{$signature['signature']}}" alt="Photo">
+
+
                             </div>
-
-
 
 
                             <!-- /.col -->
