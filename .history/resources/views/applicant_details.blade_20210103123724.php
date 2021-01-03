@@ -156,7 +156,8 @@ function com_list(ref){
                     var k = JSON.parse(msg);
                     console.log(k);
 
-
+                console.log ( typeof  k['JSON']['Customer']['name']);
+                console.log( typeof k['JSON']['Status']['Status'] );
 
                 if (k['JSON']['Status']['Status'] === 'OK') {
                             var ti =  ' <h3 class="box-title"> For  Your Info</h3>';
