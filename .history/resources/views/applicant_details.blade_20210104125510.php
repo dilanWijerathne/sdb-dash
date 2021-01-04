@@ -45,13 +45,13 @@
         .img-responsive_custom{
             display: block;
             max-width: 300px;
-            max-height: 400px;
+            max-height: 500px;
             margin: auto;
 
         }
 
         .img-frame{
-            height: 430px;
+            height: 530px;
             border-width: 1px;
             border-color: darkgray;
             border-style: ridge
