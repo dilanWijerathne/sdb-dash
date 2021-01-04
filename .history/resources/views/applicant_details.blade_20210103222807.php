@@ -430,7 +430,7 @@ function com_list(ref){
     <section class="content">
 
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
 
           <!-- Profile Image -->
           <div class="box box-primary">
@@ -637,7 +637,7 @@ function com_list(ref){
           <!-- /.box -->
         </div>
         <!-- /.col -->
-        <div class="col-md-8">
+        <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#activity" data-toggle="tab">Applicant Info</a></li>
