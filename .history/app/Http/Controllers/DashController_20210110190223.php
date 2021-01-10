@@ -203,7 +203,7 @@ class DashController extends Controller
 
     /// fixed deposits
 
-    public function calldit_fds(Request $request)
+    public function calldit_fd(Request $request)
     {
 
         Log::info("Data tables request");
