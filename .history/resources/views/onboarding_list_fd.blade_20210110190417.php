@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SDB new applicants</title>
+  <title>SDB new Fixed Deposit applicants</title>
 
 <!-- jQuery 3 -->
 <script src="public/bower_components/jquery/dist/jquery.min.js"></script>
@@ -89,7 +89,7 @@ $(function () {
 
 
 
-    function change_current_branch(is_category,app_status,product){
+    function change_current_branch(is_category,app_status){
 
         //var branch = $("#branch").children("option:selected").val();
        // $('#tempb').val(branch);
@@ -107,10 +107,10 @@ $(function () {
                 'autoWidth'   : true,
 
                 "ajax":{
-                    url: "/sdb-dash/applicants",
+                    url: "/sdb-dash/applicants_fds",
                     type: "GET",
                     timeout: 0,
-                    data:{'f_branch':is_category,'app_status':app_status,'product':product},
+                    data:{'f_branch':is_category,'app_status':app_status},
                 },
 
                 "columnDefs": [ {
@@ -145,11 +145,10 @@ $(function () {
 $(document).on('change', '#application_status', function(){
         var app_status = $(this).val();
         var category = $('#branch').val();
-        var product = $('#product_type').val();
         $('#example1').DataTable().destroy();
         if(category != '')
         {
-          change_current_branch(category,app_status,product);
+          change_current_branch(category,app_status);
         }
         else
         {
@@ -161,28 +160,10 @@ $(document).on('change', '#application_status', function(){
     $(document).on('change', '#branch', function(){
         var category = $(this).val();
         var app_status = $('#application_status').val();
-        var product = $('#product_type').val();
         $('#example1').DataTable().destroy();
         if(category != '')
         {
-          change_current_branch(category,app_status,product);
-        }
-        else
-        {
-          change_current_branch();
-        }
-    });
-
-
-    //////// product type
-    $(document).on('change', '#product_type', function(){
-        var product = $(this).val();
-        var app_status = $('#application_status').val();
-        var category = $('#branch').val();
-        $('#example1').DataTable().destroy();
-        if(category != '')
-        {
-          change_current_branch(category,app_status,product);
+          change_current_branch(category,app_status);
         }
         else
         {
@@ -214,7 +195,7 @@ $(document).on('change', '#application_status', function(){
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Onboard Applications
+        Onboard FD Applications
         <small>advanced tables</small>
       </h1>
       <ol class="breadcrumb">
@@ -245,10 +226,10 @@ $(document).on('change', '#application_status', function(){
             <div class="box-body">
 
               <div class="col-md-12">
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <div class="form-group">
                     <input type="hidden" value="" id="tempb"/>
-                    <label>Select application status.</label>
+                    <label>Select application statuse.</label>
                     <select  id="application_status"  class="form-control select2" style="width: 100%;">
                       <option value="10">All</option>
                       <option value="1">Approved</option>
@@ -258,22 +239,7 @@ $(document).on('change', '#application_status', function(){
                     </select>
                   </div>
                 </div>
-
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                      <input type="hidden" value="" id="tempb"/>
-                      <label>Product Type.</label>
-                      <select  id="product_type"  class="form-control select2" style="width: 100%;">
-                        <option value="all">All</option>
-                        <option value="savings">Savings</option>
-                        <option value="fd">Fixed Deposits</option>
-                      </select>
-                    </div>
-                  </div>
-
-
-                <div class="col-md-4">
+                <div class="col-md-6">
 
                     @if ( (int)session('user_branch')===0 )
                     <div class="form-group">

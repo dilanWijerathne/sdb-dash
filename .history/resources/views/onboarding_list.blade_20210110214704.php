@@ -89,7 +89,7 @@ $(function () {
 
 
 
-    function change_current_branch(is_category,app_status,product){
+    function change_current_branch(is_category,app_status){
 
         //var branch = $("#branch").children("option:selected").val();
        // $('#tempb').val(branch);
@@ -110,7 +110,7 @@ $(function () {
                     url: "/sdb-dash/applicants",
                     type: "GET",
                     timeout: 0,
-                    data:{'f_branch':is_category,'app_status':app_status,'product':product},
+                    data:{'f_branch':is_category,'app_status':app_status},
                 },
 
                 "columnDefs": [ {
@@ -145,11 +145,10 @@ $(function () {
 $(document).on('change', '#application_status', function(){
         var app_status = $(this).val();
         var category = $('#branch').val();
-        var product = $('#product_type').val();
         $('#example1').DataTable().destroy();
         if(category != '')
         {
-          change_current_branch(category,app_status,product);
+          change_current_branch(category,app_status);
         }
         else
         {
@@ -161,28 +160,10 @@ $(document).on('change', '#application_status', function(){
     $(document).on('change', '#branch', function(){
         var category = $(this).val();
         var app_status = $('#application_status').val();
-        var product = $('#product_type').val();
         $('#example1').DataTable().destroy();
         if(category != '')
         {
-          change_current_branch(category,app_status,product);
-        }
-        else
-        {
-          change_current_branch();
-        }
-    });
-
-
-    //////// product type
-    $(document).on('change', '#product_type', function(){
-        var product = $(this).val();
-        var app_status = $('#application_status').val();
-        var category = $('#branch').val();
-        $('#example1').DataTable().destroy();
-        if(category != '')
-        {
-          change_current_branch(category,app_status,product);
+          change_current_branch(category,app_status);
         }
         else
         {
@@ -264,10 +245,12 @@ $(document).on('change', '#application_status', function(){
                     <div class="form-group">
                       <input type="hidden" value="" id="tempb"/>
                       <label>Product Type.</label>
-                      <select  id="product_type"  class="form-control select2" style="width: 100%;">
-                        <option value="all">All</option>
-                        <option value="savings">Savings</option>
-                        <option value="fd">Fixed Deposits</option>
+                      <select  id="application_status"  class="form-control select2" style="width: 100%;">
+                        <option value="10">All</option>
+                        <option value="1">Savings</option>
+                        <option value="2">Fixed Deposits</option>
+                        <option value="0">Pending</option>
+
                       </select>
                     </div>
                   </div>
