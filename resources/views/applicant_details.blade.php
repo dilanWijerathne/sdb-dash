@@ -477,6 +477,54 @@ function com_list(ref){
               </ul>
                <!-- end primary display section -->
                <hr>
+                 <!-- primary display section -->
+              <ul class="list-group list-group-unbordered">
+
+
+                @if($fd['desposit']!==null)
+                <li class="list-group-item">
+                  <b>FD Value</b> <a class="pull-right"> {{$fd['desposit']}}</a>
+                </li>
+                @endif
+
+                @if($fd['desposit']!==null)
+                <li class="list-group-item">
+                  <b>FD Period</b> <a class="pull-right"> {{$fd['period']}}M</a>
+                </li>
+                @endif
+
+                @if($fd['interest_payable_at']!==null)
+                <li class="list-group-item">
+                  <b>Interest payable at</b> <a class="pull-right"> {{$fd['interest_payable_at']}}M</a>
+                </li>
+                @endif
+                @if($fd['interest_disposal_method']!==null)
+                <li class="list-group-item">
+                  <b>Interest disposal method</b> <a class="pull-right"> {{$fd['interest_disposal_method']}}M</a>
+                </li>
+                @endif
+
+                @if($fd['interest_transfer_bank']!==null)
+                <li class="list-group-item">
+                  <b>Interest transfer bank</b> <a class="pull-right"> {{$fd['interest_transfer_bank']}}M</a>
+                </li>
+                @endif
+
+                @if($fd['interest_transfer_branch']!==null)
+                <li class="list-group-item">
+                  <b>Interest transfer branch</b> <a class="pull-right"> {{$fd['interest_transfer_branch']}}M</a>
+                </li>
+                @endif
+
+                @if($fd['interest_transfer_account']!==null)
+                <li class="list-group-item">
+                  <b>Interest transfer account</b> <a class="pull-right"> {{$fd['interest_transfer_account']}}M</a>
+                </li>
+                @endif
+
+              </ul>
+               <!-- end primary display section -->
+               <hr>
 
 
                 <!-- primary display section -->
