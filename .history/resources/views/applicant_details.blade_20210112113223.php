@@ -509,13 +509,6 @@ function com_list(ref){
                   </li>
                   @endif
 
-                  @if ($fd['interest_disposal_method']==="capitalized")
-                  <li class="list-group-item">
-                    <b>Interest disposal method</b> <a class="pull-right">Capitalized </a>
-                  </li>
-                  @endif
-
-
 
                 @endif
 
