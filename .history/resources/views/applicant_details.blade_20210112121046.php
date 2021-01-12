@@ -496,6 +496,11 @@ function com_list(ref){
                 </li>
                 @endif
 
+                @if(isset($fd['interest_payable_at']))
+                <li class="list-group-item">
+                  <b>Interest payable at</b> <a class="pull-right"> {{$fd['interest_payable_at']}}</a>
+                </li>
+                @endif
 
 
 
@@ -518,17 +523,17 @@ function com_list(ref){
                 @endif
 
 
-                @if(isset( $fd['interest_payable_at'] ))
+                @if(isset( $fd['interest_disposal_method'] ))
 
-                  @if ($fd['interest_payable_at']==="disposeOther")
+                  @if ($fd['interest_disposal_method']==="disposeOther")
                   <li class="list-group-item">
-                    <b>Interest payable at</b> <a class="pull-right"> Dispose to other bank account </a>
+                    <b>Interest disposal method</b> <a class="pull-right"> Dispose to other bank account </a>
                   </li>
                   @endif
 
-                  @if ($fd['interest_payable_at']==="capitalized")
+                  @if ($fd['interest_disposal_method']==="capitalized")
                   <li class="list-group-item">
-                    <b>Interest payable at</b> <a class="pull-right">Capitalized </a>
+                    <b>Interest disposal method</b> <a class="pull-right">Capitalized </a>
                   </li>
                   @endif
 
