@@ -118,11 +118,6 @@ $(function () {
                 "defaultContent": "<button>View Latest</button>"
                 } ]
 
-                "createdRow": function( row, data, dataIndex ) {
-                if ( data[2] == "London" ) {
-                     $(row).addClass('red');
-                 }
-             }
 
 
     });
