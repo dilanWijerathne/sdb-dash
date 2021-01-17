@@ -118,7 +118,7 @@ $(function () {
                 "defaultContent": "<button>View Latest</button>"
         } ],
             "createdRow": function( row, data, dataIndex ) {
-                if ( data[7] === "0" ) {
+                if ( parseInt(data[7]) === 0 ) {
                 $(row).addClass( 'red' );
                 }
             }
