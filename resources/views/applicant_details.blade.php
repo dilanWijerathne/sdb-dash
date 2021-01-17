@@ -302,6 +302,8 @@ function com_list(ref){
 
           var nic = $('#nicvalue').val();
 
+         $('approve_button').off('click');
+         $('approve_button').html('Wait...');
           alert("You are going to create account for : "+ nic);
           review(branch, ref,u_email);
         $.ajax({
@@ -698,7 +700,7 @@ function com_list(ref){
 
 
                @if ((int)$Applicant['done']===0)
-               <a onclick="cacc('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-block"><b>Approve</b></a>
+               <a id="approve_button" onclick="cacc('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-block"><b>Approve</b></a>
                <a href="#" class="btn btn-primary btn-warning btn-block"><b>Request to improve</b></a>
                <a onclick="reject('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')"  class="btn btn-primary btn-danger  btn-block"><b>Reject</b></a>
                @endif
