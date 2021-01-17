@@ -301,7 +301,7 @@ function com_list(ref){
       //  '{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}'
 
           var nic = $('#nicvalue').val();
-          $('#approve_text').html('Please Wait...');
+          $('#approve_text').html('Wait...');
         $('#approve_button').off('click');
 
         //  alert("You are going to create account for : "+ nic);
@@ -693,11 +693,6 @@ function com_list(ref){
               <hr>
               <strong><i class="fa fa-map-marker margin-r-5"></i> Branch</strong>
               <p class="text-muted"> {{$bdo['name']}} </p>
-
-               <hr>
-
-               <strong><i class="fa fa-map-marker margin-r-5"></i> App version</strong>
-              <p class="text-muted"> {{$Applicant['appv']}} </p>
 
                <hr>
 

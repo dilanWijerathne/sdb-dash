@@ -696,11 +696,6 @@ function com_list(ref){
 
                <hr>
 
-               <strong><i class="fa fa-map-marker margin-r-5"></i> App version</strong>
-              <p class="text-muted"> {{$Applicant['appv']}} </p>
-
-               <hr>
-
 
 
 
