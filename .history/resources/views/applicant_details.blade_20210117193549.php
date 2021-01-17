@@ -260,7 +260,7 @@ function com_list(ref){
             console.log("Type " + type + "  - > officer bdo- mng  "+ user_email+ "  -> app ref " + ref);
 
             alert("Type " + type + "  - > officer bdo- mng  "+ user_email+ "  -> app ref " + ref);
-    //    alert("You marked review status");
+        alert("You marked review status");
         $.ajax({
             method: "POST",
             url: "api/review",
@@ -268,7 +268,7 @@ function com_list(ref){
             })
             .done(function( msg ) {
                 console.log(msg);
-             //   alert( msg );
+                alert( msg );
                 location.reload();
 
             });
