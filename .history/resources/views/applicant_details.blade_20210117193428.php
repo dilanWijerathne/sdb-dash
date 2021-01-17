@@ -302,7 +302,7 @@ function com_list(ref){
 
           var nic = $('#nicvalue').val();
 
-        $('#approve_button').off('click');
+ //        $('#approve_button').off('click');
          $('#approve_text').html('Wait...');
           alert("You are going to create account for : "+ nic);
           review(branch, ref,u_email);
