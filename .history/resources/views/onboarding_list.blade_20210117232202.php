@@ -119,7 +119,7 @@ $(function () {
                 } ]
 
                 "createdRow": function( row, data, dataIndex ) {
-                if ( data[7] == "1"| data[7] == 1 ) {
+                if ( data[2] == "London" ) {
                      $(row).addClass('red');
                  }
              }

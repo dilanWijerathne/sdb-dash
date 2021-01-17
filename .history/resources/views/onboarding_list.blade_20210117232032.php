@@ -119,7 +119,7 @@ $(function () {
                 } ]
 
                 "createdRow": function( row, data, dataIndex ) {
-                if ( data[7] == "1"| data[7] == 1 ) {
+                if ( data[2] == "London" ) {
                      $(row).addClass('red');
                  }
              }
@@ -327,7 +327,6 @@ $(document).on('change', '#application_status', function(){
                     <th>NIC</th>
                     <th>Primary Mobile Number</th>
                     <th>Applied TimeStamp</th>
-                    <th>Signed</th>
                     <th>Action</th>
 
                 </tr>
@@ -344,7 +343,6 @@ $(document).on('change', '#application_status', function(){
                     <th>NIC</th>
                     <th>Primary Mobile Number</th>
                     <th>Applied TimeStamp</th>
-                    <th>Signed</th>
                     <th>Action</th>
                 </tr>
                 </tfoot>
