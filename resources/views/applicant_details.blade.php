@@ -547,9 +547,9 @@ function com_list(ref){
                 </li>
                 @endif
 
-                @if(isset($fd['interest_transfer_branch']))
+                @if(isset($fd['interest_transfer_acc_name']))
                 <li class="list-group-item">
-                  <b>Interest transfer branch</b> <a class="pull-right"> {{$fd['interest_transfer_branch']}}</a>
+                  <b>Interest transfer Account Name</b> <a class="pull-right"> {{$fd['interest_transfer_acc_name']}}</a>
                 </li>
                 @endif
 
