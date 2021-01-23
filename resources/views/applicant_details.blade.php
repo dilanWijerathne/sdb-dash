@@ -1043,7 +1043,7 @@ propostion : 15
                 </div>
                 <!-- /.post -->
 
-            @if(isset($nicf['file_path']))
+            @if(isset($nicf['file_path']) | isset($nicr['file_path']))
 
 
                 <!-- Post -->
@@ -1056,24 +1056,31 @@ propostion : 15
                         </span>
 
                   </div>
-                  <!-- /.user-block -->
-                  <div class="row margin-bottom">
+                    <!-- /.user-block -->
+                    <div class="row margin-bottom">
 
-                    <div class="col-sm-6 img-frame">
-                        <a href="#">NIC Front Side</a>
-                      <img   class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$nicf['file_path']}}" alt="Photo">
+
+
+                        @isset($nicf['file_path'])
+                        <div class="col-sm-6 img-frame">
+                            <a href="#">NIC Front Side</a>
+                        <img   class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$nicf['file_path']}}" alt="Photo">
+                        </div>
+                        @endisset
+
+                        @isset($nicr['file_path'])
+                        <div class="col-sm-6 img-frame">
+                            <a href="#">NIC Back Side</a>
+                            <img  class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$nicr['file_path']}}" alt="Photo">
+                        </div>
+                        @endisset
+
+
+
+
+
+                        <!-- /.col -->
                     </div>
-
-
-                    <div class="col-sm-6 img-frame">
-                        <a href="#">NIC Back Side</a>
-                        <img  class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$nicr['file_path']}}" alt="Photo">
-                      </div>
-
-
-
-                    <!-- /.col -->
-                  </div>
                   <!-- /.row -->
 
 
@@ -1144,6 +1151,9 @@ propostion : 15
                 </div>
 
                 @endif
+
+
+
 
                 <!-- /.post -->
               </div>

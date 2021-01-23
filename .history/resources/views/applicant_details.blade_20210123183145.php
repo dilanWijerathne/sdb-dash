@@ -25,6 +25,8 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
+
+
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <script
@@ -40,7 +42,23 @@
           width: 300px;
           /* The width is the width of the web page */
         }
+        .img-responsive_custom{
+            display: block;
+            max-width: 300px;
+            max-height: 400px;
+            margin: auto;
+
+        }
+
+        .img-frame{
+            height: 430px;
+            border-width: 1px;
+            border-color: darkgray;
+            border-style: ridge
+        }
       </style>
+
+
 
   <script>
 
@@ -57,7 +75,7 @@ function initMap() {
   const uluru = { lat:gps_obj.coords.latitude, lng: gps_obj.coords.longitude };
   // The map, centered at Uluru
   const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 8,
+    zoom: 6,
     center: uluru,
   });
   // The marker, positioned at Uluru
@@ -69,21 +87,54 @@ function initMap() {
 
 
     function send_msg(from,to,ref,nic){
-
-
-
         console.log("send msg clicked");
-        //
         var msg = $('#message_input').val();
-        $.ajax({
-            method: "GET",
-            url: "api/nessage_send",
-            data: {from_user:from,to_user:to,msg:msg,nic:nic, ref: ref}
-            })
-            .done(function( msg ) {
-                msg(ref);
-                console.log(msg);
-            });
+
+        $.confirm({
+            title: 'Confirm!',
+            content: 'Simple confirm!',
+            buttons: {
+                confirm: function () {
+                    //$.alert('Confirmed!');
+
+                // alert(comment+"  "+bdo+"  "+ref);
+                    if(msg.length>3){
+
+
+                        ///
+                        $.ajax({
+                            method: "GET",
+                            url: "api/nessage_send",
+                            data: {from_user:from,to_user:to,msg:msg,nic:nic, ref: ref}
+                            })
+                            .done(function( msg ) {
+                                msg(ref);
+                                console.log(msg);
+                                location.reload();
+
+                            });
+                        ///
+
+                    }
+                    else{
+                        //alert("Please add a valid comment. you cannot comment empty fields!");
+                        $.alert('Please provide a valid message!');
+                    }
+                },
+                cancel: function () {
+                    $.alert('Canceled!');
+                },
+
+            }
+        });
+
+/////////////////
+
+        /////////
+
+
+
+            /////////
     }
 
 
@@ -136,9 +187,57 @@ function com_list(ref){
 
             console.log(st);
             $(".comlist").append( st );
-
-
+            blacklist_check();
             });
+
+
+      }
+
+// check black list internally of
+
+      function blacklist_check(){
+        //var nic = "760054291V";// $('#nicvalue').val();
+        var nic =  $('#nicvalue').val();
+            $.ajax({
+                method: "POST",
+                url: "api/blacklist_check",
+                data: { nic: nic}
+                })
+                .done(function( msg ) {
+                    var k = JSON.parse(msg);
+                    console.log(k);
+
+
+
+                if (k['JSON']['Status']['Status'] === 'OK') {
+                            var ti =  ' <h3 class="box-title"> For  Your Info</h3>';
+                            var st1 = ' <li class="list-group-item"><b>'+k['JSON']['Customer']['name']+'</b> <a class="pull-right">  </a></li>';
+                            var st2 = ' <li class="list-group-item"><b>Address line 1</b> <a class="pull-right"> '+k['JSON']['Customer']['address_line_1']+' </a></li>';
+                            var st3 = ' <li class="list-group-item"><b>Address line 2</b> <a class="pull-right"> '+k['JSON']['Customer']['address_line_2']+' </a></li>';
+                            var st4 = ' <li class="list-group-item"><b>Remarks Line 1</b> <a class="pull-right"> '+k['JSON']['Customer']['remarks_line_1']+' </a></li>';
+                            var st5 = ' <li class="list-group-item"><b>Remarks Line 2</b> <a class="pull-right"> '+k['JSON']['Customer']['remarks_line_2']+' </a></li>';
+                            var st6 = ' <li class="list-group-item"><b>Rec Type</b> <a class="pull-right"> '+k['JSON']['Customer']['rec_type']+' </a></li>';
+                            var st7 = ' <li class="list-group-item"><b>Expire Date</b> <a class="pull-right"> '+k['JSON']['Customer']['expire_date']+' </a></li>';
+                            console.log(k['JSON']['Customer']['name']);
+                            console.log(k['JSON']['Customer']['remarks_line_1']);
+                            $("#blacklist_items").append(st1);
+                            $("#blacklist_items").append( st2 );
+                            $("#blacklist_items").append( st3 );
+                            $("#blacklist_items").append( st4 );
+                            $("#blacklist_items").append( st5 );
+                            $("#blacklist_items").append( st6 );
+                            $("#blacklist_items").append( st7 );
+
+
+                      console.log(k);
+
+            }else{
+              var stext = "No sanctioned data";
+              var st1 = ' <li class="list-group-item"><b>'+stext+'</b> <a class="pull-right">  </a></li>';
+              $("#blacklist_items").append(st1);
+            }
+
+        });
       }
 
 
@@ -160,8 +259,8 @@ function com_list(ref){
 
             console.log("Type " + type + "  - > officer bdo- mng  "+ user_email+ "  -> app ref " + ref);
 
-            alert("Type " + type + "  - > officer bdo- mng  "+ user_email+ "  -> app ref " + ref);
-        alert("You marked review status");
+            //alert("Type " + type + "  - > officer bdo- mng  "+ user_email+ "  -> app ref " + ref);
+    //    alert("You marked review status");
         $.ajax({
             method: "POST",
             url: "api/review",
@@ -169,19 +268,43 @@ function com_list(ref){
             })
             .done(function( msg ) {
                 console.log(msg);
-                alert( msg );
+             //   alert( msg );
                 location.reload();
 
             });
       }
+
+      /// reject application
+
+      function reject(code,ref,user_email){
+
+
+        console.log(" officer bdo- mng  "+ user_email+ "  -> app ref " + ref);
+
+        alert("officer bdo- mng  "+ user_email+ "  -> app ref " + ref);
+        alert("You marked review status");
+        $.ajax({
+        method: "POST",
+        url: "api/reject",
+        data: { bdo: user_email,ref:ref}
+        })
+        .done(function( msg ) {
+            console.log(msg);
+            alert( msg );
+            location.reload();
+
+        });
+    }
 
       // "http://10.101.6.198/sdbl/inapp",
       function cacc(branch, ref,u_email){
       //  '{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}'
 
           var nic = $('#nicvalue').val();
+          $('#approve_text').html('Please Wait...');
+        $('#approve_button').off('click');
 
-          alert("You are going to create account for : "+ nic);
+        //  alert("You are going to create account for : "+ nic);
           review(branch, ref,u_email);
         $.ajax({
             method: "POST",
@@ -202,9 +325,53 @@ function com_list(ref){
 
 
       function comment_fd(){
+        var comment = $('#comment_input').val();
+        var bdo = $('#bdoemail').val();
+        var ref = $('#appref').val();
+        var from = $('#user_name').val();
+
+        $.confirm({
+            title: 'Confirm!',
+            content: 'Simple confirm!',
+            buttons: {
+                confirm: function () {
+                    //$.alert('Confirmed!');
+
+                // alert(comment+"  "+bdo+"  "+ref);
+                    if(comment.length>3){
 
 
+                        ///
+                        $.ajax({
+                        method: "POST",
+                        url: "api/comment",
+                        data: { msg: comment,bdo:bdo,ref:ref,from:from}
+                        })
+                        .done(function( msg ) {
+                            console.log(msg);
+                            $.alert( msg );
+                            location.reload();
 
+                        });
+
+                        ///
+
+                    }
+                    else{
+                        //alert("Please add a valid comment. you cannot comment empty fields!");
+                        $.alert('Please add a valid comment. you cannot comment empty fields!');
+                    }
+                },
+                cancel: function () {
+                    $.alert('Canceled!');
+                },
+
+            }
+        });
+
+//
+
+/*
         var comment = $('#comment_input').val();
         var bdo = $('#bdoemail').val();
         var ref = $('#appref').val();
@@ -212,6 +379,8 @@ function com_list(ref){
         alert(comment+"  "+bdo+"  "+ref);
         if(comment!==null|comment!==""| comment!==" "){
 
+
+            ///
             $.ajax({
             method: "POST",
             url: "api/comment",
@@ -224,10 +393,15 @@ function com_list(ref){
 
             });
 
+            ///
+
         }
         else{
             alert("Please add a valid comment. you cannot comment empty fields!");
         }
+
+*/
+        //
       }
 
 
@@ -258,7 +432,7 @@ function com_list(ref){
     <section class="content">
 
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
 
           <!-- Profile Image -->
           <div class="box box-primary">
@@ -305,6 +479,90 @@ function com_list(ref){
               </ul>
                <!-- end primary display section -->
                <hr>
+
+
+               @isset($fd['desposit'])
+                     <!-- primary display section -->
+              <ul class="list-group list-group-unbordered">
+
+
+                @if(isset($fd['desposit']))
+                <li class="list-group-item">
+                  <b>FD Value</b> <a class="pull-right"> {{$fd['desposit']}} LKR</a>
+                </li>
+                @endif
+
+                @if(isset($fd['period']))
+                <li class="list-group-item">
+                  <b>FD Period</b> <a class="pull-right"> {{$fd['period']}} M</a>
+                </li>
+                @endif
+
+
+
+
+
+
+                @if(isset( $fd['interest_disposal_method'] ))
+
+                  @if ($fd['interest_disposal_method']==="monthly")
+                  <li class="list-group-item">
+                    <b>Interest disposal method</b> <a class="pull-right">Monthly </a>
+                  </li>
+                  @endif
+
+                  @if ($fd['interest_disposal_method']==="maturity")
+                  <li class="list-group-item">
+                    <b>Interest disposal method</b> <a class="pull-right">Maturity </a>
+                  </li>
+                  @endif
+
+                @endif
+
+
+                @if(isset( $fd['interest_payable_at'] ))
+
+                  @if ($fd['interest_payable_at']==="disposeOther")
+                  <li class="list-group-item">
+                    <b>Interest payable at</b> <a class="pull-right"> Dispose to other bank account </a>
+                  </li>
+                  @endif
+
+                  @if ($fd['interest_payable_at']==="capitalized")
+                  <li class="list-group-item">
+                    <b>Interest payable at</b> <a class="pull-right">Capitalized </a>
+                  </li>
+                  @endif
+
+                @endif
+
+
+
+
+
+
+                @if(isset($fd['interest_transfer_bank']))
+                <li class="list-group-item">
+                  <b>Interest transfer bank</b> <a class="pull-right"> {{$fd['interest_transfer_bank']}}</a>
+                </li>
+                @endif
+
+                @if(isset($fd['interest_transfer_acc_name']))
+                <li class="list-group-item">
+                  <b>Interest transfer Account Name</b> <a class="pull-right"> {{$fd['interest_transfer_acc_name']}}</a>
+                </li>
+                @endif
+
+                @if(isset($fd['interest_transfer_account']))
+                <li class="list-group-item">
+                  <b>Interest transfer account</b> <a class="pull-right"> {{$fd['interest_transfer_account']}}</a>
+                </li>
+                @endif
+
+              </ul>
+               <!-- end primary display section -->
+               <hr>
+               @endisset
 
 
                 <!-- primary display section -->
@@ -379,7 +637,10 @@ function com_list(ref){
 
                <input type="hidden" value="{{ session('user_email') }}"  id="user_name"/>
 
+               <h3 class="box-title">Internal sanction details </h3>
+               <ul class="list-group list-group-unbordered" id="blacklist_items">
 
+               </ul>
 
 
                @if ($Applicant['approved'] ===1 |  $Applicant['approved'] ==='1' )
@@ -421,7 +682,7 @@ function com_list(ref){
 
               <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
-              <p class="text-muted">Kirulapona, Colombo</p>
+
 
 
               <hr>
@@ -435,9 +696,30 @@ function com_list(ref){
 
                <hr>
 
-               <a onclick="cacc('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-block"><b>Approve</b></a>
+               <strong><i class="fa fa-map-marker margin-r-5"></i> App version</strong>
+              <p class="text-muted"> {{$Applicant['appv']}} </p>
+
+               <hr>
+
+
+
+
+               @if ((int)$Applicant['done']===0)
+               <a id="approve_button" onclick="cacc('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-block"><b id="approve_text">Approve</b></a>
                <a href="#" class="btn btn-primary btn-warning btn-block"><b>Request to improve</b></a>
-               <a onclick="review('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')"  class="btn btn-primary btn-danger  btn-block"><b>Reject</b></a>
+               <a onclick="reject('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')"  class="btn btn-primary btn-danger  btn-block"><b>Reject</b></a>
+               @endif
+
+               @if ((int)$Applicant['done']===1)
+               <a onclick="cacc('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-block"><b>Approved</b></a>
+               @endif
+
+               @if ((int)$Applicant['done']===2)
+               <a onclick=""  class="btn btn-primary btn-danger  btn-block"><b>Rejected</b></a>
+              @endif
+              @if ((int)$Applicant['done']===3)
+              <a href="#" class="btn btn-primary btn-warning btn-block"><b>Requested to improve</b></a>
+             @endif
 
 
             </div>
@@ -446,7 +728,7 @@ function com_list(ref){
           <!-- /.box -->
         </div>
         <!-- /.col -->
-        <div class="col-md-9">
+        <div class="col-md-8">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#activity" data-toggle="tab">Applicant Info</a></li>
@@ -606,6 +888,11 @@ propostion : 15
                         <b>Other income :</b> <a class="pull-right">{{$WorkPlace['other_income']}}</a>
                       </li>
                       @endif
+                      @if($WorkPlace['source_other_income']!=="")
+                      <li class="list-group-item">
+                        <b>Source of other income :</b> <a class="pull-right">{{$WorkPlace['source_other_income']}}</a>
+                      </li>
+                      @endif
 
 
                   </ul>
@@ -756,7 +1043,7 @@ propostion : 15
                 </div>
                 <!-- /.post -->
 
-                @if(isset($nicf['file_path']))
+            @if(isset($nicf['file_path']) | isset($nicr['file_path']))
 
 
                 <!-- Post -->
@@ -769,22 +1056,31 @@ propostion : 15
                         </span>
 
                   </div>
-                  <!-- /.user-block -->
-                  <div class="row margin-bottom">
+                    <!-- /.user-block -->
+                    <div class="row margin-bottom">
 
-                    <div class="col-sm-6">
-                      <img class="img-responsive" src="{{env('CORE_URL')}}/sdbl/public/{{$nicf['file_path']}}" alt="Photo">
+
+
+                        @isset($nicf['file_path'])
+                        <div class="col-sm-6 img-frame">
+                            <a href="#">NIC Front Side</a>
+                        <img   class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$nicf['file_path']}}" alt="Photo">
+                        </div>
+                        @endisset
+
+                        @isset($nicr['file_path'])
+                        <div class="col-sm-6 img-frame">
+                            <a href="#">NIC Back Side</a>
+                            <img  class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$nicr['file_path']}}" alt="Photo">
+                        </div>
+                        @endisset
+
+
+
+
+
+                        <!-- /.col -->
                     </div>
-
-
-                    <div class="col-sm-6">
-                        <img class="img-responsive" src="{{env('CORE_URL')}}/sdbl/public/{{$nicr['file_path']}}" alt="Photo">
-                      </div>
-
-
-
-                    <!-- /.col -->
-                  </div>
                   <!-- /.row -->
 
 
@@ -794,28 +1090,40 @@ propostion : 15
                      <div class="row margin-bottom">
 
                         @isset($proof['file_path'])
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="{{env('CORE_URL')}}/sdbl/public/{{$proof['file_path']}}" alt="Photo">
+                        <div class="col-sm-6 ">
+                            <a href="#">Proof Document 1</a>
+                          <img class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$proof['file_path']}}" alt="Photo">
+                        </div>
+                        @endisset
+                        @isset($proofr['file_path'])
+                        <div class="col-sm-6 ">
+                            <a href="#">Proof Document 2</a>
+                          <img class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$proofr['file_path']}}" alt="Photo">
                         </div>
                         @endisset
 
-
-
+                     </div>
+                        <div class="row margin-bottom">
                         <!-- /.col -->
-                        <div class="col-sm-6">
-                          <div class="row">
 
 
-                            <div class="col-sm-6">
+
+
                              @isset($selfie['file_path'])
-                              <img class="img-responsive" src="{{env('CORE_URL')}}/sdbl/public/{{$selfie['file_path']}}" alt="Photo">
-                              @endisset
-                              <br>
-
-                              <img class="img-responsive" src="{{$signature['signature']}}" alt="Photo">
-
-
+                             <div class="col-sm-6 img-frame">
+                             <a href="#">Other Documents </a>
+                              <img class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$selfie['file_path']}}" alt="Photo">
                             </div>
+                              @endisset
+
+                              @isset($signature['signature'])
+                              <div class="col-sm-6 img-frame">
+                              <a href="#">Applicant's Signature  </a>
+                              <img class="img-responsive_custom" src="{{$signature['signature']}}" alt="Photo">
+                            </div>
+                            @endisset
+
+
 
 
                             <!-- /.col -->
@@ -832,10 +1140,7 @@ propostion : 15
                             --->
 
 
-                            <!-- /.col -->
-                          </div>
-                          <!-- /.row -->
-                        </div>
+
                         <!-- /.col -->
                       </div>
                       <!-- /.row -->
@@ -846,6 +1151,9 @@ propostion : 15
                 </div>
 
                 @endif
+
+
+
 
                 <!-- /.post -->
               </div>
@@ -1007,6 +1315,11 @@ propostion : 15
 <script src="public/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="public/dist/js/demo.js"></script>
+
+<!-- confirm alerts  -->
+<link rel="stylesheet" href="public/jqalerts/jquery-confirm.min.css">
+<!--confirm alerts  -->
+<script src="public/jqalerts/jquery-confirm.min.js"></script>
 
 <script>
 
