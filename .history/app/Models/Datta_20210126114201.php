@@ -74,9 +74,9 @@ class Datta
     public static function grab_applicant_by_ref($ref)
     {
 
-        Log::info('grab applicant by applicant id  ' . $ref);
+        Log::info('grab applicant latest ' . $ref);
 
-        $response = Http::get(env('CORE_URL') . '/sdbl/api/applicant_details_by_ref?ref=' . $ref, [
+        $response = Http::get(env('CORE_URL') . '/sdbl/api/applicant_details_by_nic?nic=' . $ref, [
             "ref" => $ref,
         ]);
 
