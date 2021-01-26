@@ -105,7 +105,7 @@ class DashController extends Controller
 
         $ref  = $request->ReportID;
         // get rest of the details from onboarding core application
-        $applicant = Datta::grab_applicant_by_ref();
+        $applicant = Datta::grab_applicant_by_ref($ref);
 
         // return $applicant['Applicant']['applicant_status'];
 
@@ -139,20 +139,6 @@ class DashController extends Controller
     }
 
 
-    /*
-    public function  approve(Request $request)
-    {
-
-        // add token validation to this functuion
-
-        $response = Http::get(env('CORE_URL') . '/sdbl/api/inapp', [
-            "nic" => $request->nic,
-        ]);
-
-        return  $response;
-    }
-
-    */
     public function  approve(Request $request)
     {
 
