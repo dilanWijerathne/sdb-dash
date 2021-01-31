@@ -3,7 +3,17 @@
     <script>
 
         function change_pass(pass,email){
-            alert("pass");
+          //  alert("pass");
+            $.ajax({
+                method: "POST",
+                url: "api/reset_my_password",
+                data: {email:email, password:pass}
+                })
+                .done(function( msg ) {
+                    //alert( "Data Saved: " + msg );
+                    $.alert(''+msg);
+                });
+
         }
         function password_chg(email){
 
@@ -39,7 +49,7 @@
 
                                     if(pass===pass2){
                                         change_pass(pass,email);
-                                        return false;
+                                        return true;
                                     }else{
                                         $.alert('Repeated password is mitmating');
                                         return false;
@@ -68,9 +78,9 @@
     <!-- Logo -->
     <a href="public/index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>S</b>DB</span>
+      <span class="logo-mini"><b>Hi</b>Tech</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>SDB</b>Tablet banking</span>
+      <span class="logo-lg"><b>Hi</b>Tech Finance</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">

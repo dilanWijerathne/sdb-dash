@@ -1,10 +1,86 @@
 <header class="main-header">
+
+    <script>
+
+        function change_pass(pass,email){
+          //  alert("pass");
+            $.ajax({
+                method: "POST",
+                url: "api/reset_my_password",
+                data: {email:email, password:pass}
+                })
+                .done(function( msg ) {
+                    //alert( "Data Saved: " + msg );
+                    $.alert(''+msg);
+                });
+
+        }
+        function password_chg(email){
+
+
+            $.confirm({
+                        title: 'Change my password',
+                        content: '' +
+                        '<form action="" class="formName">' +
+                        '<div class="form-group">' +
+                        '<label>Enter new password here</label>' +
+                        '<input type="text" placeholder="New password" class="pass form-control" required />' +
+                        '</div>' +
+                        '<div class="form-group">' +
+                        '<label>Repeat new password here</label>' +
+                        '<input type="text" placeholder="New password" class="pass2 form-control" required />' +
+                        '</div>' +
+                        '</form>',
+                        buttons: {
+                            formSubmit: {
+                                text: 'Submit',
+                                btnClass: 'btn-blue',
+                                action: function () {
+                                    var pass = this.$content.find('.pass').val();
+                                    var pass2 = this.$content.find('.pass2').val();
+                                    if(!pass){
+                                        $.alert('provide a valid password');
+                                        return false;
+                                    }
+                                    if(!pass2){
+                                        $.alert('Repeat the password');
+                                        return false;
+                                    }
+
+                                    if(pass===pass2){
+                                        change_pass(pass,email);
+                                        return true;
+                                    }else{
+                                        $.alert('Repeated password is mitmating');
+                                        return false;
+                                    }
+                                  //  $.alert('Your name is ' + name);
+                                }
+                            },
+                            cancel: function () {
+                                //close
+                            },
+                        },
+                        onContentReady: function () {
+                            // bind to events
+                            var jc = this;
+                            this.$content.find('form').on('submit', function (e) {
+                                // if the user submits the form by pressing enter in the field.
+                                e.preventDefault();
+                                jc.$$formSubmit.trigger('click'); // reference the button and click it
+                            });
+                        }
+                    });
+
+
+        }
+    </script>
     <!-- Logo -->
     <a href="public/index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>S</b>DB</span>
+      <span class="logo-mini"><b>Hi</b>Tech</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>SDB</b>Tablet banking</span>
+      <span class="logo-lg"><b>Hi</b>Tech Finance</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -236,7 +312,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a onclick="password_chg('{{session('user_email')}}')" class="btn btn-default btn-flat">Change my password</a>
                 </div>
                 <div class="pull-right">
                   <a href="logout" class="btn btn-default btn-flat">Sign out</a>
