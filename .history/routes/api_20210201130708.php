@@ -48,3 +48,5 @@ Route::post('/req_new_pass', [DashController::class, 'req_new_pass']);
 Route::post('/current_search_branch', [DashController::class, 'current_search_branch']);
 
 Route::post('/minitHR', [DashController::class, 'minitHR']);
+
+Route::post('/blacklist_check', [DashController::class, 'blacklist_check']);
