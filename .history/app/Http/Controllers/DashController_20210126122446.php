@@ -139,20 +139,6 @@ class DashController extends Controller
     }
 
 
-    /*
-    public function  approve(Request $request)
-    {
-
-        // add token validation to this functuion
-
-        $response = Http::get(env('CORE_URL') . '/sdbl/api/inapp', [
-            "nic" => $request->nic,
-        ]);
-
-        return  $response;
-    }
-
-    */
     public function  approve(Request $request)
     {
 

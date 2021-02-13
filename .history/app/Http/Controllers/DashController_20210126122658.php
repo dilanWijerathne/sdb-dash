@@ -105,7 +105,7 @@ class DashController extends Controller
 
         $ref  = $request->ReportID;
         // get rest of the details from onboarding core application
-        $applicant = Datta::grab_applicant_by_ref($ref);
+        $applicant = Datta::grab_applicant_by_ref();
 
         // return $applicant['Applicant']['applicant_status'];
 
