@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Customer onboarding</title>
+  <title>Hi Tech</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -259,8 +259,8 @@ function com_list(ref){
 
             console.log("Type " + type + "  - > officer bdo- mng  "+ user_email+ "  -> app ref " + ref);
 
-            //alert("Type " + type + "  - > officer bdo- mng  "+ user_email+ "  -> app ref " + ref);
-    //    alert("You marked review status");
+            alert("Type " + type + "  - > officer bdo- mng  "+ user_email+ "  -> app ref " + ref);
+        alert("You marked review status");
         $.ajax({
             method: "POST",
             url: "api/review",
@@ -268,7 +268,7 @@ function com_list(ref){
             })
             .done(function( msg ) {
                 console.log(msg);
-             //   alert( msg );
+                alert( msg );
                 location.reload();
 
             });
@@ -296,19 +296,18 @@ function com_list(ref){
         });
     }
 
-
+      // "http://10.101.6.198/sdbl/inapp",
       function cacc(branch, ref,u_email){
+      //  '{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}'
 
-            var ref = $('#appref').val();
-            var nic = $('#nicvalue').val();
-            $('#approve_text').html('Please Wait...');
-            $('#approve_button').off('click');
+          var nic = $('#nicvalue').val();
 
+          alert("You are going to create account for : "+ nic);
           review(branch, ref,u_email);
         $.ajax({
             method: "POST",
             url: "api/applicant-approval",
-            data: { ref: ref}
+            data: { nic: nic}
             })
             .done(function( msg ) {
                 console.log(msg);
@@ -317,28 +316,6 @@ function com_list(ref){
                 location.reload();
             });
       }
-
-
-      function cacc_old(branch, ref,u_email){
-
-
-     var nic = $('#nicvalue').val();
-     $('#approve_text').html('Please Wait...');
-       $('#approve_button').off('click');
-
-     review(branch, ref,u_email);
-   $.ajax({
-       method: "POST",
-       url: "api/applicant-approval",
-       data: { nic: nic}
-       })
-       .done(function( msg ) {
-           console.log(msg);
-           alert( msg );
-
-           location.reload();
-       });
- }
 
 
 
@@ -502,90 +479,6 @@ function com_list(ref){
                <hr>
 
 
-               @isset($fd['desposit'])
-                     <!-- primary display section -->
-              <ul class="list-group list-group-unbordered">
-
-
-                @if(isset($fd['desposit']))
-                <li class="list-group-item">
-                  <b>FD Value</b> <a class="pull-right"> {{$fd['desposit']}} LKR</a>
-                </li>
-                @endif
-
-                @if(isset($fd['period']))
-                <li class="list-group-item">
-                  <b>FD Period</b> <a class="pull-right"> {{$fd['period']}} M</a>
-                </li>
-                @endif
-
-
-
-
-
-
-                @if(isset( $fd['interest_disposal_method'] ))
-
-                  @if ($fd['interest_disposal_method']==="monthly")
-                  <li class="list-group-item">
-                    <b>Interest disposal method</b> <a class="pull-right">Monthly </a>
-                  </li>
-                  @endif
-
-                  @if ($fd['interest_disposal_method']==="maturity")
-                  <li class="list-group-item">
-                    <b>Interest disposal method</b> <a class="pull-right">Maturity </a>
-                  </li>
-                  @endif
-
-                @endif
-
-
-                @if(isset( $fd['interest_payable_at'] ))
-
-                  @if ($fd['interest_payable_at']==="disposeOther")
-                  <li class="list-group-item">
-                    <b>Interest payable at</b> <a class="pull-right"> Dispose to other bank account </a>
-                  </li>
-                  @endif
-
-                  @if ($fd['interest_payable_at']==="capitalized")
-                  <li class="list-group-item">
-                    <b>Interest payable at</b> <a class="pull-right">Capitalized </a>
-                  </li>
-                  @endif
-
-                @endif
-
-
-
-
-
-
-                @if(isset($fd['interest_transfer_bank']))
-                <li class="list-group-item">
-                  <b>Interest transfer bank</b> <a class="pull-right"> {{$fd['interest_transfer_bank']}}</a>
-                </li>
-                @endif
-
-                @if(isset($fd['interest_transfer_acc_name']))
-                <li class="list-group-item">
-                  <b>Interest transfer Account Name</b> <a class="pull-right"> {{$fd['interest_transfer_acc_name']}}</a>
-                </li>
-                @endif
-
-                @if(isset($fd['interest_transfer_account']))
-                <li class="list-group-item">
-                  <b>Interest transfer account</b> <a class="pull-right"> {{$fd['interest_transfer_account']}}</a>
-                </li>
-                @endif
-
-              </ul>
-               <!-- end primary display section -->
-               <hr>
-               @endisset
-
-
                 <!-- primary display section -->
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
@@ -717,16 +610,11 @@ function com_list(ref){
 
                <hr>
 
-               <strong><i class="fa fa-map-marker margin-r-5"></i> App version</strong>
-              <p class="text-muted"> {{$Applicant['appv']}} </p>
-
-               <hr>
-
 
 
 
                @if ((int)$Applicant['done']===0)
-               <a id="approve_button" onclick="cacc('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-block"><b id="approve_text">Approve</b></a>
+               <a onclick="cacc('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-block"><b>Approve</b></a>
                <a href="#" class="btn btn-primary btn-warning btn-block"><b>Request to improve</b></a>
                <a onclick="reject('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')"  class="btn btn-primary btn-danger  btn-block"><b>Reject</b></a>
                @endif
@@ -1064,7 +952,7 @@ propostion : 15
                 </div>
                 <!-- /.post -->
 
-            @if(isset($nicf['file_path']) | isset($nicr['file_path']))
+            @if(isset($nicf['file_path']))
 
 
                 <!-- Post -->
@@ -1077,31 +965,24 @@ propostion : 15
                         </span>
 
                   </div>
-                    <!-- /.user-block -->
-                    <div class="row margin-bottom">
+                  <!-- /.user-block -->
+                  <div class="row margin-bottom">
 
-
-
-                        @isset($nicf['file_path'])
-                        <div class="col-sm-6 img-frame">
-                            <a href="#">NIC Front Side</a>
-                        <img   class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$nicf['file_path']}}" alt="Photo">
-                        </div>
-                        @endisset
-
-                        @isset($nicr['file_path'])
-                        <div class="col-sm-6 img-frame">
-                            <a href="#">NIC Back Side</a>
-                            <img  class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$nicr['file_path']}}" alt="Photo">
-                        </div>
-                        @endisset
-
-
-
-
-
-                        <!-- /.col -->
+                    <div class="col-sm-6 img-frame">
+                        <a href="#">NIC Front Side</a>
+                      <img   class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$nicf['file_path']}}" alt="Photo">
                     </div>
+
+
+                    <div class="col-sm-6 img-frame">
+                        <a href="#">NIC Back Side</a>
+                        <img  class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$nicr['file_path']}}" alt="Photo">
+                      </div>
+
+
+
+                    <!-- /.col -->
+                  </div>
                   <!-- /.row -->
 
 
@@ -1172,9 +1053,6 @@ propostion : 15
                 </div>
 
                 @endif
-
-
-
 
                 <!-- /.post -->
               </div>
