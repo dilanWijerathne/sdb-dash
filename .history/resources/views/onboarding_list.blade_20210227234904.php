@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SDB new applicants</title>
+  <title>Customer onboarding</title>
 
 <!-- jQuery 3 -->
 <script src="public/bower_components/jquery/dist/jquery.min.js"></script>
@@ -303,7 +303,7 @@ $(document).on('change', '#application_status', function(){
                       @else
 
                       <input type="hidden" value="" id="tempb"/>
-                      <label>Select a branch to view applications.</label>
+                      <label>You current branch.</label>
                       <select  id="branch"  class="form-control select2" style="width: 100%;">
                         @foreach ( $branches as $ac)
                             @if ((int)$ac['code']===(int)(int)session('user_branch'))
