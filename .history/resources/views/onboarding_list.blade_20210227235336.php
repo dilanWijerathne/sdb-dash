@@ -260,72 +260,66 @@ $(document).on('change', '#application_status', function(){
             <div class="box-body">
 
               <div class="col-md-12">
-                <div class="form-group">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input type="hidden" value="" id="tempb"/>
+                    <label>Select application status.</label>
+                    <select  id="application_status"  class="form-control select2" style="width: 100%;">
+                      <option value="10">All</option>
+                      <option value="1">Approved</option>
+                      <option value="2">Rejected</option>
+                      <option value="0">Pending</option>
 
+                    </select>
+                  </div>
                 </div>
-              </div>
 
-              <div class="col-md-12">
-                    <div class="col-md-4">
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                      <input type="hidden" value="" id="tempb"/>
+                      <label>Product Type.</label>
+                      <select  id="product_type"  class="form-control select2" style="width: 100%;">
+                        <option value="all">All</option>
+                        <option value="savings">Savings</option>
+                        <option value="fd">Fixed Deposits</option>
+                      </select>
+                    </div>
+                  </div>
+
+
+                <div class="col-md-4">
+
+                    @if ( (int)session('user_branch')===0 )
                     <div class="form-group">
                         <input type="hidden" value="" id="tempb"/>
-                        <label>Select application status.</label>
-                        <select  id="application_status"  class="form-control select2" style="width: 100%;">
-                        <option value="10">All</option>
-                        <option value="1">Approved</option>
-                        <option value="2">Rejected</option>
-                        <option value="0">Pending</option>
-
+                        <label>Select a branch to view applications.</label>
+                        <select  id="branch"  class="form-control select2" style="width: 100%;">
+                          @foreach ( $branches as $ac)
+                          <option value="{{$ac['code']}}">{{ $ac['name'] }}</option>
+                          @endforeach
                         </select>
-                    </div>
-                    </div>
+                      </div>
+                      @else
 
-
-                    <div class="col-md-4">
-                        <div class="form-group">
-                        <input type="hidden" value="" id="tempb"/>
-                        <label>Product Type.</label>
-                        <select  id="product_type"  class="form-control select2" style="width: 100%;">
-                            <option value="all">All</option>
-                            <option value="savings">Savings</option>
-                            <option value="fd">Fixed Deposits</option>
-                        </select>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-4">
-
-                        @if ( (int)session('user_branch')===0 )
-                        <div class="form-group">
-                            <input type="hidden" value="" id="tempb"/>
-                            <label>Select a branch to view applications.</label>
-                            <select  id="branch"  class="form-control select2" style="width: 100%;">
-                            @foreach ( $branches as $ac)
+                      <input type="hidden" value="" id="tempb"/>
+                      <label>Your current branch.</label>
+                      <select  id="branch"  class="form-control select2" style="width: 100%;">
+                        @foreach ( $branches as $ac)
+                            @if ((int)$ac['code']===(int)(int)session('user_branch'))
                             <option value="{{$ac['code']}}">{{ $ac['name'] }}</option>
-                            @endforeach
-                            </select>
-                        </div>
-                        @else
+                            @endif
 
-                        <input type="hidden" value="" id="tempb"/>
+                        @endforeach
+                      </select>
 
-                            @foreach ( $branches as $ac)
-                                @if ((int)$ac['code']===(int)(int)session('user_branch'))
-
-                                <input type="hidden" id="branch" value="{{$ac['code']}}" />
-                                @endif
-
-                            @endforeach
-
-
-                        @endif
+                    @endif
 
 
 
 
 
-                    </div>
+                </div>
               </div>
 
 
