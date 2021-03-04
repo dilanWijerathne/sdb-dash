@@ -703,7 +703,14 @@ function com_list(ref){
 
               <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
+              <hr>
 
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Cen Ops/ Reviewed Officer </strong>
+             <p class="text-muted">{{$Applicant['ops_staff']}}</p>
+
+              <hr>
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Approved Officer </strong>
+             <p class="text-muted">{{$Applicant['review_staff']}}</p>
 
 
               <hr>

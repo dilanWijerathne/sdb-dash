@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SDB</title>
+  <title>Customer onboarding</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -703,7 +703,14 @@ function com_list(ref){
 
               <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
+              <hr>
 
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Cen Ops/ Reviewed Officer </strong>
+             <p class="text-muted">{{$Applicant['ops_staff']}}</p>
+
+              <hr>
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Approved Officer </strong>
+             <p class="text-muted">{{$Applicant['review_staff']}}</p>
 
 
               <hr>
@@ -1085,14 +1092,14 @@ propostion : 15
                         @isset($nicf['file_path'])
                         <div class="col-sm-6 img-frame">
                             <a href="#">NIC Front Side</a>
-                        <img   class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$nicf['file_path']}}" alt="Photo">
+                        <img   class="img-responsive_custom" src="{{env('SAMBA')}}/sdbl/public/{{$nicf['file_path']}}" alt="Photo">
                         </div>
                         @endisset
 
                         @isset($nicr['file_path'])
                         <div class="col-sm-6 img-frame">
                             <a href="#">NIC Back Side</a>
-                            <img  class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$nicr['file_path']}}" alt="Photo">
+                            <img  class="img-responsive_custom" src="{{env('SAMBA')}}/sdbl/public/{{$nicr['file_path']}}" alt="Photo">
                         </div>
                         @endisset
 
@@ -1113,13 +1120,13 @@ propostion : 15
                         @isset($proof['file_path'])
                         <div class="col-sm-6 ">
                             <a href="#">Proof Document 1</a>
-                          <img class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$proof['file_path']}}" alt="Photo">
+                          <img class="img-responsive_custom" src="{{env('SAMBA')}}/sdbl/public/{{$proof['file_path']}}" alt="Photo">
                         </div>
                         @endisset
                         @isset($proofr['file_path'])
                         <div class="col-sm-6 ">
                             <a href="#">Proof Document 2</a>
-                          <img class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$proofr['file_path']}}" alt="Photo">
+                          <img class="img-responsive_custom" src="{{env('SAMBA')}}/sdbl/public/{{$proofr['file_path']}}" alt="Photo">
                         </div>
                         @endisset
 
@@ -1133,7 +1140,7 @@ propostion : 15
                              @isset($selfie['file_path'])
                              <div class="col-sm-6 img-frame">
                              <a href="#">Other Documents </a>
-                              <img class="img-responsive_custom" src="{{env('CORE_URL')}}/sdbl/public/{{$selfie['file_path']}}" alt="Photo">
+                              <img class="img-responsive_custom" src="{{env('SAMBA')}}/sdbl/public/{{$selfie['file_path']}}" alt="Photo">
                             </div>
                               @endisset
 
