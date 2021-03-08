@@ -341,7 +341,7 @@ $(document).on('change', '#application_status', function(){
                     <th>F Name</th>
                     <th>NIC</th>
                     <th>Primary Mobile Number</th>
-                    <th>Applied TimeStamp</th>
+                    <th>TimeStamp</th>
                     <th>Signed</th>
                     <th>Action</th>
 
@@ -358,7 +358,7 @@ $(document).on('change', '#application_status', function(){
                     <th>F Name</th>
                     <th>NIC</th>
                     <th>Primary Mobile Number</th>
-                    <th>Applied TimeStamp</th>
+                    <th>TimeStamp</th>
                     <th>Signed</th>
                     <th>Action</th>
                 </tr>
