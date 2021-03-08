@@ -115,10 +115,7 @@ $(function () {
                 'ordering'    : true,
                 'info'        : true,
                 'autoWidth'   : true,
-                "dom" : 'Bfrtip',
-                'buttons': [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
+
                 "ajax":{
                     url: "/sdb-dash/applicants",
                     type: "GET",
