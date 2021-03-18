@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SDB new applicants</title>
+  <title>Customer onboarding</title>
 
 <!-- jQuery 3 -->
 <script src="public/bower_components/jquery/dist/jquery.min.js"></script>
@@ -35,7 +35,17 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
 
+
+<style>
+
+    .red {
+  background-color:#9b9ca0 !important;
+}
+
+
+</style>
 <script>
+
 
 
 /*
@@ -89,7 +99,7 @@ $(function () {
 
 
 
-    function change_current_branch(is_category,app_status){
+    function change_current_branch(is_category,app_status,product){
 
         //var branch = $("#branch").children("option:selected").val();
        // $('#tempb').val(branch);
@@ -110,19 +120,31 @@ $(function () {
                     url: "/sdb-dash/applicants",
                     type: "GET",
                     timeout: 0,
-                    data:{'f_branch':is_category,'app_status':app_status},
+                    data:{'f_branch':is_category,'app_status':app_status,'product':product},
                 },
 
                 "columnDefs": [ {
                 "targets": -1,
                 "defaultContent": "<button>View Latest</button>"
-        } ]
+        } ],
+            "createdRow": function( row, data, dataIndex ) {
+                if ( data[7] === "0" | data[7] === 0) {
+                $(row).addClass('red');
+                }
+            }
 
 
     });
 
 
+/*
 
+    "dom" : 'Bfrtip',
+                'buttons': [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+
+*/
 
 
 
@@ -136,7 +158,7 @@ $(function () {
         var data = table.row( $(this).parents('tr') ).data();
        alert( "NIC "+ data );
        console.log(data);
-        window.open('/sdb-dash/applicant-details?ReportID='+ data[ 4 ], '_blank');
+        window.open('/sdb-dash/applicant-details-ref?ReportID='+ data[ 0 ], '_blank');
     } );
 
 
@@ -145,10 +167,11 @@ $(function () {
 $(document).on('change', '#application_status', function(){
         var app_status = $(this).val();
         var category = $('#branch').val();
+        var product = $('#product_type').val();
         $('#example1').DataTable().destroy();
         if(category != '')
         {
-          change_current_branch(category,app_status);
+          change_current_branch(category,app_status,product);
         }
         else
         {
@@ -160,10 +183,28 @@ $(document).on('change', '#application_status', function(){
     $(document).on('change', '#branch', function(){
         var category = $(this).val();
         var app_status = $('#application_status').val();
+        var product = $('#product_type').val();
         $('#example1').DataTable().destroy();
         if(category != '')
         {
-          change_current_branch(category,app_status);
+          change_current_branch(category,app_status,product);
+        }
+        else
+        {
+          change_current_branch();
+        }
+    });
+
+
+    //////// product type
+    $(document).on('change', '#product_type', function(){
+        var product = $(this).val();
+        var app_status = $('#application_status').val();
+        var category = $('#branch').val();
+        $('#example1').DataTable().destroy();
+        if(category != '')
+        {
+          change_current_branch(category,app_status,product);
         }
         else
         {
@@ -226,66 +267,72 @@ $(document).on('change', '#application_status', function(){
             <div class="box-body">
 
               <div class="col-md-12">
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <input type="hidden" value="" id="tempb"/>
-                    <label>Select application status.</label>
-                    <select  id="application_status"  class="form-control select2" style="width: 100%;">
-                      <option value="10">All</option>
-                      <option value="1">Approved</option>
-                      <option value="2">Rejected</option>
-                      <option value="0">Pending</option>
+                <div class="form-group">
 
-                    </select>
-                  </div>
                 </div>
+              </div>
 
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                      <input type="hidden" value="" id="tempb"/>
-                      <label>Product Type.</label>
-                      <select  id="application_status"  class="form-control select2" style="width: 100%;">
-                        <option value="10">All</option>
-                        <option value="savings">Savings</option>
-                        <option value="fd">Fixed Deposits</option>
-                      </select>
-                    </div>
-                  </div>
-
-
-                <div class="col-md-4">
-
-                    @if ( (int)session('user_branch')===0 )
+              <div class="col-md-12">
+                    <div class="col-md-4">
                     <div class="form-group">
                         <input type="hidden" value="" id="tempb"/>
-                        <label>Select a branch to view applications.</label>
-                        <select  id="branch"  class="form-control select2" style="width: 100%;">
-                          @foreach ( $branches as $ac)
-                          <option value="{{$ac['code']}}">{{ $ac['name'] }}</option>
-                          @endforeach
+                        <label>Select application status.</label>
+                        <select  id="application_status"  class="form-control select2" style="width: 100%;">
+                        <option value="10">All</option>
+                        <option value="1">Approved</option>
+                        <option value="2">Rejected</option>
+                        <option value="0">Pending</option>
+
                         </select>
-                      </div>
-                      @else
+                    </div>
+                    </div>
 
-                      <input type="hidden" value="" id="tempb"/>
-                      <label>Select a branch to view applications.</label>
-                      <select  id="branch"  class="form-control select2" style="width: 100%;">
-                        @foreach ( $branches as $ac)
-                            @if ((int)$ac['code']===(int)(int)session('user_branch'))
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                        <input type="hidden" value="" id="tempb"/>
+                        <label>Product Type.</label>
+                        <select  id="product_type"  class="form-control select2" style="width: 100%;">
+                            <option value="all">All</option>
+                            <option value="savings">Savings</option>
+                            <option value="fd">Fixed Deposits</option>
+                        </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        @if ( (int)session('user_branch')===0 )
+                        <div class="form-group">
+                            <input type="hidden" value="" id="tempb"/>
+                            <label>Select a branch to view applications.</label>
+                            <select  id="branch"  class="form-control select2" style="width: 100%;">
+                            @foreach ( $branches as $ac)
                             <option value="{{$ac['code']}}">{{ $ac['name'] }}</option>
-                            @endif
+                            @endforeach
+                            </select>
+                        </div>
+                        @else
 
-                        @endforeach
-                      </select>
+                        <input type="hidden" value="" id="tempb"/>
 
-                    @endif
+                            @foreach ( $branches as $ac)
+                                @if ((int)$ac['code']===(int)(int)session('user_branch'))
+
+                                <input type="hidden" id="branch" value="{{$ac['code']}}" />
+                                @endif
+
+                            @endforeach
+
+
+                        @endif
 
 
 
 
 
-                </div>
+                    </div>
               </div>
 
 
@@ -301,7 +348,9 @@ $(document).on('change', '#application_status', function(){
                     <th>F Name</th>
                     <th>NIC</th>
                     <th>Primary Mobile Number</th>
-                    <th>Applied TimeStamp</th>
+                    <th>Updated Time</th>
+                    <th>Applied Time</th>
+                    <th>Signed</th>
                     <th>Action</th>
 
                 </tr>
@@ -317,7 +366,9 @@ $(document).on('change', '#application_status', function(){
                     <th>F Name</th>
                     <th>NIC</th>
                     <th>Primary Mobile Number</th>
-                    <th>Applied TimeStamp</th>
+                    <th>Updated Time</th>
+                    <th>Applied Time</th>
+                    <th>Signed</th>
                     <th>Action</th>
                 </tr>
                 </tfoot>
@@ -352,6 +403,15 @@ $(document).on('change', '#application_status', function(){
 <!-- DataTables -->
 <script src="public/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="public/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+
+
 
 <!-- SlimScroll -->
 <script src="public/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
