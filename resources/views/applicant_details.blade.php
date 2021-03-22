@@ -639,7 +639,7 @@ function com_list(ref){
                          @if ($Applicant['ref'] === $ac['app_ref'])
                             <b>Account number</b> <a class="pull-right"> {{ $ac['account_number'] }} </a>
                         @else
-                            <b>Other Account </b> <a class="pull-right"> {{ $ac['account_number'] }} </a>
+                            <b>OA </b> <a class="pull-right"> {{ $ac['account_number'] }} </a>
                         @endif
                   
                    
