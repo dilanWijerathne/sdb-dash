@@ -635,8 +635,16 @@ function com_list(ref){
 
                     @foreach ($acc as $ac)
                     <li class="list-group-item">
-                        <b>Account number</b> <a class="pull-right"> {{ $ac['account_number'] }} </a>
-                        </li>
+                    @isset($ac['app_ref'])
+                         @if ($Applicant['ref'] === $ac['app_ref'])
+                            <b>Account number</b> <a class="pull-right"> {{ $ac['account_number'] }} </a>
+                        @else
+                            <b>Other Account </b> <a class="pull-right"> {{ $ac['account_number'] }} </a>
+                        @endif
+                    @endisset
+                   
+                        
+                    </li>
 
                     @endforeach
                   @endisset
