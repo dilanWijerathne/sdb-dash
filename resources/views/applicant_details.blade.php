@@ -844,6 +844,7 @@ propostion : 15
                             <span class="info-box-text">Name : '.$js[$i]['title'].'. '.$js[$i]['full_name'].'</span>
                             <span class="info-box-text"> Address : '.$js[$i]['address'].'</span>
                             <span class="info-box-text"> DOB : '.$js[$i]['dob'].'</span>
+                             <span class="info-box-text"> NIC : '.$js[$i]['nic'].'</span>
                             <span class="info-box-text"> Contact No : '.$js[$i]['contact_number'].'</span>
                             <span class="info-box-text"> Address : '.$js[$i]['address'].'</span>
 
