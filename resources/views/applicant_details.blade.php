@@ -617,7 +617,11 @@ function com_list(ref){
                 <hr>
 
                 <li class="list-group-item">
-                  <b>Applied timestamp</b> <a class="pull-right"> {{$Applicant['updated_at']}}</a>
+                  <b>Applied timestamp</b> <a class="pull-right"> {{$Applicant['created_at']}}</a>
+                </li>
+
+                <li class="list-group-item">
+                  <b>Updated timestamp</b> <a class="pull-right"> {{$Applicant['updated_at']}}</a>
                 </li>
 
                 <hr>
