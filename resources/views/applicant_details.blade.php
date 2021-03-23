@@ -617,7 +617,7 @@ function com_list(ref){
                 <hr>
 
                 <li class="list-group-item">
-                  <b>Applied timestamp</b> <a class="pull-right"> {{$Applicant['created_at']}}</a>
+                  <b>Applied timestamp</b> <a class="pull-right"> {{ date('d-m-Y', $Applicant['created_at'])}}</a>
                 </li>
 
                 <li class="list-group-item">
@@ -635,15 +635,15 @@ function com_list(ref){
 
                     @foreach ($acc as $ac)
                     <li class="list-group-item">
-                   
+
                          @if ($Applicant['ref'] === $ac['app_ref'])
                             <b>Account number</b> <a class="pull-right"> {{ $ac['account_number'] }} </a>
                         @else
                             <b>OA </b> <a class="pull-right"> {{ $ac['account_number'] }} </a>
                         @endif
-                  
-                   
-                        
+
+
+
                     </li>
 
                     @endforeach

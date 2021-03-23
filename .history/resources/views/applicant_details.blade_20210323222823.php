@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SDB</title>
+  <title>Customer onboarding</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -25,6 +25,8 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
+
+
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <script
@@ -40,7 +42,23 @@
           width: 300px;
           /* The width is the width of the web page */
         }
+        .img-responsive_custom{
+            display: block;
+            max-width: 300px;
+            max-height: 400px;
+            margin: auto;
+
+        }
+
+        .img-frame{
+            height: 430px;
+            border-width: 1px;
+            border-color: darkgray;
+            border-style: ridge
+        }
       </style>
+
+
 
   <script>
 
@@ -69,21 +87,54 @@ function initMap() {
 
 
     function send_msg(from,to,ref,nic){
-
-
-
         console.log("send msg clicked");
-        //
         var msg = $('#message_input').val();
-        $.ajax({
-            method: "GET",
-            url: "api/nessage_send",
-            data: {from_user:from,to_user:to,msg:msg,nic:nic, ref: ref}
-            })
-            .done(function( msg ) {
-                msg(ref);
-                console.log(msg);
-            });
+
+        $.confirm({
+            title: 'Confirm!',
+            content: 'Simple confirm!',
+            buttons: {
+                confirm: function () {
+                    //$.alert('Confirmed!');
+
+                // alert(comment+"  "+bdo+"  "+ref);
+                    if(msg.length>3){
+
+
+                        ///
+                        $.ajax({
+                            method: "GET",
+                            url: "api/nessage_send",
+                            data: {from_user:from,to_user:to,msg:msg,nic:nic, ref: ref}
+                            })
+                            .done(function( msg ) {
+                                msg(ref);
+                                console.log(msg);
+                                location.reload();
+
+                            });
+                        ///
+
+                    }
+                    else{
+                        //alert("Please add a valid comment. you cannot comment empty fields!");
+                        $.alert('Please provide a valid message!');
+                    }
+                },
+                cancel: function () {
+                    $.alert('Canceled!');
+                },
+
+            }
+        });
+
+/////////////////
+
+        /////////
+
+
+
+            /////////
     }
 
 
@@ -145,38 +196,48 @@ function com_list(ref){
 // check black list internally of
 
       function blacklist_check(){
-        var nic = $('#nicvalue').val();
-// blacklist_items
+        //var nic = "760054291V";// $('#nicvalue').val();
+        var nic =  $('#nicvalue').val();
             $.ajax({
-                method: "GET",
+                method: "POST",
                 url: "api/blacklist_check",
                 data: { nic: nic}
                 })
                 .done(function( msg ) {
                     var k = JSON.parse(msg);
-
-                ///        line 504
-
-               /*
-                var st ="";
-                for(var i=0; i<k.length;i++){
-                    var t = '<div class="col-sm-12"><div class="col-sm-9"><dl><dt>Commented by : '+k[i]['from']+'</dt><dd> '+k[i]['msg']+'</dd></dl><hr></div>         <div class="col-sm-3">    <b>@</b> '+' '+k[i]['created_at']+'       </div><hr></div>';
-                    st = st.concat(t);
-                }
+                    console.log(k);
 
 
-*/
-/*
- <li class="list-group-item">
-                  <b>Primary mobile</b> <a class="pull-right"> {{$Applicant['primary_mobile_number']}}</a>
-                </li>
-*/
-            console.log(k);
-               // $("#blacklist_items").append( st );
+
+                if (k['JSON']['Status']['Status'] === 'OK') {
+                            var ti =  ' <h3 class="box-title"> For  Your Info</h3>';
+                            var st1 = ' <li class="list-group-item"><b>'+k['JSON']['Customer']['name']+'</b> <a class="pull-right">  </a></li>';
+                            var st2 = ' <li class="list-group-item"><b>Address line 1</b> <a class="pull-right"> '+k['JSON']['Customer']['address_line_1']+' </a></li>';
+                            var st3 = ' <li class="list-group-item"><b>Address line 2</b> <a class="pull-right"> '+k['JSON']['Customer']['address_line_2']+' </a></li>';
+                            var st4 = ' <li class="list-group-item"><b>Remarks Line 1</b> <a class="pull-right"> '+k['JSON']['Customer']['remarks_line_1']+' </a></li>';
+                            var st5 = ' <li class="list-group-item"><b>Remarks Line 2</b> <a class="pull-right"> '+k['JSON']['Customer']['remarks_line_2']+' </a></li>';
+                            var st6 = ' <li class="list-group-item"><b>Rec Type</b> <a class="pull-right"> '+k['JSON']['Customer']['rec_type']+' </a></li>';
+                            var st7 = ' <li class="list-group-item"><b>Expire Date</b> <a class="pull-right"> '+k['JSON']['Customer']['expire_date']+' </a></li>';
+                            console.log(k['JSON']['Customer']['name']);
+                            console.log(k['JSON']['Customer']['remarks_line_1']);
+                            $("#blacklist_items").append(st1);
+                            $("#blacklist_items").append( st2 );
+                            $("#blacklist_items").append( st3 );
+                            $("#blacklist_items").append( st4 );
+                            $("#blacklist_items").append( st5 );
+                            $("#blacklist_items").append( st6 );
+                            $("#blacklist_items").append( st7 );
 
 
-            });
+                      console.log(k);
 
+            }else{
+              var stext = "No sanctioned data";
+              var st1 = ' <li class="list-group-item"><b>'+stext+'</b> <a class="pull-right">  </a></li>';
+              $("#blacklist_items").append(st1);
+            }
+
+        });
       }
 
 
@@ -198,8 +259,8 @@ function com_list(ref){
 
             console.log("Type " + type + "  - > officer bdo- mng  "+ user_email+ "  -> app ref " + ref);
 
-            alert("Type " + type + "  - > officer bdo- mng  "+ user_email+ "  -> app ref " + ref);
-        alert("You marked review status");
+            //alert("Type " + type + "  - > officer bdo- mng  "+ user_email+ "  -> app ref " + ref);
+    //    alert("You marked review status");
         $.ajax({
             method: "POST",
             url: "api/review",
@@ -207,7 +268,7 @@ function com_list(ref){
             })
             .done(function( msg ) {
                 console.log(msg);
-                alert( msg );
+             //   alert( msg );
                 location.reload();
 
             });
@@ -235,18 +296,19 @@ function com_list(ref){
         });
     }
 
-      // "http://10.101.6.198/sdbl/inapp",
+
       function cacc(branch, ref,u_email){
-      //  '{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}'
 
-          var nic = $('#nicvalue').val();
+            var ref = $('#appref').val();
+            var nic = $('#nicvalue').val();
+            $('#approve_text').html('Please Wait...');
+            $('#approve_button').off('click');
 
-          alert("You are going to create account for : "+ nic);
           review(branch, ref,u_email);
         $.ajax({
             method: "POST",
             url: "api/applicant-approval",
-            data: { nic: nic}
+            data: { ref: ref}
             })
             .done(function( msg ) {
                 console.log(msg);
@@ -257,14 +319,80 @@ function com_list(ref){
       }
 
 
+      function cacc_old(branch, ref,u_email){
+
+
+     var nic = $('#nicvalue').val();
+     $('#approve_text').html('Please Wait...');
+       $('#approve_button').off('click');
+
+     review(branch, ref,u_email);
+   $.ajax({
+       method: "POST",
+       url: "api/applicant-approval",
+       data: { nic: nic}
+       })
+       .done(function( msg ) {
+           console.log(msg);
+           alert( msg );
+
+           location.reload();
+       });
+ }
+
+
 
 
 
 
       function comment_fd(){
+        var comment = $('#comment_input').val();
+        var bdo = $('#bdoemail').val();
+        var ref = $('#appref').val();
+        var from = $('#user_name').val();
+
+        $.confirm({
+            title: 'Confirm!',
+            content: 'Simple confirm!',
+            buttons: {
+                confirm: function () {
+                    //$.alert('Confirmed!');
+
+                // alert(comment+"  "+bdo+"  "+ref);
+                    if(comment.length>3){
 
 
+                        ///
+                        $.ajax({
+                        method: "POST",
+                        url: "api/comment",
+                        data: { msg: comment,bdo:bdo,ref:ref,from:from}
+                        })
+                        .done(function( msg ) {
+                            console.log(msg);
+                            $.alert( msg );
+                            location.reload();
 
+                        });
+
+                        ///
+
+                    }
+                    else{
+                        //alert("Please add a valid comment. you cannot comment empty fields!");
+                        $.alert('Please add a valid comment. you cannot comment empty fields!');
+                    }
+                },
+                cancel: function () {
+                    $.alert('Canceled!');
+                },
+
+            }
+        });
+
+//
+
+/*
         var comment = $('#comment_input').val();
         var bdo = $('#bdoemail').val();
         var ref = $('#appref').val();
@@ -272,6 +400,8 @@ function com_list(ref){
         alert(comment+"  "+bdo+"  "+ref);
         if(comment!==null|comment!==""| comment!==" "){
 
+
+            ///
             $.ajax({
             method: "POST",
             url: "api/comment",
@@ -284,10 +414,15 @@ function com_list(ref){
 
             });
 
+            ///
+
         }
         else{
             alert("Please add a valid comment. you cannot comment empty fields!");
         }
+
+*/
+        //
       }
 
 
@@ -318,7 +453,7 @@ function com_list(ref){
     <section class="content">
 
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
 
           <!-- Profile Image -->
           <div class="box box-primary">
@@ -367,6 +502,90 @@ function com_list(ref){
                <hr>
 
 
+               @isset($fd['desposit'])
+                     <!-- primary display section -->
+              <ul class="list-group list-group-unbordered">
+
+
+                @if(isset($fd['desposit']))
+                <li class="list-group-item">
+                  <b>FD Value</b> <a class="pull-right"> {{$fd['desposit']}} LKR</a>
+                </li>
+                @endif
+
+                @if(isset($fd['period']))
+                <li class="list-group-item">
+                  <b>FD Period</b> <a class="pull-right"> {{$fd['period']}} M</a>
+                </li>
+                @endif
+
+
+
+
+
+
+                @if(isset( $fd['interest_disposal_method'] ))
+
+                  @if ($fd['interest_disposal_method']==="monthly")
+                  <li class="list-group-item">
+                    <b>Interest disposal method</b> <a class="pull-right">Monthly </a>
+                  </li>
+                  @endif
+
+                  @if ($fd['interest_disposal_method']==="maturity")
+                  <li class="list-group-item">
+                    <b>Interest disposal method</b> <a class="pull-right">Maturity </a>
+                  </li>
+                  @endif
+
+                @endif
+
+
+                @if(isset( $fd['interest_payable_at'] ))
+
+                  @if ($fd['interest_payable_at']==="disposeOther")
+                  <li class="list-group-item">
+                    <b>Interest payable at</b> <a class="pull-right"> Dispose to other bank account </a>
+                  </li>
+                  @endif
+
+                  @if ($fd['interest_payable_at']==="capitalized")
+                  <li class="list-group-item">
+                    <b>Interest payable at</b> <a class="pull-right">Capitalized </a>
+                  </li>
+                  @endif
+
+                @endif
+
+
+
+
+
+
+                @if(isset($fd['interest_transfer_bank']))
+                <li class="list-group-item">
+                  <b>Interest transfer bank</b> <a class="pull-right"> {{$fd['interest_transfer_bank']}}</a>
+                </li>
+                @endif
+
+                @if(isset($fd['interest_transfer_acc_name']))
+                <li class="list-group-item">
+                  <b>Interest transfer Account Name</b> <a class="pull-right"> {{$fd['interest_transfer_acc_name']}}</a>
+                </li>
+                @endif
+
+                @if(isset($fd['interest_transfer_account']))
+                <li class="list-group-item">
+                  <b>Interest transfer account</b> <a class="pull-right"> {{$fd['interest_transfer_account']}}</a>
+                </li>
+                @endif
+
+              </ul>
+               <!-- end primary display section -->
+               <hr>
+               @endisset
+
+
                 <!-- primary display section -->
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
@@ -398,7 +617,11 @@ function com_list(ref){
                 <hr>
 
                 <li class="list-group-item">
-                  <b>Applied timestamp</b> <a class="pull-right"> {{$Applicant['updated_at']}}</a>
+                  <b>Applied timestamp</b> <a class="pull-right"> {{ date('d-m-Y', $Applicant['created_at'])}}</a>
+                </li>
+
+                <li class="list-group-item">
+                  <b>Updated timestamp</b> <a class="pull-right"> {{$Applicant['updated_at']}}</a>
                 </li>
 
                 <hr>
@@ -412,8 +635,16 @@ function com_list(ref){
 
                     @foreach ($acc as $ac)
                     <li class="list-group-item">
-                        <b>Account number</b> <a class="pull-right"> {{ $ac['account_number'] }} </a>
-                        </li>
+
+                         @if ($Applicant['ref'] === $ac['app_ref'])
+                            <b>Account number</b> <a class="pull-right"> {{ $ac['account_number'] }} </a>
+                        @else
+                            <b>OA </b> <a class="pull-right"> {{ $ac['account_number'] }} </a>
+                        @endif
+
+
+
+                    </li>
 
                     @endforeach
                   @endisset
@@ -439,7 +670,7 @@ function com_list(ref){
 
                <input type="hidden" value="{{ session('user_email') }}"  id="user_name"/>
 
-
+               <h3 class="box-title">Internal sanction details </h3>
                <ul class="list-group list-group-unbordered" id="blacklist_items">
 
                </ul>
@@ -486,6 +717,24 @@ function com_list(ref){
 
 
 
+              @if (isset( $Applicant['ops_staff'] ))
+                  @if ($Applicant['ops_staff']!=NULL)
+                  <hr>
+                  <strong><i class="fa fa-map-marker margin-r-5"></i> Cen Ops/ Reviewed Officer </strong>
+                  <p class="text-muted">{{$Applicant['ops_staff']}}</p>
+                  @endif
+              @endif
+
+              @if (isset($Applicant['review_staff']))
+                 @if ($Applicant['review_staff']!=NULL)
+                 <hr>
+                 <strong><i class="fa fa-map-marker margin-r-5"></i> Approved Officer </strong>
+                <p class="text-muted">{{ $Applicant['review_staff'] }}</p>
+
+                 @endif
+              @endif
+
+
 
               <hr>
 
@@ -498,11 +747,16 @@ function com_list(ref){
 
                <hr>
 
+               <strong><i class="fa fa-map-marker margin-r-5"></i> App version</strong>
+              <p class="text-muted"> {{$Applicant['appv']}} </p>
+
+               <hr>
+
 
 
 
                @if ((int)$Applicant['done']===0)
-               <a onclick="cacc('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-block"><b>Approve</b></a>
+               <a id="approve_button" onclick="cacc('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-block"><b id="approve_text">Approve</b></a>
                <a href="#" class="btn btn-primary btn-warning btn-block"><b>Request to improve</b></a>
                <a onclick="reject('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')"  class="btn btn-primary btn-danger  btn-block"><b>Reject</b></a>
                @endif
@@ -525,7 +779,7 @@ function com_list(ref){
           <!-- /.box -->
         </div>
         <!-- /.col -->
-        <div class="col-md-9">
+        <div class="col-md-8">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#activity" data-toggle="tab">Applicant Info</a></li>
@@ -598,6 +852,7 @@ propostion : 15
                             <span class="info-box-text">Name : '.$js[$i]['title'].'. '.$js[$i]['full_name'].'</span>
                             <span class="info-box-text"> Address : '.$js[$i]['address'].'</span>
                             <span class="info-box-text"> DOB : '.$js[$i]['dob'].'</span>
+                             <span class="info-box-text"> NIC : '.$js[$i]['nic'].'</span>
                             <span class="info-box-text"> Contact No : '.$js[$i]['contact_number'].'</span>
                             <span class="info-box-text"> Address : '.$js[$i]['address'].'</span>
 
@@ -683,6 +938,11 @@ propostion : 15
                       @if($WorkPlace['other_income']!=="")
                       <li class="list-group-item">
                         <b>Other income :</b> <a class="pull-right">{{$WorkPlace['other_income']}}</a>
+                      </li>
+                      @endif
+                      @if($WorkPlace['source_other_income']!=="")
+                      <li class="list-group-item">
+                        <b>Source of other income :</b> <a class="pull-right">{{$WorkPlace['source_other_income']}}</a>
                       </li>
                       @endif
 
@@ -835,7 +1095,7 @@ propostion : 15
                 </div>
                 <!-- /.post -->
 
-                @if(isset($nicf['file_path']))
+            @if(isset($nicf['file_path']) | isset($nicr['file_path']))
 
 
                 <!-- Post -->
@@ -848,24 +1108,31 @@ propostion : 15
                         </span>
 
                   </div>
-                  <!-- /.user-block -->
-                  <div class="row margin-bottom">
+                    <!-- /.user-block -->
+                    <div class="row margin-bottom">
 
-                    <div class="col-sm-6">
-                        <a href="#">NIC Front Side</a>
-                      <img   class="img-responsive" src="{{env('CORE_URL')}}/sdbl/public/{{$nicf['file_path']}}" alt="Photo">
+
+
+                        @isset($nicf['file_path'])
+                        <div class="col-sm-6 img-frame">
+                            <a href="#">NIC Front Side</a>
+                        <img   class="img-responsive_custom" src="{{env('SAMBA')}}/sdbl/public/{{$nicf['file_path']}}" alt="Photo">
+                        </div>
+                        @endisset
+
+                        @isset($nicr['file_path'])
+                        <div class="col-sm-6 img-frame">
+                            <a href="#">NIC Back Side</a>
+                            <img  class="img-responsive_custom" src="{{env('SAMBA')}}/sdbl/public/{{$nicr['file_path']}}" alt="Photo">
+                        </div>
+                        @endisset
+
+
+
+
+
+                        <!-- /.col -->
                     </div>
-
-
-                    <div class="col-sm-6">
-                        <a href="#">NIC Back Side</a>
-                        <img  class="img-responsive" src="{{env('CORE_URL')}}/sdbl/public/{{$nicr['file_path']}}" alt="Photo">
-                      </div>
-
-
-
-                    <!-- /.col -->
-                  </div>
                   <!-- /.row -->
 
 
@@ -875,30 +1142,40 @@ propostion : 15
                      <div class="row margin-bottom">
 
                         @isset($proof['file_path'])
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 ">
                             <a href="#">Proof Document 1</a>
-                          <img class="img-responsive" src="{{env('CORE_URL')}}/sdbl/public/{{$proof['file_path']}}" alt="Photo">
+                          <img class="img-responsive_custom" src="{{env('SAMBA')}}/sdbl/public/{{$proof['file_path']}}" alt="Photo">
+                        </div>
+                        @endisset
+                        @isset($proofr['file_path'])
+                        <div class="col-sm-6 ">
+                            <a href="#">Proof Document 2</a>
+                          <img class="img-responsive_custom" src="{{env('SAMBA')}}/sdbl/public/{{$proofr['file_path']}}" alt="Photo">
                         </div>
                         @endisset
 
-
-
+                     </div>
+                        <div class="row margin-bottom">
                         <!-- /.col -->
-                        <div class="col-sm-6">
-                          <div class="row">
 
 
-                            <div class="col-sm-6">
+
+
                              @isset($selfie['file_path'])
+                             <div class="col-sm-6 img-frame">
                              <a href="#">Other Documents </a>
-                              <img class="img-responsive" src="{{env('CORE_URL')}}/sdbl/public/{{$selfie['file_path']}}" alt="Photo">
-                              @endisset
-                              <br>
-                              <a href="#">Applicant's Signature  </a>
-                              <img class="img-responsive" src="{{$signature['signature']}}" alt="Photo">
-
-
+                              <img class="img-responsive_custom" src="{{env('SAMBA')}}/sdbl/public/{{$selfie['file_path']}}" alt="Photo">
                             </div>
+                              @endisset
+
+                              @isset($signature['signature'])
+                              <div class="col-sm-6 img-frame">
+                              <a href="#">Applicant's Signature  </a>
+                              <img class="img-responsive_custom" src="{{$signature['signature']}}" alt="Photo">
+                            </div>
+                            @endisset
+
+
 
 
                             <!-- /.col -->
@@ -915,10 +1192,7 @@ propostion : 15
                             --->
 
 
-                            <!-- /.col -->
-                          </div>
-                          <!-- /.row -->
-                        </div>
+
                         <!-- /.col -->
                       </div>
                       <!-- /.row -->
@@ -929,6 +1203,9 @@ propostion : 15
                 </div>
 
                 @endif
+
+
+
 
                 <!-- /.post -->
               </div>
@@ -1090,6 +1367,11 @@ propostion : 15
 <script src="public/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="public/dist/js/demo.js"></script>
+
+<!-- confirm alerts  -->
+<link rel="stylesheet" href="public/jqalerts/jquery-confirm.min.css">
+<!--confirm alerts  -->
+<script src="public/jqalerts/jquery-confirm.min.js"></script>
 
 <script>
 
