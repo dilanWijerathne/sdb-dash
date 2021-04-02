@@ -512,7 +512,7 @@ function com_list(ref){
 
                 @if(isset($investment['desposit']))
                 <li class="list-group-item">
-                  <b>Investment period</b> <a class="pull-right"> {{$investment['period']}} M</a>
+                  <b>Investment period</b> <a class="pull-right"> {{$investment['period']}} Months</a>
                 </li>
                 @endif
 
