@@ -55,14 +55,6 @@
 
         }
 
-        .img-responsive_custom{
-            display: block;
-            max-width: 200px;
-            max-height: 200px;
-            margin: auto;
-
-        }
-
         .img-frame{
             height: 430px;
             border-width: 1px;
