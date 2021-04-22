@@ -59,6 +59,7 @@
             display: block;
             max-width: 200px;
             max-height: 200px;
+
             margin-top: 10;
 
         }
