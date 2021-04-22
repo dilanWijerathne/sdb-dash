@@ -1189,6 +1189,7 @@ propostion : 15
 
                               @isset($signature['signature'])
                               <div class="col-sm-6 img-frame">
+                                  <p> I/we hereby confirm that the terms and conditions applicable to opening and operations of this account and electronic account opening application form were explained to me/us in the language conversant by me /us and understood by me/us.I / we hereby affirm that all the information provided in this electronic account opening application form are true and correct and further undertake to intimate the bank promptly in case of any change /s in any of such information provided.</p>
                               <a href="#">Applicant's Signature  </a>
                               <img class="img-responsive_custom" src="{{$signature['signature']}}" alt="Photo">
                             </div>

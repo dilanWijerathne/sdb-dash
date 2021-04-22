@@ -502,6 +502,25 @@ function com_list(ref){
                <hr>
 
 
+               @isset($investment['desposit'])
+               <ul class="list-group list-group-unbordered">
+                @if(isset($investment['desposit']))
+                <li class="list-group-item">
+                  <b>Investment Value</b> <a class="pull-right"> {{$investment['desposit']}} LKR</a>
+                </li>
+                @endif
+
+                @if(isset($investment['desposit']))
+                <li class="list-group-item">
+                  <b>Investment period</b> <a class="pull-right"> {{$investment['period']}} M</a>
+                </li>
+                @endif
+
+
+               </ul>
+               @endisset
+
+
                @isset($fd['desposit'])
                      <!-- primary display section -->
               <ul class="list-group list-group-unbordered">
@@ -616,15 +635,12 @@ function com_list(ref){
 
                 <hr>
 
-                @php
-                  $apd =   date('d-m-Y', $Applicant['created_at'])
-                @endphp
                 <li class="list-group-item">
-                  <b>Applied timestamp</b> <a class="pull-right"> {{ $apd}}</a>
+                  <b>Applied date</b> <a class="pull-right"> {{$created_at }}</a>
                 </li>
 
                 <li class="list-group-item">
-                  <b>Updated timestamp</b> <a class="pull-right"> {{$Applicant['updated_at']}}</a>
+                  <b>Updated date</b> <a class="pull-right"> {{$updated_at}}</a>
                 </li>
 
                 <hr>
@@ -1173,6 +1189,7 @@ propostion : 15
 
                               @isset($signature['signature'])
                               <div class="col-sm-6 img-frame">
+                                  <p>The Kandy Esala Perahera (the Sri Dalada Perahara procession of Kandy) also known as The Festival of the Tooth is a festival held in July and August in Kandy, Sri Lanka. This historical procession is held annually to pay homage to the Sacred Tooth Relic of Buddha, which is housed at the Sri Dalada Maligawa in Kandy. A unique symbol of Sri Lanka, the procession consists of traditional local dances such as fire-dances, whip-danc garments. The festival ends with the traditional diya-kepeema ritual, a water cutting ceremony which is held at the Mahaweli River at Getambe, Kandy..</p>
                               <a href="#">Applicant's Signature  </a>
                               <img class="img-responsive_custom" src="{{$signature['signature']}}" alt="Photo">
                             </div>

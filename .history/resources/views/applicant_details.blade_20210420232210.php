@@ -502,6 +502,25 @@ function com_list(ref){
                <hr>
 
 
+               @isset($investment['desposit'])
+               <ul class="list-group list-group-unbordered">
+                @if(isset($investment['desposit']))
+                <li class="list-group-item">
+                  <b>Investment Value</b> <a class="pull-right"> {{$investment['desposit']}} LKR</a>
+                </li>
+                @endif
+
+                @if(isset($investment['desposit']))
+                <li class="list-group-item">
+                  <b>Investment period</b> <a class="pull-right"> {{$investment['period']}} M</a>
+                </li>
+                @endif
+
+
+               </ul>
+               @endisset
+
+
                @isset($fd['desposit'])
                      <!-- primary display section -->
               <ul class="list-group list-group-unbordered">
@@ -616,15 +635,12 @@ function com_list(ref){
 
                 <hr>
 
-                @php
-                  $apd =   date('d-m-Y', $Applicant['created_at'])
-                @endphp
                 <li class="list-group-item">
-                  <b>Applied timestamp</b> <a class="pull-right"> {{ $apd}}</a>
+                  <b>Applied date</b> <a class="pull-right"> {{$created_at }}</a>
                 </li>
 
                 <li class="list-group-item">
-                  <b>Updated timestamp</b> <a class="pull-right"> {{$Applicant['updated_at']}}</a>
+                  <b>Updated date</b> <a class="pull-right"> {{$updated_at}}</a>
                 </li>
 
                 <hr>

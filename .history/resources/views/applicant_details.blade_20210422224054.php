@@ -502,6 +502,25 @@ function com_list(ref){
                <hr>
 
 
+               @isset($investment['desposit'])
+               <ul class="list-group list-group-unbordered">
+                @if(isset($investment['desposit']))
+                <li class="list-group-item">
+                  <b>Investment Value</b> <a class="pull-right"> {{$investment['desposit']}} LKR</a>
+                </li>
+                @endif
+
+                @if(isset($investment['desposit']))
+                <li class="list-group-item">
+                  <b>Investment period</b> <a class="pull-right"> {{$investment['period']}} M</a>
+                </li>
+                @endif
+
+
+               </ul>
+               @endisset
+
+
                @isset($fd['desposit'])
                      <!-- primary display section -->
               <ul class="list-group list-group-unbordered">
@@ -616,15 +635,12 @@ function com_list(ref){
 
                 <hr>
 
-                @php
-                  $apd =   date('d-m-Y', $Applicant['created_at'])
-                @endphp
                 <li class="list-group-item">
-                  <b>Applied timestamp</b> <a class="pull-right"> {{ $apd}}</a>
+                  <b>Applied date</b> <a class="pull-right"> {{$created_at }}</a>
                 </li>
 
                 <li class="list-group-item">
-                  <b>Updated timestamp</b> <a class="pull-right"> {{$Applicant['updated_at']}}</a>
+                  <b>Updated date</b> <a class="pull-right"> {{$updated_at}}</a>
                 </li>
 
                 <hr>
@@ -1173,6 +1189,7 @@ propostion : 15
 
                               @isset($signature['signature'])
                               <div class="col-sm-6 img-frame">
+                                  <p> I/we hereby confirm that the terms and conditions applicable to opening and operations of this account and electronic account opening application form were explained to me/us in the language conversant by me /us and understood by me/us.I / we hereby affirm that all the information provided in this electronic account opening application form are true and correct and further undertake to intimate the bank promptly in case of any change /s in any of such information provided.</p>
                               <a href="#">Applicant's Signature  </a>
                               <img class="img-responsive_custom" src="{{$signature['signature']}}" alt="Photo">
                             </div>
