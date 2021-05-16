@@ -1207,6 +1207,15 @@ propostion : 15
                             </div>
                               @endisset
 
+                              @isset($selfie2['file_path'])
+                              <div class="col-sm-6 img-frame">
+                              <a href="#">Other Documents 02 </a>
+                               <img class="img-responsive_custom" src="{{env('SAMBA')}}/sdbl/public/{{$selfie2['file_path']}}" alt="Photo">
+                             </div>
+                               @endisset
+
+
+
                               @isset($signature['signature'])
                               <div class="col-sm-6 img-frame2">
                                   <p class="descp" > මෙම ගිණුම විවෘත කිරීමේ විද්‍යුත් අයදුම් පත්‍රය හා ක්‍රියාත්මක කිරීමට අදාළ වන නියමයන් සහ කොන්දේසි මාගේ  /අපගේ සුපුරුදු භාෂාවෙන් මා/අප වෙත පැහැදිලි කරන ලද බව මම / අපි මෙහි සනාථ කරමි /කරමු.මෙම ගිණුම් විවෘත කිරීමේ විද්‍යුත් අයදුම්පතේ දක්වා ඇති සියලුම තොරතුරු සත්‍ය සහ නිවැරදි බව මම / අපි මෙයින් සහතික කරන අතර, ලබා දී ඇති තොරතුරුවල කිසියම් වෙනසක් / වෙනස්කමක් සිදුවුවහොත් වහාම බැංකුව දැනුවත් කිරීමට කටයුතු  කරමි/කරමු.</p>
