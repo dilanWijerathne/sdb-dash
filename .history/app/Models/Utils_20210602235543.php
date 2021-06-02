@@ -21,12 +21,12 @@ class Utils
         Log::info('BlackList Checking : ' . $nic);
 
         //   Http::withToken()->post
-      $url = "http://10.100.32.72:7801/customers/v1/GetBlackListCustomers";
-        $response = Http::post($url, [
+        $url = "http://10.100.32.72:7801/customers/v1/GetBlackListCustomers";
+        $response = Http::get($url, [
             "nic_no" => $nic,
         ]);
 
-        Log::info('Blacklist Checked ' .  $nic;
+        Log::info('Blacklist Checked ' .  $nic);
         Log::info($response);
         return  $response;
     }
@@ -103,6 +103,10 @@ class Utils
             Log::info($emp_hr);
             Log::info($emp_hr['data']['emp_finit']);
             if ($array['role'] === "manager" && strtolower($array['email']) === strtolower($emp_hr['data']['emp_email'])) {
+                Log::info('hr logic works ');
+                $state =  true;
+            }
+            if ($array['role'] === "teamid" && strtolower($array['email']) === strtolower($emp_hr['data']['emp_email'])) {
                 Log::info('hr logic works ');
                 $state =  true;
             }

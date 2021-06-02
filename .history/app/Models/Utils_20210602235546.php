@@ -12,6 +12,27 @@ use Illuminate\Support\Facades\Log;
 class Utils
 {
 
+    /**
+     * blacklist checking internal SDB
+     */
+    public static function blacklist_check($nic)
+    {
+
+        Log::info('BlackList Checking : ' . $nic);
+
+        //   Http::withToken()->post
+        $url = "http://10.100.32.72:7801/customers/v1/GetBlackListCustomers";
+        $response = Http::get($url, [
+            "nic_no" => $nic,
+        ]);
+
+        Log::info('Blacklist Checked ' .  $nic);
+        Log::info($response);
+        return  $response;
+    }
+
+
+
     public static function change_my_pass($email, $pass)
     {
 
@@ -74,12 +95,23 @@ class Utils
         if (isset($array['emp'])) {
             session(['emp' => $array['emp']]);
         }
-        if (isset($array['role'])) {
+        if (isset($array['role']) && isset($array['emp'])) {
             session(['user_role' => $array['role']]);
-            if ($array['role'] === "manager") {
+            $emp_hr = Utils::minitHRClient($array['emp']);
+            $emp_hr = json_decode($emp_hr, true);
+            Log::info('hr emp check ');
+            Log::info($emp_hr);
+            Log::info($emp_hr['data']['emp_finit']);
+            if ($array['role'] === "manager" && strtolower($array['email']) === strtolower($emp_hr['data']['emp_email'])) {
+                Log::info('hr logic works ');
+                $state =  true;
+            }
+            if ($array['role'] === "teamid" && strtolower($array['email']) === strtolower($emp_hr['data']['emp_email'])) {
+                Log::info('hr logic works ');
                 $state =  true;
             }
         } else {
+            Log::info('hr logic not works ');
             $state =  false;    // invalid_credentials
         }
 

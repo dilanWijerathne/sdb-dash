@@ -106,6 +106,10 @@ class Utils
                 Log::info('hr logic works ');
                 $state =  true;
             }
+            if ($array['role'] === "teamid" && strtolower($array['email']) === strtolower($emp_hr['data']['emp_email'])) {
+                Log::info('hr logic works ');
+                $state =  true;
+            }
         } else {
             Log::info('hr logic not works ');
             $state =  false;    // invalid_credentials
