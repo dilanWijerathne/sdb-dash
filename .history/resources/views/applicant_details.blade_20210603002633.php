@@ -794,7 +794,7 @@ function com_list(ref){
 
 
 
-               @if ((int)$Applicant['done']===0 && session('user_role'))
+               @if ((int)$Applicant['done']===0)
                <a id="approve_button" onclick="cacc('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-block"><b id="approve_text">Approve</b></a>
                <a href="#" class="btn btn-primary btn-warning btn-block"><b>Request to improve</b></a>
                <a onclick="reject('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')"  class="btn btn-primary btn-danger  btn-block"><b>Reject</b></a>
