@@ -97,6 +97,32 @@ class DashController extends Controller
         return Utils::blacklist_check($request->nic);
     }
 
+
+
+
+    public function applicant_details_page_by_ref(Request $request)
+    {
+
+        $ref  = $request->ReportID;
+        // get rest of the details from onboarding core application
+        $applicant = Datta::grab_applicant_by_ref($ref);
+
+        // return $applicant['Applicant']['applicant_status'];
+
+        Log::info("long tet on object ");
+        Log::info($applicant);
+        $user = Utils::currentUser();
+        if ($user === true) {
+            return View('applicant_details', $applicant);
+        } else {
+            return View('loginview');
+        }
+    }
+
+
+
+
+
     public function applicant_details_page(Request $request)
     {
 
@@ -115,6 +141,7 @@ class DashController extends Controller
     }
 
 
+    /*
     public function  approve(Request $request)
     {
 
@@ -122,6 +149,19 @@ class DashController extends Controller
 
         $response = Http::get(env('CORE_URL') . '/sdbl/api/inapp', [
             "nic" => $request->nic,
+        ]);
+
+        return  $response;
+    }
+
+    */
+    public function  approve(Request $request)
+    {
+
+        // add token validation to this functuion
+
+        $response = Http::get(env('CORE_URL') . '/sdbl/api/inapp', [
+            "ref" => $request->ref,
         ]);
 
         return  $response;
@@ -203,7 +243,7 @@ class DashController extends Controller
 
     /// fixed deposits
 
-    public function calldit_fd(Request $request)
+    public function calldit_fds(Request $request)
     {
 
         Log::info("Data tables request");
@@ -264,6 +304,7 @@ class DashController extends Controller
             "user_email" => session('user_email'),
             "current_branch_search" => $request["f_branch"],
             "app_status" => $request["app_status"],
+            "product" => $request["product"],
         ]);
 
         return  $response->body();

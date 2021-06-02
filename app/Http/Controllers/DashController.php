@@ -109,6 +109,8 @@ class DashController extends Controller
 
         // return $applicant['Applicant']['applicant_status'];
 
+        Log::info("long tet on object ");
+        Log::info($applicant);
         $user = Utils::currentUser();
         if ($user === true) {
             return View('applicant_details', $applicant);
