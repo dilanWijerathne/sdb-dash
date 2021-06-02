@@ -55,17 +55,24 @@
 
         }
 
-        .img-responsive_custom{
+        .img-responsive_custom2{
             display: block;
             max-width: 200px;
             max-height: 200px;
-            margin: auto;
+            margin-top: 10;
 
         }
 
         .img-frame{
             height: 430px;
             border-width: 1px;
+            border-color: darkgray;
+            border-style: ridge
+        }
+        .img-frame2{
+            height: 430px;
+            border-width: 1px;
+            margin-top: 10;
             border-color: darkgray;
             border-style: ridge
         }
@@ -494,7 +501,7 @@ function com_list(ref){
                 @if($Applicant['existing_customer']==='true')
 
                 <li class="list-group-item">
-                  <b>Existing customer</b> <a class="pull-right">CIF  @if(isset($cif['cif'])){{$cif['cif']}} @endif</a>
+                  <b> Customer CIF</b> <a class="pull-right">  @if(isset($cif['cif'])){{$cif['cif']}} @endif</a>
                 </li>
                 @endif
 
@@ -787,7 +794,7 @@ function com_list(ref){
 
 
 
-               @if ((int)$Applicant['done']===0)
+               @if ((int)$Applicant['done']===0 && $bdo['role']==="manager")
                <a id="approve_button" onclick="cacc('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')" class="btn btn-primary btn-block"><b id="approve_text">Approve</b></a>
                <a href="#" class="btn btn-primary btn-warning btn-block"><b>Request to improve</b></a>
                <a onclick="reject('{{session('user_branch')}}','{{$Applicant['ref']}}','{{session('user_email')}}')"  class="btn btn-primary btn-danger  btn-block"><b>Reject</b></a>
@@ -1200,8 +1207,17 @@ propostion : 15
                             </div>
                               @endisset
 
-                              @isset($signature['signature'])
+                              @isset($selfie2['file_path'])
                               <div class="col-sm-6 img-frame">
+                              <a href="#">Other Documents 02 </a>
+                               <img class="img-responsive_custom" src="{{env('SAMBA')}}/sdbl/public/{{$selfie2['file_path']}}" alt="Photo">
+                             </div>
+                               @endisset
+
+
+
+                              @isset($signature['signature'])
+                              <div class="col-sm-6 img-frame2">
                                   <p class="descp" > මෙම ගිණුම විවෘත කිරීමේ විද්‍යුත් අයදුම් පත්‍රය හා ක්‍රියාත්මක කිරීමට අදාළ වන නියමයන් සහ කොන්දේසි මාගේ  /අපගේ සුපුරුදු භාෂාවෙන් මා/අප වෙත පැහැදිලි කරන ලද බව මම / අපි මෙහි සනාථ කරමි /කරමු.මෙම ගිණුම් විවෘත කිරීමේ විද්‍යුත් අයදුම්පතේ දක්වා ඇති සියලුම තොරතුරු සත්‍ය සහ නිවැරදි බව මම / අපි මෙයින් සහතික කරන අතර, ලබා දී ඇති තොරතුරුවල කිසියම් වෙනසක් / වෙනස්කමක් සිදුවුවහොත් වහාම බැංකුව දැනුවත් කිරීමට කටයුතු  කරමි/කරමු.</p>
                                   <p class="descp">இந்த கணக்கைத் திறப்பதற்கான விண்ணப்பத்திற்கும் அதன் செயல்பாட்டிற்கும் மற்றும் இலத்திரனியல் கணக்கு திறப்பு விண்ணப்ப படிவத்திற்குபொருந்தக்கூடிய விதிமுறைகள் மற்றும் நிபந்தனைகள் எனக்கு / எங்களுக்கு வழக்கமான மொழியில் எனக்கு / எங்களுக்கு விளக்கப்பட்டன மற்றும் எனக்கு / எங்களால் புரிந்து கொள்ளப்பட்டதை  நான் / நாங்கள் இதன்மூலம் உறுதிப்படுத்துகிறோம்.
                                     இந்த இலத்திரனியல் கணக்கு திறப்பு பயன்பாட்டில் வழங்கப்பட்ட அனைத்து தகவல்களும் உண்மை மற்றும் சரியானவை என்பதை நான் / நாங்கள் இதன்மூலம் உறுதிப்படுத்துகிறோம், மேலும் வழங்கப்பட்ட தகவலில் ஏதேனும் மாற்றம் / மாற்றங்கள் ஏற்பட்டால் உடனடியாக வங்கிக்கு அறிவிப்பதற்கு நடவடிக்கை மேற்கொள்வேன் /மேற்றக்கொள்வோம்.</p>
