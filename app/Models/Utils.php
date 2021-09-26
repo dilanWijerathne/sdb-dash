@@ -134,7 +134,7 @@ class Utils
         $response = Http::withHeaders([
             "accessToken" => "m3gsa7ae81654e1c16efb1c49e25c539f630",
             "emp_no" => $empid
-        ])->get('https://sdb.minthrm.com/thirdParty/getEmpDetailsSdb', [
+        ])->withOptions(["verify"=>false])->get('https://sdb.minthrm.com/thirdParty/getEmpDetailsSdb', [
             "Dilan" => "Dilan",
         ]);
         Log::info('minitHR response  ' . $empid);
